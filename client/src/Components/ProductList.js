@@ -1,13 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import CategoriesMenu from './CategoriesMenu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import CategoriesMenu from './CategoriesMenu';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Components/Header';
 import LogoArea from '../Components/LogoArea';
 import Footer from './Footer';
+import axios from 'axios';
+import FuzzySet from 'fuzzyset.js';
+
 
 
 
@@ -17,7 +20,7 @@ const ProductList = () => {
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [id, setId] = useState();
   const userId = 1;
-
+  console.log(productData)
 
 
   useEffect(() => {
@@ -108,11 +111,84 @@ const ProductList = () => {
     window.location.reload();
   };
 
+// search function---------------------------------------
+
+const [searchTerm, setSearchTerm] = useState('');
+  const [filteredProductIds, setFilteredProductIds] = useState([]);
+ 
+  useEffect(() => {
+    const fetchSearchResults = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/productData');
+        const searchQuery = searchTerm.trim().toLowerCase().replace(/\s/g, '');
+        const productNames = response.data.map((product) => product.name.toLowerCase());
+
+        // Create a fuzzy set with product names
+        const fuzzySet = FuzzySet(productNames);
+        const correctedSearchTerm = fuzzySet.get(searchQuery, null, 0.5); // Get the closest match
+
+        if (correctedSearchTerm && correctedSearchTerm[0][0] > 0.5) {
+          setSearchTerm(correctedSearchTerm[0][1]); // Update searchTerm with the corrected term
+        }
+
+        const filteredResults = response.data.filter(
+          (result) =>
+            result.name
+              .toLowerCase()
+              .replace(/\s/g, '')
+              .includes(searchTerm.toLowerCase().replace(/\s/g, ''))
+        );
+        setFilteredProductIds(filteredResults.map((result) => result.id));
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    // Only fetch results if searchTerm is not empty
+    if (searchTerm.trim() !== '') {
+      fetchSearchResults();
+    } else {
+      // Clear results if searchTerm is empty
+      setFilteredProductIds([]);
+    }
+  }, [searchTerm]);
+
+  useEffect(() => {
+    // Fetch product data for each product ID
+    const fetchProductDataPromises = filteredProductIds.map((productId) =>
+      fetch(`http://localhost:3001/productData/${productId}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+    );
+
+    // Wait for all product data fetch requests to complete
+    Promise.all(fetchProductDataPromises)
+      .then((productData) => {
+        // Update productData state with fetched product data
+        setProductData(productData);
+      })
+      .catch((error) => {
+        console.error('Error fetching product data:', error);
+      });
+  }, [filteredProductIds]);
+
+ 
+
+  const handleSearchInputChange = (event) => {
+    setSearchTerm(event.target.value);
+
+  };
+
+
 
   return (
     <>
     <Header isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
-        <LogoArea /> 
+    <LogoArea  searchTerm={searchTerm} onSearchInputChange={handleSearchInputChange}/> 
        
     <div className="product-list-area section-padding">
       <div className="container">

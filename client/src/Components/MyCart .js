@@ -269,7 +269,7 @@ const MyCart = () => {
                         <td className="remove-item">
                           <img
                             style={{cursor:'pointer'}}
-                            src="images/remove.png"
+                            src="images/remove.png" 
                             alt="Remove"
                             onClick={() => cartItems.forEach(item => removeItemFromDatabase(item.id))}
                           />
@@ -286,7 +286,7 @@ const MyCart = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer/>
     </>
   );
 };

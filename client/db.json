@@ -156,35 +156,35 @@
       "name": "praveen",
       "email": "praveen@gmail.com",
       "password": "abcd"
+    },
+    {
+      "id": "4023",
+      "name": "Thameem",
+      "email": "Thameem@gmail.com",
+      "password": "12345"
     }
   ],
   "cartItems": [
     {
-      "id": "j3qbkvdw7",
-      "userId": 1,
-      "productId": "3",
-      "quantity": 1
-    },
-    {
-      "id": "nicm1byf6",
-      "userId": 1,
-      "productId": "2",
-      "quantity": 1
-    },
-    {
-      "id": "0q59b2d3f",
-      "userId": 1,
-      "productId": "2",
-      "quantity": 1
-    },
-    {
-      "id": "tjd62k30l",
+      "id": "446jnffff",
       "userId": 1,
       "productId": "1",
       "quantity": 1
     },
     {
-      "id": "nfv1qcso6",
+      "id": "i2p4wasi6",
+      "userId": 1,
+      "productId": "2",
+      "quantity": 1
+    },
+    {
+      "id": "pvftqyw9f",
+      "userId": 1,
+      "productId": "1",
+      "quantity": 1
+    },
+    {
+      "id": "3etxymsub",
       "userId": 1,
       "productId": "1",
       "quantity": 1

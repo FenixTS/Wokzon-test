@@ -1,14 +1,19 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
-import SearchableDropdown from './ProductDetail';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import FuzzySet from 'fuzzyset.js';
+import { useState, useEffect } from 'react';
 
 
-const LogoArea = () => {
+const LogoArea = ({ onSearchInputChange ,searchTerm}) => {
+
+
   return (
+    
     <div className="logo_area" >
-      <div className="container"style={{marginTop:"-30px"}} >
+      <div className="container" style={{ marginTop: "-30px" }} >
         <div className="row">
           <div className="col-sm-4 col-md-4 col-xs-12">
             <div className="logo">
@@ -32,7 +37,23 @@ const LogoArea = () => {
                       </a>
                     </li>
                   </ul>
-                  <input className="search-field" placeholder="Search here..." />
+                  {/* <input className="search-field" placeholder="Search here..." /> */}
+                  <input
+                    className="search-field"
+                    placeholder="Search here..."
+                    type="text"
+                    value={searchTerm}
+                    onChange={onSearchInputChange } />
+                  {/* <TextField
+                   className="search-field"
+                    label="Search..."
+                    variant="outlined"
+                    fullWidth
+                    value={searchTerm}
+                    onChange={SearchInput}
+                  /> */}
+
+
                   <a className="search-button" href="#"></a>
                 </div>
               </form>
