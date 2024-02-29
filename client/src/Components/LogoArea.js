@@ -8,6 +8,22 @@ import { useState, useEffect } from 'react';
 
 
 const LogoArea = ({ onSearchInputChange ,searchTerm}) => {
+  const [cartItems, setCartItems] = useState([]);
+  
+  fetch('http://localhost:3001/cartItems')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json(); // Parse response body as JSON
+  })
+  .then(data => {
+    const cartItemCount = data.length; // Calculate the length of the data array
+    setCartItems(cartItemCount); // Update cartItems state with the count
+  })
+  .catch(error => {
+    console.error('Error fetching cart items:', error);
+  });
 
 
   return (
@@ -44,27 +60,14 @@ const LogoArea = ({ onSearchInputChange ,searchTerm}) => {
                     type="text"
                     value={searchTerm}
                     onChange={onSearchInputChange } />
-                  {/* <TextField
-                   className="search-field"
-                    label="Search..."
-                    variant="outlined"
-                    fullWidth
-                    value={searchTerm}
-                    onChange={SearchInput}
-                  /> */}
-
-
                   <a className="search-button" href="#"></a>
                 </div>
               </form>
-
             </div>
-
-
             <div>
               <div className="menu_right">
-                <Link to="/cart-page">My Cart</Link>
-                <span>2</span>
+                <Link to="/cart-page">Wishlist</Link>
+                <span>{cartItems}</span>
               </div>
             </div>
           </div>

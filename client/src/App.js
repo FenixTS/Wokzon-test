@@ -17,6 +17,8 @@ import RegistrationForm from './Components/Register';
 
 
 
+
+
 const App = () => {
   return (
 
@@ -26,13 +28,13 @@ const App = () => {
         {/* <Header />
         <LogoArea /> */}
         
-    
+       
         
         <Routes>
           <Route path="/" element={<ProductList/>} />
           <Route path={`/Product_detail`} element={<ProductDetail />}/>
           <Route path="/cart-page" element={<ShoppingCart/>}/>
-          <Route path="/wishlist" element={<Wishlist/>}/>
+          {/* <Route path="/wishlist" element={<Wishlist/>}/> */}
           <Route path="/register" element={ <RegistrationForm/>}/>
           <Route path="/checkout" element={ <Checkout/>}/>
           <Route path="/my_account" element={ <MyAccount/>}/>

@@ -51,11 +51,11 @@ const Header = ({isLoggedIn,onLogin,onLogout}) => {
                     </Link>
 
                   </li>
-                  <li>
+                  {/* <li>
                     <Link to='/wishlist'>
                       <i className="fa fa-heart-o"></i> Wishlist
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link to="/checkout">
                       <img src="images/check.png" alt="#" /> Checkout

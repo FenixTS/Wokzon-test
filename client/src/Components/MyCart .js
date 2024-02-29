@@ -14,7 +14,8 @@ const MyCart = () => {
   // const [logout, setLogout] = useState(false);
   const userId = 1;
 
-
+  
+  
   // auth function
   const navigate = useNavigate();
   React.useEffect(() => {
@@ -205,9 +206,14 @@ const MyCart = () => {
                     <tr>
                       <td colSpan="7">
                         <div className="shopping-cart-btn">
-                          <button type="button" className="btn btn-default left-cart">Continue Shopping</button>
-                          <button type="button" className="btn btn-default right-cart right-margin">Clear shopping cart</button>
-                          <button type="button" className="btn btn-default right-cart">Update shopping cart</button>
+                          <Link to='/'><button type="button" className="btn btn-default left-cart">Continue Shopping</button></Link>
+                          <button
+                            type="button"
+                            className="btn btn-default right-cart right-margin"
+                            onClick={() => cartItems.forEach(item => removeItemFromDatabase(item.id))}>
+                            Clear shopping cart
+                          </button>
+                          {/* <button type="button" className="btn btn-default right-cart">Update shopping cart</button> */}
                         </div>
                       </td>
                     </tr>
@@ -259,26 +265,23 @@ const MyCart = () => {
                         <td className="cart-product-delivery"><div className="cc-pr">Free shipping</div></td>
                         <td className="cart-product-sub-total"><div className="cc-pr">${item.price * item.quantity}</div></td>
 
-                        {/* <td className="remove-item">
-                          <img
-                            src="images/remove.png"
-                            alt="Remove"
-                            onClick={() => removeItemFromDatabase(item.id)} // Pass item.id from productData to remove from cartItems
-                          />
-                        </td> */}
-                        <td className="remove-item">
-                          <img
-                            style={{cursor:'pointer'}}
-                            src="images/remove.png" 
-                            alt="Remove"
-                            onClick={() => cartItems.forEach(item => removeItemFromDatabase(item.id))}
-                          />
-                          
-                        </td>
 
+
+                     
+                          <td className="remove-item">
+                          {cartItems.map(item => (
+                            <img
+                              key={item.id}
+                              src="images/remove.png"
+                              alt="Remove"
+                              onClick={() => removeItemFromDatabase(item.id)}
+                            />
+                            ))}
+                          </td>
+
+                       
                       </tr>
                     ))}
-
                   </tbody>
                 </table>
               </div>
@@ -286,7 +289,7 @@ const MyCart = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };
