@@ -27,10 +27,10 @@ const ProductList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredProductIds, setFilteredProductIds] = useState([]);
   const [selectedProductId, setSelectedProductId] = useState(null);
-  const [contactData, setContactData] = useState([]);
+
   const [id, setId] = useState();
 
-  console.log(selectedProductId, 'prod')
+  
 
   const userId = 1;
 
@@ -325,13 +325,13 @@ const ProductList = () => {
                                     }}
                                   >
                                     <Typography sx={{ p: 2 }}>
-                                      
-                                    <div  style={{ display: 'flex', flexDirection: 'column', lineHeight: '35px', padding: '30px' }}>
-                                      <div><FontAwesomeIcon icon={faUser} /> {product.personName}</div>
-                                      <div><FontAwesomeIcon icon={faPhone} style={{ color: "black" }} /> {product.phoneNumber}</div>
-                                      <div><FontAwesomeIcon icon={faWhatsapp} style={{ color: '#23f207', height: '20px' }} /> {product.whatsappNumber}</div>
-                                      <div><FontAwesomeIcon icon={faEnvelope} style={{ color: "#1b1f17" }} /> {product.email}</div>
-                                      <div><FontAwesomeIcon icon={faLocationDot} style={{ color: "skyblue" }} /> {product.distric},{product.state}</div>
+
+                                      <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '35px', padding: '30px', fontSize: '13px' }}>
+                                        <div><FontAwesomeIcon icon={faUser} /> {product.personName}</div>
+                                        <div><FontAwesomeIcon icon={faPhone} style={{ color: "black" }} /> {product.phoneNumber}</div>
+                                        <div><FontAwesomeIcon icon={faWhatsapp} style={{ color: '#23f207', height: '15px' }} /> {product.whatsappNumber}</div>
+                                        <div><FontAwesomeIcon icon={faEnvelope} style={{ color: "#1b1f17" }} /> {product.email}</div>
+                                        <div><FontAwesomeIcon icon={faLocationDot} style={{ color: "skyblue" }} /> {product.distric},{product.state}</div>
                                       </div>
                                     </Typography>
                                   </Popover>

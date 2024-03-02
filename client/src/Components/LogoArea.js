@@ -2,9 +2,8 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import FuzzySet from 'fuzzyset.js';
 import { useState, useEffect } from 'react';
+import Location from '../Components/Location';
 
 
 const LogoArea = ({ onSearchInputChange ,searchTerm}) => {
@@ -39,18 +38,18 @@ const LogoArea = ({ onSearchInputChange ,searchTerm}) => {
             </div>
           </div>
           <div className="col-sm-8 col-md-8 col-xs-12">
-            <div className="search-area">
+            <div className="search-area"  style={{ height: '45px', }}>
               <form>
                 <div className="control-group">
 
                   <ul className="categories-filter animate-dropdown">
                     <li className="dropdown">
-
-                      <a className="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <FontAwesomeIcon icon={faLocationDot} style={{ marginRight: '10px' }} />
+                      {/* <a className="dropdown-toggle" data-toggle="dropdown" href="#"> */}
+                    <Location/>
+                        {/* <FontAwesomeIcon icon={faLocationDot} style={{ marginRight: '10px' }} />
                         Location
-                        <b className="caret"></b>
-                      </a>
+                        <b className="caret"></b> */}
+                      {/* </a> */}
                     </li>
                   </ul>
                   {/* <input className="search-field" placeholder="Search here..." /> */}
@@ -60,7 +59,7 @@ const LogoArea = ({ onSearchInputChange ,searchTerm}) => {
                     type="text"
                     value={searchTerm}
                     onChange={onSearchInputChange } />
-                  <a className="search-button" href="#"></a>
+                  <a className="search-button" href="#" style={{ height: '43px', }}></a>
                 </div>
               </form>
             </div>

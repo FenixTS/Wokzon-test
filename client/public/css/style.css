@@ -35,3 +35,39 @@ website:   	http://www.themepunch.com
 		padding:0;
 }
 
+.title {
+	display: grid;
+	place-content: center;
+	/* font-size: 50px; */
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 5.8em);
+	gap:80px;
+	/* background-color: #2196F3; */
+	/* padding: 50px; */
+	place-content: center;
+	/* margin: 200px; */
+	/* margin-top: 0px; */
+}
+
+
+.grid-elements {
+
+	background-color: rgb(229, 225, 233);
+	/* text-align: center; */
+	/* padding: 20px 0; */
+	/* font-size: 30px; */
+	height: 60px;
+	width:60px;
+	border-radius: 50%;
+	/* box-shadow:-30px -6px 30px rgba(140, 139, 139, 0.4); */
+
+}
+
+.center{
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+}

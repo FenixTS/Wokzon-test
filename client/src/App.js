@@ -1,21 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route,} from 'react-router-dom';
-import Header from './Components/Header';
-import Footer from './Components/Footer';
-import LogoArea from './Components/LogoArea';
 import ProductList from './Components/ProductList';
 import ProductDetail from './Components/ProductDetail';
 import ShoppingCart from './Components/MyCart ';
-import Wishlist from './Components/Wishlist';
 import Checkout from './Components/Checkout';
 import MyAccount from './Components/MyAccount';
 import ChangePassword from './Components/ChangePassword';
 import Login from './Components/Login';
 import RegistrationForm from './Components/Register';
-
-
-
-
 
 
 
@@ -28,7 +20,7 @@ const App = () => {
         {/* <Header />
         <LogoArea /> */}
         
-       
+    
         
         <Routes>
           <Route path="/" element={<ProductList/>} />
