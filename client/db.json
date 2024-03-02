@@ -278,6 +278,18 @@
       "userId": 1,
       "productId": "2",
       "quantity": 1
+    },
+    {
+      "id": "d3udq2kt0",
+      "userId": 1,
+      "productId": "1",
+      "quantity": 1
+    },
+    {
+      "id": "1vvy8eh8a",
+      "userId": 1,
+      "productId": "1",
+      "quantity": 1
     }
   ]
 }

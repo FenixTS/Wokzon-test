@@ -8,6 +8,7 @@ import MyAccount from './Components/MyAccount';
 import ChangePassword from './Components/ChangePassword';
 import Login from './Components/Login';
 import RegistrationForm from './Components/Register';
+import Post from './Components/Post';
 
 
 
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/my_account" element={ <MyAccount/>}/>
           <Route path="/forgot_psw" element={ <ChangePassword/>}/>
           <Route path="/login" element={ <Login/>}/>
+          <Route path="/post" element={ <Post/>}/>
         </Routes>
 
 

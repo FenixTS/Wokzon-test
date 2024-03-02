@@ -383,6 +383,7 @@ h6 {
 }
 .logo {
   margin-top: 5px;
+  width: 100%;
 }
 .navbar-default .navbar-nav > li > a {
     color: #555
@@ -433,10 +434,12 @@ h6 {
 }
 
 .search-area {
+  display: flex;
+  /* flex-direction: column; */
   border: 1px solid #e2e2e2;
   border-radius: 0;
   float: left;
-  width: 71%;
+  width: 40%;
 }
 
 .search-area .categories-filter {
@@ -447,13 +450,13 @@ h6 {
   line-height: 44px;
   list-style: outside none none;
   text-transform: capitalize;
-  width: 152px;
+  width: 40%;
 }
 
 .search-area .categories-filter a {
   color: #666;
   font-size: 13px;
-  padding: 3px 30px;
+  padding: 3px 13px;
 }
 
 .main-header .top-search-holder .search-area .categories-filter a .caret {
@@ -466,7 +469,7 @@ h6 {
   border-radius: 5px 0 0 5px;
   float: left;
   padding: 9px 13px;
-  width: 340px;
+  width:69.3%;
 }
 
 ul,
@@ -485,11 +488,12 @@ ol {
 }
 
 .search-area .search-button {
+  height: 43px;
   background: #000 none repeat scroll 0 0;
   border-left: 2px solid #e0e0e0;
   border-radius: 0;
   display: inline-block;
-  float: left;
+  float: left;  
   margin: 0;
   padding: 8px 19px 12px;
   text-align: center;
@@ -761,11 +765,14 @@ ul.slimmenu li ul li a:hover {
     height: 56px;
     width: 185px;
     float: right;
+    right: 40px;
+    position: relative;
 }
 
 .menu_right i {
     font-size: 16px;
     margin-right: 10px;
+   
 }
 
 .menu_right a {
@@ -778,6 +785,7 @@ ul.slimmenu li ul li a:hover {
     line-height: 48px;
     width: 131px;
     text-align: center;
+   
     
 }
 
@@ -3030,6 +3038,7 @@ input[type="radio"], input[type="checkbox"] {
   text-transform: uppercase;
   width: 76%;
 }
+
 
 .blog-search-area .search-button {
   float: left;
