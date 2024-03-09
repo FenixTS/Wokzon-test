@@ -68,7 +68,7 @@ const ProductDetail = () => {
                       <input type="hidden" id="__VIEWxSTATE" />
                       <ul id="zoom1" className="">
                         <li>
-                          <img src={product.image} alt={product.name} style={{ width: '400px', height: '400px' }}/>
+                          <img src={product.image} alt={product.profession} style={{ width: '400px', height: '400px' }}/>
                         </li> 
                       </ul>
                     </div>
@@ -76,7 +76,7 @@ const ProductDetail = () => {
                 </div>
                 <div className="col-md-6 col-sm-6 col-xs-12">
                   <div className="single-product-content">
-                    <h3>{product.name}</h3>
+                    <h3>{product.profession}</h3>
                     <div className="product-review">
                       <ul>
                         <li>
@@ -89,7 +89,7 @@ const ProductDetail = () => {
                         Availability <span>: {product.availability}</span>
                       </h4>
                       <div className="product-wid-price">
-                        <ins>₹{product.price}</ins> <del>₹{product.previousPrice}</del>
+                        <ins>₹{product.salary}</ins> <del>₹{product.previousPrice}</del>
                       </div>
                       <p>{product.description}</p>
                     </div>

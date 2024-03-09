@@ -12,17 +12,12 @@ import Post from './Components/Post';
 
 
 
+
 const App = () => {
   return (
 
-    
     <BrowserRouter>
-      <main>
-        {/* <Header />
-        <LogoArea /> */}
-        
-    
-        
+      <main>    
         <Routes>
           <Route path="/" element={<ProductList/>} />
           <Route path={`/Product_detail`} element={<ProductDetail />}/>
@@ -33,13 +28,12 @@ const App = () => {
           <Route path="/my_account" element={ <MyAccount/>}/>
           <Route path="/forgot_psw" element={ <ChangePassword/>}/>
           <Route path="/login" element={ <Login/>}/>
-          <Route path="/post" element={ <Post/>}/>
+          <Route path="/post" element={ <Post/>}/>            
         </Routes>
-
-
         {/* <Footer /> */}
-      </main>
+      </main>       
     </BrowserRouter>
+    
   );
 }
 

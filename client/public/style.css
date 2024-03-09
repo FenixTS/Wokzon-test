@@ -4037,6 +4037,9 @@ input[type="radio"], input[type="checkbox"] {
 .add_cart-contact{
   display: flex;
   justify-content: space-between;
+  top: 323px;
+  position: absolute;
+  margin-left: 2.5px;
 
 }
 /* .Add-to-cart{

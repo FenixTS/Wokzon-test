@@ -1,14 +1,33 @@
-import { Link } from 'react-router-dom';
+
 import Header from './Header';
 import LogoArea from './LogoArea';
-import Footer from './Footer';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 
-function MyAccount() {
-  const [isLoggedIn, setIsLoggedIn] = useState();
+import {
+    MDBCol,
+    MDBContainer,
+    MDBRow,
+    MDBCard,
+    MDBCardText,
+    MDBCardBody,
+    MDBCardImage,
+    MDBBtn,
+    MDBBreadcrumb,
+    MDBBreadcrumbItem,
+    MDBProgress,
+    MDBProgressBar,
+    MDBIcon,
+    MDBListGroup,
+    MDBListGroupItem
+  } from 'mdb-react-ui-kit';
+import Footer from './Footer';
 
-  // auth function
+const MyAccount = () => {
+
+    const [isLoggedIn, setIsLoggedIn] = useState();
+    // auth function
   const navigate = useNavigate();
   React.useEffect(() => {
     const isLoggedIn = localStorage.getItem('auth') !== null; // Check if 'auth' exists in localStorage
@@ -31,9 +50,6 @@ function MyAccount() {
     window.location.reload();
   };
 
-
-
-
   return (
     <>
     <Header isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
@@ -43,7 +59,7 @@ function MyAccount() {
                     <div class="row">
                         <div class="col-md-12">
                             <div class="bred-title">
-                                <h3>My Account</h3>
+                                <h3>Post</h3>
                             </div>
                             <ol class="breadcrumb">
                                 <li>
@@ -56,76 +72,135 @@ function MyAccount() {
                                         </button>
                                     </Link>
                                 </li>
-                                <li>
-                                    <Link to="/change_password"
-                                    >change password</Link>
-                                </li>
+                                
                             </ol>
                         </div>
                     </div>
                 </div>
             </div>
-    <section style={{paddingTop:'30px'}} >
-      <div className="container" >
-        <div className="row">
-          <div className="col-md-12 col-sm-12 col-xs-12">
-            <div className="headline">
-              <h2>Personal details</h2>
-            </div>
+            <br/>
+            <br/>
+            
+            <section style={{ backgroundColor: '#eee' }}>
+      <MDBContainer className="py-5">
+        {/* <MDBRow>
+          <MDBCol>
+            <MDBBreadcrumb className="bg-light rounded-3 p-3 mb-4">
+              <MDBBreadcrumbItem>
+                <a href='#'>Home</a>
+              </MDBBreadcrumbItem>
+              <MDBBreadcrumbItem>
+                <a href="#">User</a>
+              </MDBBreadcrumbItem>
+              <MDBBreadcrumbItem active>User Profile</MDBBreadcrumbItem>
+            </MDBBreadcrumb>
+          </MDBCol>
+        </MDBRow> */}
 
-            <div className="personal-form">
-              <div className="userleft">
-                <form>
-                  <label>Username</label>
-                  <br />
-                  <input type="text" placeholder="Anderson" />
-                  <br />
-                  <label>Firstname</label>
-                  <br />
-                  <input type="text" placeholder="Cory" />
-                  <br />
-                  <label>Email</label>
-                  <br />
-                  <input type="email" placeholder="Mail@YourDomain.Com" />
-                  <br />
-                  <label>Address</label>
-                  <br />
-                  <input type="text" placeholder="Street And House Number" />
-                  <br />
-                  <label>State/Country</label>
-                  <br />
-                  <input type="text" placeholder="Your Country" />
-                </form>
-              </div>
-              <div className="userright">
-                <h5>Username cannot be changed</h5>
-                <form>
-                  <label>Lastname</label>
-                  <br />
-                  <input type="text" placeholder="Anderson" />
-                  <br />
-                  <label>Phone</label>
-                  <br />
-                  <input type="text" placeholder="+91 123 456 78" />
-                  <br />
-                  <label>ZIP Code</label>
-                  <br />
-                  <input type="text" placeholder="Your City Name" />
-                  <br />
-                  <label>State/Country</label>
-                  <br />
-                  <input type="text" placeholder="0123 Australia" />
-                  <br />
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <MDBRow>
+          <MDBCol lg="4">
+            <MDBCard className="mb-4">
+              <MDBCardBody className="text-center">
+                <MDBCardImage
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                  alt="avatar"
+                  className="rounded-circle"
+                  style={{ width: '150px' }}
+                  fluid />
+                <p className="text-muted mb-1">Full Stack Developer</p>
+                <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                <div className="d-flex justify-content-center mb-2">
+                  <MDBBtn>Follow</MDBBtn>
+                  <MDBBtn outline className="ms-1">Message</MDBBtn>
+                </div>
+              </MDBCardBody>
+            </MDBCard>
+
+            {/* <MDBCard className="mb-4 mb-lg-0">
+              <MDBCardBody className="p-0">
+                <MDBListGroup flush className="rounded-3">
+                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                    <MDBIcon fas icon="globe fa-lg text-warning" />
+                    <MDBCardText>https://mdbootstrap.com</MDBCardText>
+                  </MDBListGroupItem>
+                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                    <MDBIcon fab icon="github fa-lg" style={{ color: '#333333' }} />
+                    <MDBCardText>mdbootstrap</MDBCardText>
+                  </MDBListGroupItem>
+                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                    <MDBIcon fab icon="twitter fa-lg" style={{ color: '#55acee' }} />
+                    <MDBCardText>@mdbootstrap</MDBCardText>
+                  </MDBListGroupItem>
+                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                    <MDBIcon fab icon="instagram fa-lg" style={{ color: '#ac2bac' }} />
+                    <MDBCardText>mdbootstrap</MDBCardText>
+                  </MDBListGroupItem>
+                  <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                    <MDBIcon fab icon="facebook fa-lg" style={{ color: '#3b5998' }} />
+                    <MDBCardText>mdbootstrap</MDBCardText>
+                  </MDBListGroupItem>
+                </MDBListGroup>
+              </MDBCardBody>
+            </MDBCard> */}
+          </MDBCol>
+          <MDBCol lg="8">
+            <MDBCard className="mb-4">
+              <MDBCardBody>
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Full Name</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">Johnatan Smith</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Email</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">example@example.com</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Phone</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">(097) 234-5678</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Mobile</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">(098) 765-4321</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Address</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">Bay Area, San Francisco, CA</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+              </MDBCardBody>
+            </MDBCard>
+
+            
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
     </section>
     <Footer/>
-    </>
-  );
+            </>
+  )
 }
 
-export default MyAccount;
+export default MyAccount

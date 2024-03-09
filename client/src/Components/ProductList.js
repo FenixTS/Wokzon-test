@@ -30,7 +30,7 @@ const ProductList = () => {
 
   const [id, setId] = useState();
 
-  
+
 
   const userId = 1;
 
@@ -38,7 +38,7 @@ const ProductList = () => {
 
   useEffect(() => {
     // Fetch data when the component mounts
-    fetch('http://localhost:3001/productData')
+    fetch('http://localhost:8000/api/v1/productData')
       .then(response => response.json())
       .then(data => setProductData(data))
       .catch(error => console.error('Error fetching data:', error));
@@ -252,8 +252,8 @@ const ProductList = () => {
               <div className="row" >
                 {/* Sample product items */}
                 {productData.map(product => (
-                  <div key={product.id} className="col-md-4 col-sm-4 col-xs-12 "  >
-                    <div className="product-single "  >
+                  <div key={product.id} className="col-md-4 col-sm-4 col-xs-12 ">
+                    <div className="product-single">
 
                       <Link to={{ pathname: `/Product_detail`, state: { id: product.id } }} >
                         <img
@@ -270,7 +270,7 @@ const ProductList = () => {
 
                       <div className='productName-star' >
                         <div className="hot-wid-rating"  >
-                          <h4><a href="/Product_detail">{product.name}   </a><br /><br />
+                          <h4><a href="/Product_detail">{product.profession}   </a><br /><br />
 
                             {[...Array(product.rating)].map((_, i) => (
                               <i key={i} className="fa fa-star"></i>
@@ -278,24 +278,25 @@ const ProductList = () => {
                           </h4>
                         </div>
                         <div className="product-wid-price" >
-                          <ins>₹{product.price}</ins>
+                          <ins>₹{product.salary}</ins>
                         </div>
                       </div>
-                      <div>
+                      
 
-                        <div className="col-md-12" style={{ bottom: '40px' }} >
-                          <div className="add_cart-contact" style={{ marginLeft: '-20px', width: '250px', height: '35px', display: 'flex', justifyContent: 'center', }}>
+                         {/* <div className="col-md-12" style={{ bottom: '40px' }} >
+                          <div className="add_cart-contact" style={{ marginLeft: '-20px', width: '250px', height: '35px', display: 'flex', justifyContent: 'center', }}> */}
 
-                            <Button
-                              style={{ marginRight: '20px', height: '35px', fontSize: '10px' }}
-                              color="primary" variant="contained" key={product.id}
-                              onClick={() => handleCartClick(product.id)}
-                              className="btn btn-primary">
-                              Add to Wishlist
-                            </Button>
+
                             <PopupState variant="popover" popupId="demo-popup-popover">
                               {(popupState) => (
-                                <div>
+                                <div className="add_cart-contact" >
+                                  <Button
+                                    style={{ marginRight: '20px', height: '35px', fontSize: '10px' }}
+                                    color="primary" variant="contained" key={product.id}
+                                    onClick={() => handleCartClick(product.id)}
+                                    className="btn btn-primary">
+                                    Add to Wishlist
+                                  </Button>
                                   <Button
                                     style={{
                                       height: "35px",
@@ -327,11 +328,11 @@ const ProductList = () => {
                                     <Typography sx={{ p: 2 }}>
 
                                       <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '35px', padding: '30px', fontSize: '13px' }}>
-                                        <div><FontAwesomeIcon icon={faUser} /> {product.personName}</div>
+                                        <div><FontAwesomeIcon icon={faUser} /> {product.firstName} {product.lastName}</div>
                                         <div><FontAwesomeIcon icon={faPhone} style={{ color: "black" }} /> {product.phoneNumber}</div>
-                                        <div><FontAwesomeIcon icon={faWhatsapp} style={{ color: '#23f207', height: '15px' }} /> {product.whatsappNumber}</div>
+                                        <div><FontAwesomeIcon icon={faWhatsapp} style={{ color: '#23f207', height: '15px' }} /> {product.whatsAppNumber}</div>
                                         <div><FontAwesomeIcon icon={faEnvelope} style={{ color: "#1b1f17" }} /> {product.email}</div>
-                                        <div><FontAwesomeIcon icon={faLocationDot} style={{ color: "skyblue" }} /> {product.distric},{product.state}</div>
+                                        <div><FontAwesomeIcon icon={faLocationDot} style={{ color: "skyblue" }} /> {product.district},{product.state}</div>
                                       </div>
                                     </Typography>
                                   </Popover>
@@ -343,10 +344,10 @@ const ProductList = () => {
                           </div>
                         </div>
 
-                      </div>
+                    
 
-                    </div>
-                  </div>
+                    // </div>
+                  // </div>
                 ))}
               </div>
             </div>

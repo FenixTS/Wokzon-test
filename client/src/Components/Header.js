@@ -44,11 +44,11 @@ const Header = ({ isLoggedIn, onLogin, onLogout }) => {
                       <FontAwesomeIcon icon={faUser} /> My Account    
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link to="/checkout">
                     <FontAwesomeIcon icon={faMoneyCheckDollar} /> Checkout
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link to="/post">
                       <FontAwesomeIcon icon={faAddressCard} /> Post
