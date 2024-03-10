@@ -19,6 +19,7 @@ app.use((req, res, next) => {
 // Import routes
 const productData = require('./routes/productData');
 const orders = require('./routes/order');
+const user = require('./routes/user');
 
 connetDatabase();
 
@@ -28,6 +29,8 @@ app.use(express.json()); // Parse incoming JSON requests
 // Mount routes
 app.use('/api/v1/', productData); // Mount productData route at /api/v1/productData
 app.use('/api/v1/', orders); // Mount orders route at /api/v1/orders
+app.use('/api/v1/', user); // Mount orders route at /api/v1/user
+
 
 // Start server
 app.listen(process.env.PORT, () => {
