@@ -153,7 +153,6 @@ const MyCart = () => {
     updateQuantityInDatabase(id, newQuantity);
   };
 
-
   return (
     <>
       <Header isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
