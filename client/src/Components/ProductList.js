@@ -38,7 +38,7 @@ const ProductList = () => {
 
   useEffect(() => {
     // Fetch data when the component mounts
-    fetch('http://localhost:8000/api/v1/productData')
+    fetch('http://localhost:3001/productData')
       .then(response => response.json())
       .then(data => setProductData(data))
       .catch(error => console.error('Error fetching data:', error));

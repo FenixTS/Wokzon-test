@@ -244,39 +244,15 @@
   ],
   "cartItems": [
     {
-      "id": "bv62ph6l0",
+      "id": "97kewcizp",
       "userId": 1,
       "productId": "2",
       "quantity": 1
     },
     {
-      "id": "skzt4rzki",
+      "id": "zr2oc1m1k",
       "userId": 1,
-      "productId": "7",
-      "quantity": 1
-    },
-    {
-      "id": "qhn8ml4ir",
-      "userId": 1,
-      "productId": "59b6",
-      "quantity": 1
-    },
-    {
-      "id": "p5ddt4076",
-      "userId": 1,
-      "productId": "2",
-      "quantity": 1
-    },
-    {
-      "id": "zf0ry8psa",
-      "userId": 1,
-      "productId": "3",
-      "quantity": 1
-    },
-    {
-      "id": "5eee4ecgt",
-      "userId": 1,
-      "productId": "2",
+      "productId": "6",
       "quantity": 1
     }
   ]

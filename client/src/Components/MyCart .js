@@ -14,8 +14,8 @@ const MyCart = () => {
   // const [logout, setLogout] = useState(false);
   const userId = 1;
 
-  
-  
+
+
   // auth function
   const navigate = useNavigate();
   React.useEffect(() => {
@@ -163,7 +163,7 @@ const MyCart = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="bred-title">
-                <h3>My_cart</h3>
+                <h3>Wishlist</h3>
               </div>
               <ol className="breadcrumb">
                 <li>
@@ -187,7 +187,7 @@ const MyCart = () => {
           <div className="row">
             <div className="col-md-12 col-sm-12 col-xs-12">
               <div className="headline">
-                <h2>Shopping cart</h2>
+                <h2>Wishlist</h2>
               </div>
               <div className="table-responsive">
                 <table className="table table-bordered">
@@ -202,22 +202,6 @@ const MyCart = () => {
                       <th className="cart-romove item">Remove</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <td colSpan="7">
-                        <div className="shopping-cart-btn">
-                          <Link to='/'><button type="button" className="btn btn-default left-cart">Continue Shopping</button></Link>
-                          <button
-                            type="button"
-                            className="btn btn-default right-cart right-margin"
-                            onClick={() => cartItems.forEach(item => removeItemFromDatabase(item.id))}>
-                            Clear shopping cart
-                          </button>
-                          {/* <button type="button" className="btn btn-default right-cart">Update shopping cart</button> */}
-                        </div>
-                      </td>
-                    </tr>
-                  </tfoot>
                   <tbody>
 
                     {productData.map(item => (
@@ -267,8 +251,8 @@ const MyCart = () => {
 
 
 
-                     
-                          <td className="remove-item">
+
+                        <td className="remove-item">
                           {cartItems.map(item => (
                             <img
                               key={item.id}
@@ -276,13 +260,30 @@ const MyCart = () => {
                               alt="Remove"
                               onClick={() => removeItemFromDatabase(item.id)}
                             />
-                            ))}
-                          </td>
+                          ))}
+                        </td>
 
-                       
+
                       </tr>
                     ))}
                   </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colSpan="7">
+                        <div className="shopping-cart-btn">
+                          <Link to='/'><button type="button" className="btn btn-default left-cart">Continue Shopping</button></Link>
+                          <button
+                            type="button"
+                            className="btn btn-default right-cart right-margin"
+                            onClick={() => cartItems.forEach(item => removeItemFromDatabase(item.id))}>
+                            Clear shopping cart
+                          </button>
+                          {/* <button type="button" className="btn btn-default right-cart">Update shopping cart</button> */}
+                        </div>
+                      </td>
+                    </tr>
+                  </tfoot>
+
                 </table>
               </div>
             </div>
