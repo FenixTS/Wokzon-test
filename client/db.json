@@ -240,6 +240,12 @@
       "name": "Fenix",
       "email": "praveen@gmail.com",
       "password": "123"
+    },
+    {
+      "id": "5316",
+      "name": "j",
+      "email": "Thameem@gmail.com",
+      "password": "123"
     }
   ],
   "cartItems": [
@@ -253,6 +259,12 @@
       "id": "zr2oc1m1k",
       "userId": 1,
       "productId": "6",
+      "quantity": 1
+    },
+    {
+      "id": "zhtb1kdzc",
+      "userId": 1,
+      "productId": "1",
       "quantity": 1
     }
   ]
