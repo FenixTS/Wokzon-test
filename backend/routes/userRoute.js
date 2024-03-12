@@ -4,4 +4,4 @@ const router = express. Router();
 
 router.route('/user').post(createUser);
 
-module.exports = router; 
+module.exports = router;  

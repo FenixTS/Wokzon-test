@@ -14,6 +14,11 @@
 //     )
 // }
 
+
+
+//post function for user
+
+
 const userModel = require("../models/userModel");
 
 exports.createUser = (req, res, next) => {

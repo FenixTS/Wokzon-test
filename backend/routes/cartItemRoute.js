@@ -1,8 +1,11 @@
 const express = require('express');
-const { getCartItem } = require('../controllers/cartItemController');
+const { getCartItem, PostCartItem, DeleteCartItem ,getCartItemById } = require('../controllers/cartItemController');
 const router = express. Router();
 
 
 router.route('/cartItem').get(getCartItem);
+router.route('/cartItem/:id').get(getCartItemById);
+router.route('/cartItem').post(PostCartItem);
+router.route('/cartItem').delete(DeleteCartItem);
 
-module.exports = router;
+module.exports = router; 
