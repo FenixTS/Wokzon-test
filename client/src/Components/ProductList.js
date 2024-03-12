@@ -260,7 +260,7 @@ const ProductList = () => {
                           src={product.image}
                           onClick={() => handleProductClick(product.id)}
                           alt="#"
-                          style={{ width: '250px', height: '250px' }}
+                          style={{ width:'250px', height: '250px' }}
                         />
                       </Link>
 

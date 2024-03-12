@@ -4,5 +4,5 @@ const { getProductData, getSingleProduct } = require('../controllers/productData
 
 
 router.route('/productData').get(getProductData);
-router.route('/product/:id').get(getSingleProduct);
+router.route('/productData/:id').get(getSingleProduct);
 module.exports = router;

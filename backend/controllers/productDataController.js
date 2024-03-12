@@ -15,11 +15,11 @@ exports.getSingleProduct = async (req, res, next) => {
    
     try{
          // console.log(req.params.id, 'ID')
-    const product = await ProductModel.findById(req.params.id);
+    const productData = await ProductModel.findById(req.params.id);
 
     res.json({
-        success: true,
-        product
+        
+        productData
     })
 
     } 

@@ -4,7 +4,7 @@ const orderModel = require("../models/orderModel");
 exports.createOrder = (req, res, next) => {
     console.log(req.body,'DATA');
 
-    //  orderModel.create()
+     orderModel.create()
 
     res.json(
         {
