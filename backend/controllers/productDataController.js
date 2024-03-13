@@ -35,47 +35,35 @@ exports.getSingleProduct = async (req, res, next) => {
 
 // post product API -
 
-exports.PostProductData = async (req, res, next) => {
-   
-    try{
-         // console.log(req.params.id, 'ID')
-    const productData = await ProductModel.create(req.params.id);
 
-    res.json({
-        
-        productData
-    })
+exports.PostProductData = (req, res, next) => {    
+    console.log(req.body, 'DATA'); // Logging the request body for debugging
 
-    } 
-    catch (error)
-    {
-        res.json({
-            success:false,
-            // message:error.message
-            message:'Unable to get product with that ID'
-        })
+    // Check if the request body is empty or doesn't contain the required fields
+    if (!req.body || Object.keys(req.body).length === 0) {
+        return res.status(400).json({
+            success: false,
+            message: "Request body is empty or missing required fields"
+        });
     }
-};
 
-
-// exports.PostProductData = (req, res, next) => {    
-//     console.log(req.body, 'DATA');
-
-    
-//     ProductModel.create(req.body)
-//         .then(productData=> {
-//             res.json({
-//                 success: true,
-//                 message: "Item added to ProductData successfully",
-//                 productData: productData 
-//             });
-//         })
-//         .catch(err => {
-//             console.error("Error adding item to ProductData:", err);
-//             res.status(500).json({
-//                 success: false,
-//                 message: "Failed to add item to ProductData"
-//             });
-//         });
-// }; 
-
+    // Create a new product using the ProductModel
+    ProductModel.create(req.body)
+        .then(productData => {
+            // Send a JSON response indicating success along with the created product data
+            res.status(201).json({
+                success: true,
+                message: "Product added successfully",
+                productData: productData
+            });
+        })
+        .catch(err => {
+            // If there's an error during creation, send an error response
+            console.error("Error adding product:", err);
+            res.status(500).json({
+                success: false,
+                message: "Failed to add product",
+                error: err.message // Optionally send the error message for debugging
+            });
+        });
+}; 

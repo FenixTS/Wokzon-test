@@ -93,13 +93,14 @@ exports.PostCartItem = (req, res, next) => {
         });
 }; 
 
-//Delete function----------------------------------
+//Delete function ----------------------------------
 
 exports.DeleteCartItem = (req, res, next) => {
     console.log(req.body, 'DATA');
-
+    const itemId = req.params.itemId;
+    // cartItemModel.deleteOne({ _id: req.body.itemId }) 
    
-    cartItemModel.deleteOne({ _id: req.body.itemId }) // Assuming itemId is the unique identifier for the item
+    cartItemModel.deleteOne({ _id: itemId }) // Assuming itemId is the unique identifier for the item
         .then(result => {
             if (result.deletedCount === 1) {
                 res.json({

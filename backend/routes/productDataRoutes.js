@@ -5,5 +5,5 @@ const { getProductData, getSingleProduct ,PostProductData} = require('../control
 
 router.route('/productData').get(getProductData);
 router.route('/productData/:id').get(getSingleProduct);
-router.route('/productData').get(PostProductData);
+router.route('/productData').post(PostProductData);
 module.exports = router;
