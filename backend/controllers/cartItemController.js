@@ -97,7 +97,7 @@ exports.PostCartItem = (req, res, next) => {
 
 exports.DeleteCartItem = (req, res, next) => {
     console.log(req.body, 'DATA');
-    const itemId = req.params.itemId;
+    const itemId = req.params.id;
     // cartItemModel.deleteOne({ _id: req.body.itemId }) 
    
     cartItemModel.deleteOne({ _id: itemId }) // Assuming itemId is the unique identifier for the item
