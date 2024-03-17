@@ -26,15 +26,15 @@ exports.getuser = (req, res, next) => {
         .then(user => {
             res.json({
                 success: true,
-                message: "Cart items fetched successfully",
+                message: "user fetched successfully",
                 user: user // Optionally send the fetched cart items back in the response
             });
         })
         .catch(err => {
-            console.error("Error fetching cart items:", err);
+            console.error("Error fetching user:", err);
             res.status(500).json({
                 success: false,
-                message: "Failed to fetch cart items"
+                message: "Failed to fetch user"
             });
         });
 };

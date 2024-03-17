@@ -6,7 +6,7 @@ import LogoArea from './LogoArea';
 import Footer from './Footer';
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect} from 'react';
-
+import { baseUrl } from '../baseUrl';
 
 
 
@@ -20,7 +20,7 @@ const Wishlist = () => {
 
     useEffect(() => {
         // Fetch data when the component mounts
-        fetch('http://localhost:3001/productData')
+        fetch(baseUrl +'/productData')
           .then(response => response.json())
           .then(data => setProductData(data))
           .catch(error => console.error('Error fetching data:', error));

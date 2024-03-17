@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { baseUrl } from '../baseUrl';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -14,30 +15,41 @@ function LoginForm() {
     if(localStorage.getItem('auth')) navigate('/')
     }, [])
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    if (!email || !password) {
-      setError('Please enter your email and password.');
-      return;
-    }
-
-    try {
-      const response = await axios.get(`http://localhost:3001/users?email=${email}&password=${password}`);
-      
-      if (response.data.length > 0) {
-        navigate('/'); // Redirect to product detail page on successful 
-        localStorage.setItem('auth', true)
-
-
-      } else {
-        setError('Incorrect email or password. Please try again.');
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      setError('');
+      if (!email || !password) {
+        setError('Please enter your email and password.');
+        return;
       }
-    } catch (error) {
-      console.error('Error logging in:', error);
-      setError('An error occurred while logging in. Please try again later.');
-    }
-  };
+    
+      try {
+        const response = await axios.get(baseUrl + '/user');
+    
+        // Check if response data contains user array
+        if (!Array.isArray(response.data.user)) {
+          console.error('User data is not an array:', response.data.user);
+          setError('An error occurred while logging in. Please try again later.');
+          return;
+        }
+    
+        // Check if the provided email and password match any user
+        const user = response.data.user.find((user) => user.email === email && user.password === password);
+    
+        if (user) {
+          navigate('/'); // Redirect to product detail page on successful login
+          localStorage.setItem('auth', true);
+        } else {
+          setError('Incorrect email or password. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error logging in:', error);
+        setError('An error occurred while logging in. Please try again later.');
+      }
+    };
+    
+    
+    
 
   return (
     <div className="wish-area section-padding">

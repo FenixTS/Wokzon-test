@@ -4,12 +4,13 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Location from '../Components/Location';
+import { baseUrl } from '../baseUrl';
 
 
 const LogoArea = ({ onSearchInputChange, searchTerm }) => {
   const [cartItems, setCartItems] = useState([]);
 
-  fetch('http://localhost:3001/cartItems')
+  fetch(baseUrl + '/cartItems')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Header from './Header';
 import LogoArea from './LogoArea';
 import Footer from './Footer';
+import { baseUrl } from '../baseUrl';
 
 const ProductDetail = () => {
   const location = useLocation();
@@ -11,7 +12,7 @@ const ProductDetail = () => {
 
   const fetchProductDetails = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3001/productData/${id}`);
+      const response = await fetch(baseUrl +`/productData/${id}`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch product details');

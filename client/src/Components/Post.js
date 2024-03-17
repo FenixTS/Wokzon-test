@@ -1,36 +1,16 @@
-
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Input, Button } from 'antd';
 import Header from './Header';
 import LogoArea from './LogoArea';
 import Footer from './Footer';
-import { useNavigate } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
-import { Input, Button } from 'antd';
+import axios from 'axios';
+import { baseUrl } from '../baseUrl';
 
-function  Post () {
-    const [isLoggedIn, setIsLoggedIn] = useState();
-    const navigate = useNavigate();
+function Post() {
+    const [image, setImage] = useState(null);
 
-    React.useEffect(() => {
-        const isLoggedIn = localStorage.getItem('auth') !== null;
-        setIsLoggedIn(isLoggedIn);
-
-        if (!localStorage.getItem('auth')) navigate('/register');
-    }, []);
-
-    const handleLogin = () => {
-        if (!localStorage.getItem('auth')) {
-            navigate("/register");
-        } else {
-            setIsLoggedIn(false);
-        }
-    };
-
-    const handleLogout = () => {
-        localStorage.removeItem('auth');
-        window.location.reload();
-    };
-
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -47,86 +27,106 @@ function  Post () {
         image: null,
         createProfessionAccount: false
     });
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem('auth');
+        setIsLoggedIn(false);
+        navigate('/register');
+    };
+
+    useEffect(() => {
+        const auth = localStorage.getItem('auth');
+        if (auth) {
+            setIsLoggedIn(true);
+        } else {
+            navigate('/register');
+        }
+    }, [navigate]);
+
+    // const handleChange = (event) => {
+    //     const { name, value, type, checked, files } = event.target;
+    //     const newValue = type === 'checkbox' ? checked : type === 'file' ? files[0] : value;
+
+    //     setFormData({
+    //         ...formData,
+    //         [name]: newValue
+    //     });
+    // };
 
     const handleChange = (event) => {
-        const { name, value, type, checked, files } = event.target;
-        const newValue = type === 'checkbox' ? checked : type === 'file' ? files[0] : value;
+        setImage(event.target.files[0]);
+      };
 
-        setFormData({
-            ...formData,
-            [name]: newValue
-        });
-    };
-
-    const handleSubmit = async (event) => {
+      const handleSubmit = async (event) => {
         event.preventDefault();
-
-        // Check if all fields are filled
-        for (const key in formData) {
-            if (formData[key] === '' && key !== 'image') {
-                alert(`Please fill in ${key.replace(/([A-Z])/g, ' $1').toLowerCase()}`);
-                return;
+    
+        const formData = new FormData();
+        formData.append('image', image);
+    
+        try {
+          const response = await axios.post(baseUrl +'/upload', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
             }
+          });
+          
+          console.log(response.data); // Assuming the server returns a message
+        } catch (error) {
+          console.error('Error uploading image:', error);
         }
+      };
+
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+
+    //     // Check if all fields are filled
+    //     for (const key in formData) {
+    //         if (formData[key] === '' && key !== 'image') {
+    //             alert(`Please fill in ${key.replace(/([A-Z])/g, ' $1').toLowerCase()}`);
+    //             return;
+    //         }
+    //     }
 
         // Upload the image
-        const imageData = new FormData();
-        imageData.append('image', formData.image);
+    //     const imageData = new FormData();
+    //     imageData.append('image', formData.image);
 
-        try {
-            const uploadResponse = await fetch('http://localhost:3001/uploadImage',{
-                method: 'POST',
-                body: imageData
-            });
+    //     try {
+    //         const uploadResponse = await fetch('http://localhost:8000/upload', {
+    //             method: 'POST',
+    //             body: imageData
+    //         });
 
-            if (uploadResponse.ok) {
-                const imagePath = await uploadResponse.json();
-                const postData = { ...formData, imagePath };
+    //         if (uploadResponse.ok) {
+    //             const imagePath = await uploadResponse.json();
+    //             const postData = { ...formData, imagePath };
 
-                const response = await fetch('http://localhost:3001/productData', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(postData)
-                });
+    //             const response = await fetch('http://localhost:3001/productData', {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type' : 'application/json'
+    //                 },
+    //                 body: JSON.stringify(postData)
+    //             });
 
-                if (response.ok) {
-                  alert('Data submitted successfully');
-                  // Clear form fields
-                  setFormData({
-                      firstName: '',
-                      lastName: '',
-                      profession: '',
-                      address: '',
-                      district: '',
-                      state: '',
-                      postalCode: '',
-                      email: '',
-                      phoneNumber: '',
-                      whatsAppNumber: '',
-                      salary: '',
-                      description: '',
-                      image: null,
-                      createProfessionAccount: false
-                  });}
-                   else {
-                    console.error('Failed to submit data');
-                }
-            } else {
-                alert('Failed to upload image');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
+    //             if (response.ok) {
+    //                 alert('Data submitted successfully');
+    //                 // Clear form fields
+                    
+    //             }
+    //         } else {
+    //             alert('Failed to upload image');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //     }
+    // };
 
-
-    
+ 
 
     return (
         <>
-            <Header isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
+            <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
             <LogoArea />
             <div className="title-breadcrumb">
                 <div className="container" style={{ marginTop: "-30px" }}>
@@ -137,26 +137,16 @@ function  Post () {
                             </div>
                             <ol className="breadcrumb">
                                 <li>
-                                    <Link to='/'>
-                                        <button
-                                            type="button"
-                                            className="btn btn-default add-cart"
-                                            style={{ display: 'flex', alignItems: 'center', height: '3.5vh' }}>
-                                            Home
-                                        </button>
-                                    </Link>
+                                    <Link to='/'>Home</Link>
                                 </li>
-                                {/* <li>
-                                    <Link to="/change_password">Change Password</Link>
-                                </li> */}
                             </ol>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <section style={{ paddingTop: '30px' }} >
-                <div className="container" >
+            <section style={{ paddingTop: '30px' }}>
+                <div className="container">
                     <div className="row">
                         <div className="col-md-12 col-sm-12 col-xs-12">
                             <div className="headline">
@@ -164,7 +154,7 @@ function  Post () {
                             </div>
 
                             <form onSubmit={handleSubmit}>
-                                <div className="name">
+                                {/* <div className="name">
                                     <div className="col">
                                         <label htmlFor="firstName" className="form-label">First Name</label>
                                         <input type="text" id="firstName" name="firstName" className="form-control" value={formData.firstName} onChange={handleChange} />
@@ -213,17 +203,17 @@ function  Post () {
                                 <input type="number" id="salary" name="salary" className="form-control mb-4" value={formData.salary} onChange={handleChange} />
 
                                 <label htmlFor="description" className="form-label">Description</label>
-                                <textarea id="description" name="description" className="form-control mb-4" rows="4" value={formData.description} onChange={handleChange}></textarea>
+                                <textarea id="description" name="description" className="form-control mb-4" rows="4" value={formData.description} onChange={handleChange}></textarea> */}
 
                                 <label htmlFor="image" className="form-label">Upload Image</label>
                                 <input type="file" id="image" name="image" className="form-control mb-4" onChange={handleChange} />
 
-                                <div className="form-check d-flex justify-content-center mb-4">
+                                {/* <div className="form-check d-flex justify-content-center mb-4">
                                     <input type="checkbox" id="createProfessionAccount" name="createProfessionAccount" className="form-check-input" checked={formData.createProfessionAccount} onChange={handleChange} />
                                     <label htmlFor="createProfessionAccount" className="form-check-label">Create profession account?</label>
-                                </div>
+                                </div> */}
 
-                                <button type="submit" className="btn btn-primary mb-4">Submit</button>
+                                <Button type="primary" htmlType="submit" className="mb-4">Submit</Button>
                             </form>
                         </div>
                     </div>

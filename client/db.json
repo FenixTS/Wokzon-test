@@ -248,18 +248,23 @@
       "password": "123"
     }
   ],
-  "cartItems": [
+  "cartItem": [
     {
-      "id": "ihf9nt999",
+      "id": "qp95bn0zg",
       "userId": 1,
-      "productId": "1",
+      "productId": "2",
       "quantity": 1
     },
     {
-      "id": "g409u1sub",
+      "id": "ghz06gdjj",
       "userId": 1,
       "productId": "1",
       "quantity": 1
+    }
+  ],
+  "uploadImage": [
+    {
+      "id": "ecc1"
     }
   ]
 }

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { baseUrl } from '../baseUrl';
+
 
 function RegistrationForm() {
   const [name, setName] = useState('');
@@ -29,7 +31,7 @@ function RegistrationForm() {
     setIsLoading(true);
     try {
       // Make API request to register user
-      const response = await axios.post('http://localhost:3001/users', { name, email, password });
+      const response = await axios.post(baseUrl +'/user', { name, email, password });
       console.log('User registered successfully:', response.data);
       // Reset form fields and loading state
       setName('');

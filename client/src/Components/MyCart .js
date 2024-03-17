@@ -4,6 +4,7 @@ import Header from '../Components/Header';
 import LogoArea from '../Components/LogoArea';
 import Footer from './Footer';
 import { useNavigate } from 'react-router-dom';
+import { baseUrl } from '../baseUrl';
 
 const MyCart = () => {
 
@@ -47,7 +48,7 @@ const MyCart = () => {
 
   useEffect(() => {
     // Fetch user's cart items
-    fetch('http://localhost:3001/cartItems')
+    fetch(baseUrl + '/cartItem')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -67,7 +68,7 @@ const MyCart = () => {
 
         // Fetch product data for each product ID
         const fetchProductDataPromises = productIds.map(productId =>
-          fetch(`http://localhost:3001/productData/${productId}`)
+          fetch(baseUrl + `/productData/${productId}`)
             .then(response => {
               if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -105,7 +106,7 @@ const MyCart = () => {
 
   const removeItemFromDatabase = (id) => {
     const itemId = cartItemsMap[id].id;
-    fetch(`http://localhost:3001/cartItems/${id}`, {
+    fetch(baseUrl + `/cartItem/${id}`, {
       method: 'DELETE',
     })
       .then(response => {
@@ -124,7 +125,7 @@ const MyCart = () => {
   };
 
   const updateQuantityInDatabase = (id, newQuantity) => {
-    fetch(`http://localhost:3001/cartItems/${id}`, {
+    fetch(baseUrl + `/cartItem/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

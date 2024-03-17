@@ -17,6 +17,8 @@ import { faPhone, faEnvelope, faLocationDot } from '@fortawesome/free-solid-svg-
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import Contact from './Contact';
+import { baseUrl } from '../baseUrl';
+
 
 
 
@@ -37,7 +39,7 @@ const ProductList = () => {
 
   useEffect(() => {
     // Fetch data when the component mounts
-    fetch('http://localhost:3001/productData')
+    fetch(baseUrl + '/productData')
       .then(response => response.json())
       .then(data => setProductData(data))
       .catch(error => console.error('Error fetching data:', error));
@@ -46,7 +48,7 @@ const ProductList = () => {
 
   useEffect(() => {
     // Fetch data when the component mounts
-    fetch('http://localhost:3001/bestWorker')
+    fetch(baseUrl +'/bestWorker')
       .then(response => response.json())
       .then(data => setBestWorker(data))
       .catch(error => console.error('Error fetching data:', error));
@@ -85,7 +87,7 @@ const ProductList = () => {
     };
 
     // Make a POST request to add the product to the cart
-    fetch('http://localhost:3001/cartItems', {
+    fetch(baseUrl +'/cartItem', {
       method: 'POST',
       headers: {
         // 'Content-Type': 'application/json'
@@ -130,7 +132,7 @@ const ProductList = () => {
  useEffect(() => {
   const fetchSearchResults = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/productData');
+      const response = await axios.get(baseUrl +'/productData');
       const searchQuery = searchTerm.trim().toLowerCase().replace(/\s/g, '');
       const productNames = response.data.map((product) => product.profession.toLowerCase());
 
@@ -141,7 +143,16 @@ const ProductList = () => {
       if (correctedSearchTerm && correctedSearchTerm[0][0] > 0.5) {
         setSearchTerm(correctedSearchTerm[0][1]); // Update searchTerm with the corrected term
       }
-
+      // let filteredResults = response.data;
+      // if (searchTerm.trim() !== '') {
+      //   filteredResults = response.data.filter(
+      //     (result) =>
+      //       result.profession
+      //         .toLowerCase()
+      //         .replace(/\s/g, '')
+      //         .includes(searchTerm.toLowerCase().replace(/\s/g, ''))
+      //   );
+      // }
       const filteredResults = response.data.filter(
         (result) =>
           result.profession
@@ -167,7 +178,7 @@ const ProductList = () => {
 useEffect(() => {
   // Fetch product data for each product ID
   const fetchProductDataPromises = filteredProductIds.map((productId) =>
-    fetch(`http://localhost:3001/productData/${productId}`)
+    fetch(baseUrl +`/productData/${productId}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -325,7 +336,7 @@ const handleSearchInputChange = (event) => {
                                       <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '35px', padding: '30px', fontSize: '13px' }}>
                                         <div><FontAwesomeIcon icon={faUser} /> {product.firstName} {product.lastName}</div>
                                         <div><FontAwesomeIcon icon={faPhone} style={{ color: "black" }} /> {product.phoneNumber}</div>
-                                        <div><FontAwesomeIcon icon={faWhatsapp} style={{ color: '#23f207', height: '15px' }} /> {product.whatsAppNumber}</div>
+                                        <div><FontAwesomeIcon icon={faWhatsapp} style={{ color: '#23f207', height: '15px' }} /> {product.whatsappNumber}</div>
                                         <div><FontAwesomeIcon icon={faEnvelope} style={{ color: "#1b1f17" }} /> {product.email}</div>
                                         <div><FontAwesomeIcon icon={faLocationDot} style={{ color: "skyblue" }} /> {product.district},{product.state}</div>
                                       </div>
