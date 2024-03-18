@@ -14,7 +14,7 @@ const MyCart = () => {
   const [isLoggedIn, setIsLoggedIn] = useState();
   // const [logout, setLogout] = useState(false);
   const userId = 1;
-
+console.log(productData,'productData')
 
 
   // auth function
@@ -54,9 +54,11 @@ const MyCart = () => {
           throw new Error('Network response was not ok');
         }
         return response.json();
+        
       })
       .then(data => {
         if (!Array.isArray(data)) {
+          
           throw new Error('Invalid API response: data is not an array');
         }
         // Filter user's cart items by userId
@@ -65,7 +67,8 @@ const MyCart = () => {
         const productIds = userCartItems.map(item => item.productId);
         // Update cartItems state with user's cart items
         setCartItems(userCartItems);
-
+        
+       
         // Fetch product data for each product ID
         const fetchProductDataPromises = productIds.map(productId =>
           fetch(baseUrl + `/productData/${productId}`)
@@ -95,7 +98,7 @@ const MyCart = () => {
 
   const cartItemsMap = cartItems.reduce((map, item) => {
     map[item.id] = item;
-    console.log(map, 'ididididd')
+   
     return map;
   }, {});
 
@@ -153,7 +156,6 @@ const MyCart = () => {
   const updateQuantity = (id, newQuantity) => {
     updateQuantityInDatabase(id, newQuantity);
   };
-
   return (
     <>
       <Header isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
@@ -195,39 +197,37 @@ const MyCart = () => {
                     <tr>
                       <th className="cart-product item">Product</th>
                       <th className="cart-product-name item">Product Name</th>
-                      <th className="cart-qty item">Quantity</th>
+                      {/* <th className="cart-qty item">Quantity</th> */}
                       <th className="cart-unit item">Unit price</th>
                       <th className="cart-delivery item">Transport info</th>
-                      <th className="cart-sub-total last-item">Sub total</th>
+                      {/* <th className="cart-sub-total last-item">Sub total</th> */}
                       <th className="cart-romove item">Remove</th>
                     </tr>
                   </thead>
                   <tbody>
-
-                    {productData.map(item => (
-                      <tr key={item.id}>
+                  {productData.map((item, index) => (
+                      <tr key={index}>
                         <td className="cart-image">
                           <a href="#" className="entry-thumbnail">
-                            <img src={item.image} alt="" />
+                            <img src={item.productData.image} alt="" />
                           </a>
                         </td>
                         <td className="cart-product-name-info">
                           <div className="cc-tr-inner">
-                            <h4 className="cart-product-description"><a href="#">{item.name}</a></h4>
+                            <h4 className="cart-product-description"><a href="#">{item.productData.profession}</a></h4>
                             <div className="cart-product-info">
-                              <span className="product-color">Experience :</span><span>{item.experience}</span>
+                              <span className="product-color">Experience :</span><span>{item.productData.experience}</span>
                               <br />
-                              <span className="product-color">rating:</span>
+                              <span className="product-color">rating :</span>
                               <div style={{ color: 'orange' }}>
-                                {[...Array(item.rating)].map((_, i) => (
+                                {[...Array(item.productData.rating)].map((_, i) => (
                                   <i key={i} className="fa fa-star"></i>
                                 ))}
                               </div>
                             </div>
                           </div>
                         </td>
-                        <td className="cart-product-quantity">
-
+                        {/* <td className="cart-product-quantity">
                           <div className="quant-input">
                             <input
                               type="number"
@@ -242,28 +242,17 @@ const MyCart = () => {
                               step="1"
                             />
                           </div>
-                        </td>
-
-
-                        <td className="cart-product-price"><div className="cc-pr">${item.price}</div></td>
+                        </td> */}
+                        <td className="cart-product-price"><div className="cc-pr">${item.productData.salary}</div></td>
                         <td className="cart-product-delivery"><div className="cc-pr">Free shipping</div></td>
-                        <td className="cart-product-sub-total"><div className="cc-pr">${item.price * item.quantity}</div></td>
-
-
-
-
-                        <td className="remove-item">
-                          {cartItems.map(item => (
+                        {/* <td className="cart-product-sub-total"><div className="cc-pr">${item.productData.salary * item.productData.quantity}</div></td> */}
+                        <td className="remove-item"> 
                             <img
-                              key={item.id}
                               src="images/remove.png"
                               alt="Remove"
                               onClick={() => removeItemFromDatabase(item.id)}
                             />
-                          ))}
                         </td>
-
-
                       </tr>
                     ))}
                   </tbody>
@@ -283,7 +272,6 @@ const MyCart = () => {
                       </td>
                     </tr>
                   </tfoot>
-
                 </table>
               </div>
             </div>

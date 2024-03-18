@@ -10,7 +10,7 @@ import { baseUrl } from '../baseUrl';
 const LogoArea = ({ onSearchInputChange, searchTerm }) => {
   const [cartItems, setCartItems] = useState([]);
 
-  fetch(baseUrl + '/cartItems')
+  fetch(baseUrl + '/cartItem')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');

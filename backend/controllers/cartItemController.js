@@ -26,11 +26,9 @@ exports.getCartItem = (req, res, next) => {
     // Assuming you want to fetch all cart items
     cartItemModel.find()
         .then(cartItems => {
-            res.json({
-                success: true,
-                message: "Cart items fetched successfully",
-                cartItems: cartItems // Optionally send the fetched cart items back in the response
-            });
+            res.json(
+                 cartItems // Optionally send the fetched cart items back in the response
+            );
         })
         .catch(err => {
             console.error("Error fetching cart items:", err);

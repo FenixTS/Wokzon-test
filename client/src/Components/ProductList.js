@@ -28,14 +28,11 @@ const ProductList = () => {
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredProductIds, setFilteredProductIds] = useState([]);
-  const [selectedProductId, setSelectedProductId] = useState(null);
   const [id, setId] = useState();
 
-
-// console.log(filteredProductIds,'filteredProductIds')
   const userId = 1;
 
-
+// console.log(,'selectedProductId')
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -65,24 +62,26 @@ const ProductList = () => {
 
 
 
-  const handleCartClick = (productId) => {
+  const handleCartClick = (product_Id) => {
 
     // Find the product with the given ID
-    const productToAdd = productData.find(product => product.id === productId);
+    const productToAdd = productData.find(product => product._id === product_Id);
     // If the product is found, add it to the cart
+    
     if (productToAdd) {
-      addToCart(productId); // Pass productId to addToCart function
+      addToCart(product_Id); // Pass productId to addToCart function
+      
     } else {
-      console.error(`Product with ID ${productId} not found.`);
+      console.error(`Product with ID ${product_Id} not found.`);
     }
   };
 
   // Function to add item to cart
-  const addToCart = (productId) => {
+  const addToCart = (product_Id) => {
     const cartItem = {
-      id: Math.random().toString(36).substr(2, 9), // Generate a random ID
+      // id: Math.random().toString(36).substr(2, 9), // Generate a random ID
       userId: userId,
-      productId: productId,
+      productId: product_Id,
       quantity: 1
     };
 
@@ -90,7 +89,7 @@ const ProductList = () => {
     fetch(baseUrl +'/cartItem', {
       method: 'POST',
       headers: {
-        // 'Content-Type': 'application/json'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(cartItem)
     })
@@ -204,10 +203,7 @@ const handleSearchInputChange = (event) => {
   };
   // // contact button onclick function
 
-  const handleButtonClick = (productId) => {
-
-    setSelectedProductId(productId);
-  };
+ 
 
 
   return (
@@ -299,7 +295,7 @@ const handleSearchInputChange = (event) => {
                                   <Button
                                     style={{ marginRight: '20px', height: '35px', fontSize: '10px' }}
                                     color="primary" variant="contained" key={product.id}
-                                    onClick={() => handleCartClick(product.id)}
+                                    onClick={() => handleCartClick(product._id)}
                                     className="btn btn-primary">
                                     Add to Wishlist
                                   </Button>
@@ -313,10 +309,7 @@ const handleSearchInputChange = (event) => {
                                     className="btn btn-primary"
                                     // onClick={() => handleButtonClick(product.id)}
                                     {...bindTrigger(popupState)}
-                                    onClick={(event) => {
-                                      handleButtonClick(product.id);
-                                      popupState.open(event); // Open the popover manually after handling the click
-                                    }}
+                                    
                                   >
                                     Contact
                                   </Button>
