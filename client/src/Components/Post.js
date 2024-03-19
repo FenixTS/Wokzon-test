@@ -8,13 +8,12 @@ import axios from 'axios';
 import { baseUrl } from '../baseUrl';
 
 function Post() {
-    const [image, setImage] = useState(null);
-
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
         profession: '',
+        category: 'Automotive Professionals',
         address: '',
         district: '',
         state: '',
@@ -24,10 +23,11 @@ function Post() {
         whatsAppNumber: '',
         salary: '',
         description: '',
-        image: null,
         createProfessionAccount: false
     });
+
     const navigate = useNavigate();
+
     const handleLogout = () => {
         localStorage.removeItem('auth');
         setIsLoggedIn(false);
@@ -43,86 +43,37 @@ function Post() {
         }
     }, [navigate]);
 
-    // const handleChange = (event) => {
-    //     const { name, value, type, checked, files } = event.target;
-    //     const newValue = type === 'checkbox' ? checked : type === 'file' ? files[0] : value;
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        const fieldValue = type === 'checkbox' ? checked : value;
+        setFormData({ ...formData, [name]: fieldValue });
+    };
 
-    //     setFormData({
-    //         ...formData,
-    //         [name]: newValue
-    //     });
-    // };
-
-    const handleChange = (event) => {
-        setImage(event.target.files[0]);
-      };
-
-      const handleSubmit = async (event) => {
-        event.preventDefault();
-    
-        const formData = new FormData();
-        formData.append('image', image);
-    
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
-          const response = await axios.post(baseUrl +'/upload', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          });
-          
-          console.log(response.data); // Assuming the server returns a message
+            await axios.post(baseUrl + '/productData', formData);
+            setFormData({
+                firstName: '',
+                lastName: '',
+                profession: '',
+                category: 'Automotive Professionals',
+                address: '',
+                district: '',
+                state: '',
+                postalCode: '',
+                email: '',
+                phoneNumber: '',
+                whatsAppNumber: '',
+                salary: '',
+                description: '',
+                createProfessionAccount: false
+            });
+            console.log('Form submitted successfully!');
         } catch (error) {
-          console.error('Error uploading image:', error);
+            console.error('Error submitting form:', error);
         }
-      };
-
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-
-    //     // Check if all fields are filled
-    //     for (const key in formData) {
-    //         if (formData[key] === '' && key !== 'image') {
-    //             alert(`Please fill in ${key.replace(/([A-Z])/g, ' $1').toLowerCase()}`);
-    //             return;
-    //         }
-    //     }
-
-        // Upload the image
-    //     const imageData = new FormData();
-    //     imageData.append('image', formData.image);
-
-    //     try {
-    //         const uploadResponse = await fetch('http://localhost:8000/upload', {
-    //             method: 'POST',
-    //             body: imageData
-    //         });
-
-    //         if (uploadResponse.ok) {
-    //             const imagePath = await uploadResponse.json();
-    //             const postData = { ...formData, imagePath };
-
-    //             const response = await fetch('http://localhost:3001/productData', {
-    //                 method: 'POST',
-    //                 headers: {
-    //                     'Content-Type' : 'application/json'
-    //                 },
-    //                 body: JSON.stringify(postData)
-    //             });
-
-    //             if (response.ok) {
-    //                 alert('Data submitted successfully');
-    //                 // Clear form fields
-                    
-    //             }
-    //         } else {
-    //             alert('Failed to upload image');
-    //         }
-    //     } catch (error) {
-    //         console.error('Error:', error);
-    //     }
-    // };
-
- 
+    };
 
     return (
         <>
@@ -154,7 +105,7 @@ function Post() {
                             </div>
 
                             <form onSubmit={handleSubmit}>
-                                {/* <div className="name">
+                                <div className="name">
                                     <div className="col">
                                         <label htmlFor="firstName" className="form-label">First Name</label>
                                         <input type="text" id="firstName" name="firstName" className="form-control" value={formData.firstName} onChange={handleChange} />
@@ -167,6 +118,23 @@ function Post() {
 
                                 <label htmlFor="profession" className="form-label">Profession Name</label>
                                 <input type="text" id="profession" name="profession" className="form-control mb-4" value={formData.profession} onChange={handleChange} />
+
+                                <label htmlFor="categories_dropdown" className="form-label">Select a category:</label>
+                                <select className="form-select" id="categories_dropdown" name="category" value={formData.category} onChange={handleChange}>
+                                    <option value="Automotive Professionals">Automotive Professionals</option>
+                                    <option value="Civil & Construction Engineering">Civil & Construction Engineering</option>
+                                    <option value="Consultants">Consultants</option>
+                                    <option value="Education Field">Education Field</option>
+                                    <option value="Engineering Industries">Engineering Industries</option>
+                                    <option value="Farming & Agriculture">Farming & Agriculture</option>
+                                    <option value="Food & Accommodation Industry">Food & Accommodation Industry</option>
+                                    <option value="Handicrafts & Artisans">Handicrafts & Artisans</option>
+                                    <option value="IT & ITES Services">IT & ITES Services</option>
+                                    <option value="Gym & Fitness">Gym & Fitness</option>
+                                    <option value="Media & Events">Media & Events</option>
+                                </select>
+
+                                <br />
 
                                 <label htmlFor="address" className="form-label">Address</label>
                                 <input type="text" id="address" name="address" className="form-control mb-4" value={formData.address} onChange={handleChange} placeholder='' />
@@ -203,15 +171,15 @@ function Post() {
                                 <input type="number" id="salary" name="salary" className="form-control mb-4" value={formData.salary} onChange={handleChange} />
 
                                 <label htmlFor="description" className="form-label">Description</label>
-                                <textarea id="description" name="description" className="form-control mb-4" rows="4" value={formData.description} onChange={handleChange}></textarea> */}
+                                <textarea id="description" name="description" className="form-control mb-4" rows="4" value={formData.description} onChange={handleChange}></textarea>
 
                                 <label htmlFor="image" className="form-label">Upload Image</label>
                                 <input type="file" id="image" name="image" className="form-control mb-4" onChange={handleChange} />
 
-                                {/* <div className="form-check d-flex justify-content-center mb-4">
+                                <div className="form-check d-flex justify-content-center mb-4">
                                     <input type="checkbox" id="createProfessionAccount" name="createProfessionAccount" className="form-check-input" checked={formData.createProfessionAccount} onChange={handleChange} />
                                     <label htmlFor="createProfessionAccount" className="form-check-label">Create profession account?</label>
-                                </div> */}
+                                </div>
 
                                 <Button type="primary" htmlType="submit" className="mb-4">Submit</Button>
                             </form>

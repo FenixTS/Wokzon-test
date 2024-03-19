@@ -14,7 +14,7 @@ const MyCart = () => {
   const [isLoggedIn, setIsLoggedIn] = useState();
   // const [logout, setLogout] = useState(false);
   const userId = 1;
-console.log(productData,'productData')
+// console.log(cartItems,'cartItems')
 
 
   // auth function
@@ -102,13 +102,19 @@ console.log(productData,'productData')
     return map;
   }, {});
 
+ 
+
   const removeItemFromCart = (productId) => {
-    const itemId = cartItemsMap[productId].id;
+    const itemId = cartItemsMap[productId]._id;
+    // console.log(itemId,'temsMap')
     // Implement the logic to remove the item from cartItems based on itemId
   };
 
-  const removeItemFromDatabase = (id) => {
-    const itemId = cartItemsMap[id].id;
+  
+    
+        
+
+  const removeAllItemFromDatabase = (id) => {
     fetch(baseUrl + `/cartItem/${id}`, {
       method: 'DELETE',
     })
@@ -116,46 +122,82 @@ console.log(productData,'productData')
         if (!response.ok) {
           throw new Error('Failed to delete item from database');
         }
-        // If deletion is successful, update cartItems state
         // If deletion is successful, reload the page
         window.location.reload();
-        const updatedCartItems = cartItems.filter(item => item.id !== id);
-        setCartItems(updatedCartItems);
       })
       .catch(error => {
         console.error('Error removing item from database:', error);
       });
   };
+  
 
-  const updateQuantityInDatabase = (id, newQuantity) => {
-    fetch(baseUrl + `/cartItem/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ quantity: newQuantity }),
-    })
+  const removeItemFromDatabase = (id) => {
+    fetch(baseUrl + '/cartItem')
       .then(response => {
         if (!response.ok) {
-          throw new Error('Failed to update quantity in database');
+          throw new Error('Network response was not ok');
         }
-        // If update is successful, update cartItems state
-        const updatedCartItems = cartItems.map(item =>
-          item.id === id ? { ...item, quantity: newQuantity } : item
-        );
-        setCartItems(updatedCartItems);
+        return response.json();
+      })
+      .then(data => {
+        if (!Array.isArray(data)) {
+          throw new Error('Invalid API response: data is not an array');
+        }
+        const cartItem = data.find(item => item.productId === id);
+        
+        if (!cartItem) {
+          throw new Error('Item not found in cart');
+        }
+        const itemId = cartItem._id;
+        
+        fetch(baseUrl + `/cartItem/${itemId}`, {
+          method: 'DELETE',
+        })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Failed to delete item from database');
+            }
+            // If deletion is successful, reload the page
+            window.location.reload();
+          })
+          .catch(error => {
+            console.error('Error removing item from database:', error);
+          });
       })
       .catch(error => {
-        console.error('Error updating quantity in database:', error);
+        console.error('Error fetching cart items:', error);
       });
   };
+  
+  // const updateQuantityInDatabase = (id, newQuantity) => {
+  //   fetch(baseUrl + `/cartItem/${id}`, {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({ quantity: newQuantity }),
+  //   })
+  //     .then(response => {
+  //       if (!response.ok) {
+  //         throw new Error('Failed to update quantity in database');
+  //       }
+  //       // If update is successful, update cartItems state
+  //       const updatedCartItems = cartItems.map(item =>
+  //         item.id === id ? { ...item, quantity: newQuantity } : item
+  //       );
+  //       setCartItems(updatedCartItems);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error updating quantity in database:', error);
+  //     });
+  // };
 
   // Function to remove item from cart and database
 
 
-  const updateQuantity = (id, newQuantity) => {
-    updateQuantityInDatabase(id, newQuantity);
-  };
+  // const updateQuantity = (id, newQuantity) => {
+  //   updateQuantityInDatabase(id, newQuantity);
+  // };
   return (
     <>
       <Header isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
@@ -198,7 +240,7 @@ console.log(productData,'productData')
                       <th className="cart-product item">Product</th>
                       <th className="cart-product-name item">Product Name</th>
                       {/* <th className="cart-qty item">Quantity</th> */}
-                      <th className="cart-unit item">Unit price</th>
+                      <th className="cart-unit item">salary</th>
                       <th className="cart-delivery item">Transport info</th>
                       {/* <th className="cart-sub-total last-item">Sub total</th> */}
                       <th className="cart-romove item">Remove</th>
@@ -209,18 +251,18 @@ console.log(productData,'productData')
                       <tr key={index}>
                         <td className="cart-image">
                           <a href="#" className="entry-thumbnail">
-                            <img src={item.productData.image} alt="" />
+                            <img src={item.image} alt="" />
                           </a>
                         </td>
                         <td className="cart-product-name-info">
                           <div className="cc-tr-inner">
-                            <h4 className="cart-product-description"><a href="#">{item.productData.profession}</a></h4>
+                            <h4 className="cart-product-description"><a href="#">{item.profession}</a></h4>
                             <div className="cart-product-info">
-                              <span className="product-color">Experience :</span><span>{item.productData.experience}</span>
+                              <span className="product-color">Experience :</span><span>{item.experience}</span>
                               <br />
                               <span className="product-color">rating :</span>
                               <div style={{ color: 'orange' }}>
-                                {[...Array(item.productData.rating)].map((_, i) => (
+                                {[...Array(item.rating)].map((_, i) => (
                                   <i key={i} className="fa fa-star"></i>
                                 ))}
                               </div>
@@ -243,14 +285,14 @@ console.log(productData,'productData')
                             />
                           </div>
                         </td> */}
-                        <td className="cart-product-price"><div className="cc-pr">${item.productData.salary}</div></td>
+                        <td className="cart-product-price"><div className="cc-pr">${item.salary}</div></td>
                         <td className="cart-product-delivery"><div className="cc-pr">Free shipping</div></td>
                         {/* <td className="cart-product-sub-total"><div className="cc-pr">${item.productData.salary * item.productData.quantity}</div></td> */}
                         <td className="remove-item"> 
                             <img
                               src="images/remove.png"
                               alt="Remove"
-                              onClick={() => removeItemFromDatabase(item.id)}
+                              onClick={() => removeItemFromDatabase(item._id)}
                             />
                         </td>
                       </tr>
@@ -264,8 +306,8 @@ console.log(productData,'productData')
                           <button
                             type="button"
                             className="btn btn-default right-cart right-margin"
-                            onClick={() => cartItems.forEach(item => removeItemFromDatabase(item.id))}>
-                            Clear shopping cart
+                            onClick={() => cartItems.forEach(item => removeAllItemFromDatabase(item._id))}>
+                            Clear All wishlist
                           </button>
                           {/* <button type="button" className="btn btn-default right-cart">Update shopping cart</button> */}
                         </div>

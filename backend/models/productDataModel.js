@@ -1,26 +1,24 @@
 const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
     id: String,
-    profession: String,
-    categories:String,
-    salary: String,
-    image: String,
-    rating: Number,
-    quantity: Number,
     firstName: String,
     lastName: String,
-    phoneNumber: String,
-    whatsappNumber: String,
-    email: String,
-    district: String, // corrected field name
+    profession: String,
+    category: String,
+    address: String,
+    district: String,
     state: String,
-    city: String,
-    street: String,
-    availability: String,
-    previousPrice: String,
-    experience: String,
+    postalCode: String,
+    email: String,
+    phoneNumber: String,
+    whatsAppNumber: String,
+    salary: Number,
     description: String,
+    image: String,
+    createProfessionAccount: Boolean,
     createdAt: { type: Date, default: Date.now }
+
+   
 });
  
 const productModel =mongoose.model('productData', productSchema);

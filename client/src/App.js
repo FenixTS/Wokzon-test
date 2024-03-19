@@ -9,6 +9,7 @@ import ChangePassword from './Components/ChangePassword';
 import Login from './Components/Login';
 import RegistrationForm from './Components/Register';
 import Post from './Components/Post';
+import Search from './Components/Search';
 
 
 
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/checkout" element={ <Checkout/>}/>
           <Route path="/my_account" element={ <MyAccount/>}/>
           <Route path="/forgot_psw" element={ <ChangePassword/>}/>
+          <Route path="/search" element={ <Search/>}/>
           <Route path="/login" element={ <Login/>}/>
           <Route path="/post" element={ <Post/>}/>            
         </Routes>

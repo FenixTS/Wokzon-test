@@ -31,8 +31,8 @@ const ProductList = () => {
   const [id, setId] = useState();
 
   const userId = 1;
-
-// console.log(,'selectedProductId')
+  
+// console.log(productData,'productData')
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -58,8 +58,6 @@ const ProductList = () => {
     console.log(id, 'product list page ')
     navigate((`/Product_detail`), { state: { id: id } });
   };
-
-
 
 
   const handleCartClick = (product_Id) => {
@@ -136,12 +134,12 @@ const ProductList = () => {
       const productNames = response.data.map((product) => product.profession.toLowerCase());
 
       // Create a fuzzy set with product names
-      const fuzzySet = FuzzySet(productNames);
-      const correctedSearchTerm = fuzzySet.get(searchQuery, null, 0.5); // Get the closest match
+      // const fuzzySet = FuzzySet(productNames);
+      // const correctedSearchTerm = fuzzySet.get(searchQuery, null, 0.5); // Get the closest match
 
-      if (correctedSearchTerm && correctedSearchTerm[0][0] > 0.5) {
-        setSearchTerm(correctedSearchTerm[0][1]); // Update searchTerm with the corrected term
-      }
+      // if (correctedSearchTerm && correctedSearchTerm[0][0] > 0.5) {
+      //   setSearchTerm(correctedSearchTerm[0][1]); // Update searchTerm with the corrected term
+      // }
       // let filteredResults = response.data;
       // if (searchTerm.trim() !== '') {
       //   filteredResults = response.data.filter(
@@ -159,7 +157,7 @@ const ProductList = () => {
             .replace(/\s/g, '')
             .includes(searchTerm.toLowerCase().replace(/\s/g, ''))
       );
-      setFilteredProductIds(filteredResults.map((result) => result.id));
+      setFilteredProductIds(filteredResults.map((result) => result._id));
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -257,10 +255,10 @@ const handleSearchInputChange = (event) => {
                   <div key={product.id} className="col-md-4 col-sm-4 col-xs-12 ">
                     <div className="product-single">
 
-                      <Link to={{ pathname: `/Product_detail`, state: { id: product.id } }} >
+                      <Link to={{ pathname: `/Product_detail`, state: { id: product._id } }} >
                         <img
                           src={product.image}
-                          onClick={() => handleProductClick(product.id)}
+                          onClick={() => handleProductClick(product._id)}
                           alt="#"
                           style={{ width:'250px', height: '250px' }}
                         />

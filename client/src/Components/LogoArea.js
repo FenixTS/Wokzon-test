@@ -49,7 +49,7 @@ const LogoArea = ({ onSearchInputChange, searchTerm }) => {
               type="text"
               value={searchTerm}
               onChange={onSearchInputChange} />
-            <a className="search-button" href="#" style={{}}></a>
+            <Link to="/search" className="search-button" style={{}}></Link>
           </div>
           <div className="menu_right">
             <Link to="/cart-page">Wishlist</Link>

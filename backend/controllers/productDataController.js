@@ -17,12 +17,12 @@ exports.getSingleProduct = async (req, res, next) => {
          // console.log(req.params.id, 'ID')
     const productData = await ProductModel.findById(req.params.id);
 
-    res.json({
+    res.json(
         
         productData
-    })
+    );
 
-    } 
+    }
     catch (error)
     {
         res.json({
@@ -67,3 +67,16 @@ exports.PostProductData = (req, res, next) => {
             });
         });
 }; 
+
+
+// app.post('/submitForm', async (req, res) => {
+//     try {
+//         const formData = req.body;
+//         const newProfession = new Profession(formData);
+//         await newProfession.save();
+//         res.status(201).json({ message: 'Form data saved successfully!' });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: 'An error occurred while saving form data' });
+//     }
+// });
