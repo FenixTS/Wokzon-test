@@ -40,7 +40,7 @@ const Footer = () => {
             <div className="row">
               <div className="col-sm-4 col-xs-12">
                 <div className="widget_logo">
-                  <a href="index.html"><img src="images/logo_footer.png" alt="logo" /></a>
+                  <a href="index.html">   <img src="images/footer_logo.png" style={{ width: '250px', height: '60px', marginTop: '-10px' }} alt="" /></a>
                   <ul>
                     <li>
                       <div className="wl_left">
@@ -69,7 +69,7 @@ const Footer = () => {
                   </ul>
                 </div>
               </div>
-              <div className="col-sm-2 col-xs-12">
+              {/* <div className="col-sm-2 col-xs-12">
                 <div className="widget_single">
                   <h4><a href="#">My Account</a></h4>
                   <ul>
@@ -79,8 +79,8 @@ const Footer = () => {
                     <li><a href="checkout.html">Checkout</a></li>
                   </ul>
                 </div>
-              </div>
-              <div className="col-sm-2 col-xs-12">
+              </div> */}
+              {/* <div className="col-sm-2 col-xs-12">
                 <div className="widget_single">
                   <h4><a href="#">Information</a></h4>
                   <ul>
@@ -93,17 +93,17 @@ const Footer = () => {
                     <li><a href="#">Delivery Information</a></li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
               <div className="col-sm-2 col-xs-12">
                 <div className="widget_single">
                   <h4><a href="#">Our Support</a></h4>
                   <ul>
                     <li><a href="contact-us.html">Contact Us</a></li>
-                    <li><a href="#">Shipping & Taxes</a></li>
+                    {/* <li><a href="#">Shipping & Taxes</a></li> */}
                     <li><a href="#">Return Policy</a></li>
                     <li><a href="#">Careers</a></li>
-                    <li><a href="#">Affiliates</a></li>
-                    <li><a href="#">Gift Vouchers</a></li>
+                    {/* <li><a href="#">Affiliates</a></li> */}
+                    {/* <li><a href="#">Gift Vouchers</a></li> */}
                   </ul>
                 </div>
               </div>
@@ -111,10 +111,10 @@ const Footer = () => {
                 <div className="widget_single">
                   <h4><a href="#">Our Services</a></h4>
                   <ul>
-                    <li><a href="#">Shipping & Returns</a></li>
-                    <li><a href="#">International Shopping</a></li>
+                    <li><a href="#">Get reach profesional</a></li>
+                    {/* <li><a href="#">International Shopping</a></li> */}
                     <li><a href="#">Best Customer Support</a></li>
-                    <li><a href="#">Easy Replacement</a></li>
+                    {/* <li><a href="#">Easy Replacement</a></li> */}
                   </ul>
                 </div>
               </div>

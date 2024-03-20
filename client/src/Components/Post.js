@@ -69,9 +69,9 @@ function Post() {
                 description: '',
                 createProfessionAccount: false
             });
-            console.log('Form submitted successfully!');
+            alert('Form submitted successfully!');
         } catch (error) {
-            console.error('Error submitting form:', error);
+            alert.error('Error submitting form:', error);
         }
     };
 

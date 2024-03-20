@@ -52,29 +52,38 @@ function LoginForm() {
     
 
   return (
+    <>
+   
+
     <div className="wish-area section-padding">
       <div className="container" style={{ display: "flex", marginTop: '-60px', justifyContent: 'center' }}>
-        <div className="contact-mail" style={{ width: '280px', display: "flex", justifyContent: 'center', boxShadow: '5px 5px 5px 1px rgba(0, 0, 0, 0.1)' }}>
+        <div className="contact-mail" style={{ width: '27%', height: '', display: "flex", justifyContent: 'center', boxShadow: '5px 5px 5px 1px rgba(0, 0, 0, 0.1)' }}>
           <div className="row">
             <div className="col-md-6 col-sm-6 col-xs-12" >
-              <div className="mail-left" style={{ width: '280%', backgroundColor: '', display: 'flex', alignItems: 'center', justifyContent: 'center', }}>
+              <div className="mail-left" >
+                <div style={{ width: '250%',marginLeft:'-10px', backgroundColor: '' }}>
                 <form onSubmit={handleSubmit}>
                   <label>Email *</label>
                   <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                   <label>Password *</label>
                   <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                  {error && <div style={{ color: 'red' }}>{error}</div>}
-                  <div className="mail-btn">
-                    <button type="submit" className="btn btn-default">Login</button>
-                    <Link to="/forgot_psw">Forgot password?</Link>
+                  {error && <div style={{ color: 'red' }}>{error}</div>}                
+                
+                <div className="mail-btn">
+                    <button type="submit" className="btn btn-default">Login</button>                  
                   </div>
-                </form>
+                  <div className="already-have-account">
+                  <Link to="/forgot_psw">Forgot password?</Link>
+                  </div> 
+                  </form>             
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    </>
   );
 }
 

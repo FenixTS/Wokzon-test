@@ -22,7 +22,7 @@ const Header = ({ isLoggedIn, onLogin, onLogout }) => {
                       className="dropdown-toggle"
                       href="#"
                     >
-                      <span className="value"><LanguageDropdown /> </span>
+                      {/* <span className="value"><LanguageDropdown /> </span> */}
 
                     </a>
                     <ul className="dropdown-menu">

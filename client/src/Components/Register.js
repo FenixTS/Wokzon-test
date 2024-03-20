@@ -53,7 +53,7 @@ function RegistrationForm() {
           <div className="row">
             <div className="col-md-6 col-sm-6 col-xs-12" >
               <div className="mail-left" >
-                <div style={{ width: '250%', backgroundColor: '' }}>
+                <div style={{ width: '250%',marginLeft:'-10px', backgroundColor: '' }}>
                   <form onSubmit={handleSubmit}>
                     <label>Name *</label>
                     <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
@@ -62,14 +62,15 @@ function RegistrationForm() {
                     <label>Password *</label>
                     <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     {error && <div style={{ color: 'red' }}>{error}</div>}
+                    
                     <div className="mail-btn">
                       <button type="submit" className="btn btn-default" disabled={isLoading}>Register</button>
                     </div>
-                  </form>
+                  
                   <div className="already-have-account">
                     Already have an account? <Link to='/login'>Login</Link>
                   </div>
-               
+                  </form>
                 </div>
 
               </div>

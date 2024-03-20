@@ -31,8 +31,8 @@ const ProductList = () => {
   const [id, setId] = useState();
 
   const userId = 1;
-  
-// console.log(productData,'productData')
+
+  // console.log(productData,'productData')
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -45,7 +45,7 @@ const ProductList = () => {
 
   useEffect(() => {
     // Fetch data when the component mounts
-    fetch(baseUrl +'/bestWorker')
+    fetch(baseUrl + '/bestWorker')
       .then(response => response.json())
       .then(data => setBestWorker(data))
       .catch(error => console.error('Error fetching data:', error));
@@ -65,10 +65,10 @@ const ProductList = () => {
     // Find the product with the given ID
     const productToAdd = productData.find(product => product._id === product_Id);
     // If the product is found, add it to the cart
-    
+
     if (productToAdd) {
       addToCart(product_Id); // Pass productId to addToCart function
-      
+
     } else {
       console.error(`Product with ID ${product_Id} not found.`);
     }
@@ -84,7 +84,7 @@ const ProductList = () => {
     };
 
     // Make a POST request to add the product to the cart
-    fetch(baseUrl +'/cartItem', {
+    fetch(baseUrl + '/cartItem', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -123,89 +123,90 @@ const ProductList = () => {
     window.location.reload();
   };
 
- // search function---------------------------------------
+  // search function---------------------------------------
 
 
- useEffect(() => {
-  const fetchSearchResults = async () => {
-    try {
-      const response = await axios.get(baseUrl +'/productData');
-      const searchQuery = searchTerm.trim().toLowerCase().replace(/\s/g, '');
-      const productNames = response.data.map((product) => product.profession.toLowerCase());
+  useEffect(() => {
+    const fetchSearchResults = async () => {
+      try {
+        const response = await axios.get(baseUrl + '/productData');
+        const searchQuery = searchTerm.trim().toLowerCase().replace(/\s/g, '');
+        const productNames = response.data.map((product) => product.profession.toLowerCase());
 
-      // Create a fuzzy set with product names
-      // const fuzzySet = FuzzySet(productNames);
-      // const correctedSearchTerm = fuzzySet.get(searchQuery, null, 0.5); // Get the closest match
+        // Create a fuzzy set with product names
+        // const fuzzySet = FuzzySet(productNames);
+        // const correctedSearchTerm = fuzzySet.get(searchQuery, null, 0.5); // Get the closest match
 
-      // if (correctedSearchTerm && correctedSearchTerm[0][0] > 0.5) {
-      //   setSearchTerm(correctedSearchTerm[0][1]); // Update searchTerm with the corrected term
-      // }
-      // let filteredResults = response.data;
-      // if (searchTerm.trim() !== '') {
-      //   filteredResults = response.data.filter(
-      //     (result) =>
-      //       result.profession
-      //         .toLowerCase()
-      //         .replace(/\s/g, '')
-      //         .includes(searchTerm.toLowerCase().replace(/\s/g, ''))
-      //   );
-      // }
-      const filteredResults = response.data.filter(
-        (result) =>
-          result.profession
-            .toLowerCase()
-            .replace(/\s/g, '')
-            .includes(searchTerm.toLowerCase().replace(/\s/g, ''))
-      );
-      setFilteredProductIds(filteredResults.map((result) => result._id));
-    } catch (error) {
-      console.error('Error fetching data:', error);
+        // if (correctedSearchTerm && correctedSearchTerm[0][0] > 0.5) {
+        //   setSearchTerm(correctedSearchTerm[0][1]); // Update searchTerm with the corrected term
+        // }
+        // let filteredResults = response.data;
+        // if (searchTerm.trim() !== '') {
+        //   filteredResults = response.data.filter(
+        //     (result) =>
+        //       result.profession
+        //         .toLowerCase()
+        //         .replace(/\s/g, '')
+        //         .includes(searchTerm.toLowerCase().replace(/\s/g, ''))
+        //   );
+        // }
+        const filteredResults = response.data.filter(
+          (result) =>
+            result.profession
+              .toLowerCase()
+              .replace(/\s/g, '')
+              .includes(searchTerm.toLowerCase().replace(/\s/g, ''))
+        );
+        setFilteredProductIds(filteredResults.map((result) => result._id));
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    // Only fetch results if searchTerm is not empty
+    if (searchTerm.trim() !== '') {
+      fetchSearchResults();
+    } else {
+      // Clear results if searchTerm is empty
+      setFilteredProductIds([]);
     }
-  };
+  }, [searchTerm]);
 
-  // Only fetch results if searchTerm is not empty
-  if (searchTerm.trim() !== '') {
-    fetchSearchResults();
-  } else {
-    // Clear results if searchTerm is empty
-    setFilteredProductIds([]);
-  }
-}, [searchTerm]);
+  useEffect(() => {
+    // Fetch product data for each product ID
+    const fetchProductDataPromises = filteredProductIds.map((productId) =>
+      fetch(baseUrl + `/productData/${productId}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+    );
 
-useEffect(() => {
-  // Fetch product data for each product ID
-  const fetchProductDataPromises = filteredProductIds.map((productId) =>
-    fetch(baseUrl +`/productData/${productId}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
+    // Wait for all product data fetch requests to complete
+    Promise.all(fetchProductDataPromises)
+      .then((productData) => {
+        // Update productData state with fetched product data
+        setProductData(productData);
       })
-  );
+      .catch((error) => {
+        console.error('Error fetching product data:', error);
+      });
+  }, [filteredProductIds]);
 
-  // Wait for all product data fetch requests to complete
-  Promise.all(fetchProductDataPromises)
-    .then((productData) => {
-      // Update productData state with fetched product data
-      setProductData(productData);
-    })
-    .catch((error) => {
-      console.error('Error fetching product data:', error);
-    });
-}, [filteredProductIds]);
-
-const handleSearchInputChange = (event) => {
-  setSearchTerm(event.target.value);
+  const handleSearchInputChange = (event) => {
+    setSearchTerm(event.target.value);
 
   };
   // // contact button onclick function
 
- 
+
 
 
   return (
-    <>
+   
+      <>
       <Header isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
       <LogoArea searchTerm={searchTerm} onSearchInputChange={handleSearchInputChange} />
 
@@ -213,7 +214,7 @@ const handleSearchInputChange = (event) => {
         <div className="container">
           <div className="row">
             {/* Best Sellers Carousel */}
-            <div className="col-md-3 col-sm-3 col-xs-12">
+            {/* <div className="col-md-3 col-sm-3 col-xs-12">
               <CategoriesMenu />
               <div className="best-sell">
                 <h3>Best Worker</h3>
@@ -245,7 +246,7 @@ const handleSearchInputChange = (event) => {
                   </a>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Product Display */}
             <div className="col-md-9 col-sm-9 col-xs-12">
