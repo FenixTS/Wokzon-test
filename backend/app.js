@@ -21,6 +21,7 @@ app.use((req, res, next) => {
 const productData = require('./routes/productDataRoutes');
 const user = require('./routes/userRoute');
 const cartItem = require('./routes/cartItemRoute');
+const productModel = require('./models/productDataModel');
 // const uploadImage = require('./roures/imageRoute');
 
 connectDatabase();
@@ -35,7 +36,7 @@ app.use(bodyParser.json());
 // use multer package
 let storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './public/images');
+    cb(null, './public');
   },
   filename: (req, file, cb) => {
     cb(null, file.fieldname + '_' + Date.now() + path.extname(file.originalname));
@@ -51,23 +52,35 @@ let upload = multer({
 });
 
 let uploadHandler = upload.single('file');
-app.post('/upload', (req, res) => {
-  uploadHandler(req, res, function(err) {
+app.post('/api/v1/upload', (req, res) => {
+  uploadHandler(req, res, async function(err) {
     if (err) {
       if (err.code === 'LIMIT_FILE_SIZE') {
         res.status(400).json({ message: "Maximum file size is 2 MB" });
       } else {
         res.status(500).json({ message: "Internal server error" });
       }
-      return;
+      return; 
     }
+
     if (!req.file) {
       res.status(400).json({ message: "No file uploaded!" });
     } else {
-      res.status(200).json({ message: "Uploaded to the server"});
+      const ImagefilePath = req.file.path; // Get the file path
+      // Save the file path to MongoDB 
+    
+      try {
+        const savedFile = await productModel.create({ ImagefilePath });
+        console.log(savedFile)
+        res.status(200).json({ message: "File uploaded and saved to MongoDB", savedFile });
+      } catch (error) {
+        console.error('Error saving file to MongoDB:', error);
+        res.status(500).json({ message: "Error saving file to MongoDB" });
+      }
     }
   });
 });
+
 
 // Mount routes
 app.use('/api/v1/', productData);

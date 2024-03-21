@@ -71,9 +71,35 @@ function Post() {
             });
             alert('Form submitted successfully!');
         } catch (error) {
-            alert.error('Error submitting form:', error);
+            alert('Error submitting form:', error);
         }
     };
+
+    const handleFileUpload = (event) => {
+        const file = event.target.files[0]; // Assuming single file upload
+        const formData = new FormData(); // Create a FormData object
+      
+        formData.append('file', file); // Append the file to FormData with key 'file'
+      
+        // Send the FormData object to the backend
+        fetch('http://localhost:8000/api/v1/upload', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => {
+          if (response.ok) {
+            console.log('File uploaded successfully');
+            // Handle success, if needed
+          } else {
+            console.error('Failed to upload file');
+            // Handle failure, if needed
+          }
+        })
+        .catch(error => {
+          console.error('Error uploading file:', error);
+          // Handle error, if needed
+        });
+      }
 
     return (
         <>
@@ -174,7 +200,7 @@ function Post() {
                                 <textarea id="description" name="description" className="form-control mb-4" rows="4" value={formData.description} onChange={handleChange}></textarea>
 
                                 <label htmlFor="image" className="form-label">Upload Image</label>
-                                <input type="file" id="image" name="image" className="form-control mb-4" onChange={handleChange} />
+                                <input type="file" id="image" name="image" className="form-control mb-4" onChange={handleFileUpload} />
 
                                 <div className="form-check d-flex justify-content-center mb-4">
                                     <input type="checkbox" id="createProfessionAccount" name="createProfessionAccount" className="form-check-input" checked={formData.createProfessionAccount} onChange={handleChange} />

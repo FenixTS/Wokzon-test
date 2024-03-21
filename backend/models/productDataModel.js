@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema({
     whatsAppNumber: String,
     salary: Number,
     description: String,
-    image: String,
+    ImagefilePath: String,
     createProfessionAccount: Boolean,
     createdAt: { type: Date, default: Date.now }
 
