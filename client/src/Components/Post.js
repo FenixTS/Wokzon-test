@@ -85,6 +85,8 @@ function Post() {
             navigate('/register');
         }
     }, [navigate]);
+
+    
     return (
         <>
             <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
