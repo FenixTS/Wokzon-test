@@ -4,18 +4,20 @@ const dotenv = require('dotenv');
 const path = require('path');
 const connectDatabase = require('./config/connectDatabase');
 const mongoose = require('mongoose');
-const multer = require('multer');
-const bodyParser = require('body-parser'); // Import bodyParser
+const multer = require('multer');             
+
+const cors = require('cors');
+
 
 dotenv.config({ path: path.join(__dirname, 'config', 'config.env') });
 
 // Add CORS middleware
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   next();
+// });
 
 // Import routes
 const productData = require('./routes/productDataRoutes');
@@ -29,9 +31,17 @@ connectDatabase();
 // Middleware
 app.use(express.json()); // Parse incoming JSON requests
 app.use(express.static('./public'));
+app.use(cors());
+
+// Global error handler middleware
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).send('Internal Server Error');
+});
 
 // use bodyParser middleware
-app.use(bodyParser.json());
+// const bodyParser = require('body-parser'); 
+// app.use(bodyParser.json());
 
 // use multer package
 let storage = multer.diskStorage({
@@ -51,35 +61,84 @@ let upload = multer({
   }
 });
 
-let uploadHandler = upload.single('file');
-app.post('/api/v1/upload', (req, res) => {
-  uploadHandler(req, res, async function(err) {
-    if (err) {
-      if (err.code === 'LIMIT_FILE_SIZE') {
-        res.status(400).json({ message: "Maximum file size is 2 MB" });
-      } else {
-        res.status(500).json({ message: "Internal server error" });
-      }
-      return; 
-    }
+app.post('/api/v1/productData', upload.single('image'), (req, res) => {
+  const {
+    firstName,
+    lastName,
+    profession,
+    category,
+    address,
+    district,
+    state,
+    postalCode,
+    email,
+    phoneNumber,
+    whatsAppNumber,
+    salary,
+    description,
+    createProfessionAccount} = req.body;
+    console.log(req.body,'req.body')
 
-    if (!req.file) {
-      res.status(400).json({ message: "No file uploaded!" });
-    } else {
-      const ImagefilePath = req.file.path; // Get the file path
-      // Save the file path to MongoDB 
-    
-      try {
-        const savedFile = await productModel.create({ ImagefilePath });
-        console.log(savedFile)
-        res.status(200).json({ message: "File uploaded and saved to MongoDB", savedFile });
-      } catch (error) {
-        console.error('Error saving file to MongoDB:', error);
-        res.status(500).json({ message: "Error saving file to MongoDB" });
-      }
-    }
+  const imagePath = req.file.path;
+
+  const formData = new productModel({
+    firstName,
+    lastName,
+    profession,
+    category,
+    address,
+    district,
+    state,
+    postalCode,
+    email,
+    phoneNumber,
+    whatsAppNumber,
+    salary,
+    description,
+    imagePath,
+    createProfessionAccount
   });
+
+  formData.save()
+  .then(() => {
+      res.status(200).send('Data saved successfully');
+  })
+  .catch(err => {
+      console.error(err);
+      res.status(500).send('Error saving data to database');
+  });
+
 });
+
+// let uploadHandler = upload.single('file');
+// app.post('/api/v1/upload', (req, res) => {
+//   uploadHandler(req, res, async function(err) {
+//     if (err) {
+//       if (err.code === 'LIMIT_FILE_SIZE') {
+//         res.status(400).json({ message: "Maximum file size is 2 MB" });
+//       } else {
+//         res.status(500).json({ message: "Internal server error" });
+//       }
+//       return; 
+//     }
+
+//     if (!req.file) {
+//       res.status(400).json({ message: "No file uploaded!" });
+//     } else {
+//       const ImagefilePath = req.file.path; // Get the file path
+//       // Save the file path to MongoDB 
+    
+//       try {
+//         const savedFile = await productModel.create({ ImagefilePath });
+//         console.log(savedFile)
+//         res.status(200).json({ message: "File uploaded and saved to MongoDB", savedFile });
+//       } catch (error) {
+//         console.error('Error saving file to MongoDB:', error);
+//         res.status(500).json({ message: "Error saving file to MongoDB" });
+//       }
+//     }
+//   });
+// });
 
 
 // Mount routes
