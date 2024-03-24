@@ -249,9 +249,9 @@ const MyCart = () => {
                   <tbody>
                   {productData.map((item, index) => (
                       <tr key={index}>
-                        <td className="cart-image">
+                        <td className="cart-image" >
                           <a href="#" className="entry-thumbnail">
-                            <img src={item.image} alt="" />
+                            <img src={"http://localhost:8000/" +item.imagePath} alt=""style={{height:'200px', width: '200px'}} />
                           </a>
                         </td>
                         <td className="cart-product-name-info">

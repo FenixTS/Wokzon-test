@@ -30,7 +30,7 @@ connectDatabase();
 
 // Middleware
 app.use(express.json()); // Parse incoming JSON requests
-app.use(express.static('./public'));
+app.use(express.static('./'));  // image path declaration for image api
 app.use(cors());
 
 // Global error handler middleware
@@ -43,10 +43,11 @@ app.use((err, req, res, next) => {
 // const bodyParser = require('body-parser'); 
 // app.use(bodyParser.json());
 
+
 // use multer package
 let storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './public');
+    cb(null, './Images');
   },
   filename: (req, file, cb) => {
     cb(null, file.fieldname + '_' + Date.now() + path.extname(file.originalname));
@@ -61,7 +62,7 @@ let upload = multer({
   }
 });
 
-app.post('/api/v1/productData', upload.single('image'), (req, res) => {
+app.post('/api/v1/upload', upload.single('image'), (req, res) => {
   const {
     firstName,
     lastName,
@@ -77,9 +78,10 @@ app.post('/api/v1/productData', upload.single('image'), (req, res) => {
     salary,
     description,
     createProfessionAccount} = req.body;
+   
     console.log(req.body,'req.body')
-
   const imagePath = req.file.path;
+ 
 
   const formData = new productModel({
     firstName,
@@ -110,35 +112,7 @@ app.post('/api/v1/productData', upload.single('image'), (req, res) => {
 
 });
 
-// let uploadHandler = upload.single('file');
-// app.post('/api/v1/upload', (req, res) => {
-//   uploadHandler(req, res, async function(err) {
-//     if (err) {
-//       if (err.code === 'LIMIT_FILE_SIZE') {
-//         res.status(400).json({ message: "Maximum file size is 2 MB" });
-//       } else {
-//         res.status(500).json({ message: "Internal server error" });
-//       }
-//       return; 
-//     }
 
-//     if (!req.file) {
-//       res.status(400).json({ message: "No file uploaded!" });
-//     } else {
-//       const ImagefilePath = req.file.path; // Get the file path
-//       // Save the file path to MongoDB 
-    
-//       try {
-//         const savedFile = await productModel.create({ ImagefilePath });
-//         console.log(savedFile)
-//         res.status(200).json({ message: "File uploaded and saved to MongoDB", savedFile });
-//       } catch (error) {
-//         console.error('Error saving file to MongoDB:', error);
-//         res.status(500).json({ message: "Error saving file to MongoDB" });
-//       }
-//     }
-//   });
-// });
 
 
 // Mount routes

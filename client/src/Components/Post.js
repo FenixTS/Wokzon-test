@@ -33,8 +33,15 @@ function Post() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    // const handleFileChange = (e) => {
+    //     setFormData({ ...formData, image: e.target.files[0] });
+    // };
+
     const handleFileChange = (e) => {
-        setFormData({ ...formData, image: e.target.files[0] });
+        const selectedFile = e.target.files[0];
+        if (selectedFile) {
+            setFormData({ ...formData, image: selectedFile });
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -44,8 +51,8 @@ function Post() {
         formDataToSend.append('lastName', formData.lastName);
         formDataToSend.append('profession', formData.profession);
         formDataToSend.append('category', formData.category);
-        formDataToSend.append(' address', formData. address);
-        formDataToSend.append(' district', formData. district);
+        formDataToSend.append('address', formData. address);
+        formDataToSend.append('district', formData. district);
         formDataToSend.append('state', formData.state);
         formDataToSend.append('postalCode', formData.postalCode);
         formDataToSend.append('email', formData.email);
@@ -57,12 +64,13 @@ function Post() {
         formDataToSend.append(' createProfessionAccount', formData. createProfessionAccount);
 
         try {
-            await axios.post(baseUrl + '/productData', formDataToSend, {
+            await axios.post(baseUrl + '/upload', formDataToSend, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
             alert('Form submitted successfully');
+            navigate('/');
         } catch (error) {
             console.error('Error submitting form:', error);
         }

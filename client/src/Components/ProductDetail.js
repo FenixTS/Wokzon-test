@@ -69,7 +69,7 @@ const ProductDetail = () => {
                       <input type="hidden" id="__VIEWxSTATE" />
                       <ul id="zoom1" className="">
                         <li>
-                          <img src={product.image} alt={product.profession} style={{ width: '400px', height: '400px' }}/>
+                          <img src={"http://localhost:8000/" +product.imagePath} alt={product.profession} style={{ width: '400px', height: '400px' }}/>
                         </li> 
                       </ul>
                     </div>

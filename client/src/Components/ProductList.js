@@ -25,6 +25,7 @@ import { baseUrl } from '../baseUrl';
 const ProductList = () => {
   const [productData, setProductData] = useState([]);
   const [bestWorker, setBestWorker] = useState([]);
+ 
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredProductIds, setFilteredProductIds] = useState([]);
@@ -32,7 +33,7 @@ const ProductList = () => {
 
   const userId = 1;
 
-  // console.log(productData,'productData')
+
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -258,8 +259,8 @@ const ProductList = () => {
 
                       <Link to={{ pathname: `/Product_detail`, state: { id: product._id } }} >
                         <img
-                          src={product.image}
-                          onClick={() => handleProductClick(product._id)}
+                        // src={baseUrl + `/upload/${product.imagePath}`} 
+                          src={"http://localhost:8000/" + product.imagePath} onClick={() => handleProductClick(product._id)}
                           alt="#"
                           style={{ width:'250px', height: '250px' }}
                         />
@@ -328,7 +329,7 @@ const ProductList = () => {
                                       <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '35px', padding: '30px', fontSize: '13px' }}>
                                         <div><FontAwesomeIcon icon={faUser} /> {product.firstName} {product.lastName}</div>
                                         <div><FontAwesomeIcon icon={faPhone} style={{ color: "black" }} /> {product.phoneNumber}</div>
-                                        <div><FontAwesomeIcon icon={faWhatsapp} style={{ color: '#23f207', height: '15px' }} /> {product.whatsappNumber}</div>
+                                        <div><FontAwesomeIcon icon={faWhatsapp} style={{ color: '#23f207', height: '15px' }} /> {product.whatsAppNumber}</div>
                                         <div><FontAwesomeIcon icon={faEnvelope} style={{ color: "#1b1f17" }} /> {product.email}</div>
                                         <div><FontAwesomeIcon icon={faLocationDot} style={{ color: "skyblue" }} /> {product.district},{product.state}</div>
                                       </div>

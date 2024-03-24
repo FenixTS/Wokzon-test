@@ -4149,7 +4149,9 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .table-bordered tbody tr td.cart-image {
-  width: 165px;
+  width: 203px;
+  height: 203px;
+
 }
 
 .entry-thumbnail > img {
