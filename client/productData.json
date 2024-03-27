@@ -85,7 +85,7 @@
   },
   {
     "profession": "Mason",
-    "categories": "construction",
+    "categories":"construction",
     "salary": "250.00",
     "imagePath": "Images/product5.png",
     "rating": 4,

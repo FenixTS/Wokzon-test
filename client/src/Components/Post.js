@@ -35,7 +35,7 @@ function Post() {
 
     // const handleFileChange = (e) => {
     //     setFormData({ ...formData, image: e.target.files[0] });
-    // };
+    // };----------
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];

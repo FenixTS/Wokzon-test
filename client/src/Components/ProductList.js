@@ -22,7 +22,11 @@ import { baseUrl } from '../baseUrl';
 
 
 
-const ProductList = () => {
+const ProductList = (props) => {
+
+  const cityData = props.location?.state?.cityData || [];
+  
+
   const [productData, setProductData] = useState([]);
   const [bestWorker, setBestWorker] = useState([]);
  
@@ -33,7 +37,7 @@ const ProductList = () => {
 
   const userId = 1;
 
-
+  console.log(cityData,'props')
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -200,7 +204,7 @@ const ProductList = () => {
     setSearchTerm(event.target.value);
 
   };
-  // // contact button onclick function
+  // // contact button onclick function---------
 
 
 
@@ -257,14 +261,15 @@ const ProductList = () => {
                   <div key={product.id} className="col-md-4 col-sm-4 col-xs-12 ">
                     <div className="product-single">
 
-                      <Link to={{ pathname: `/Product_detail`, state: { id: product._id } }} >
+                      
                         <img
+                        
                         // src={baseUrl + `/upload/${product.imagePath}`} 
                           src={"http://localhost:8000/" + product.imagePath} onClick={() => handleProductClick(product._id)}
                           alt="#"
-                          style={{ width:'250px', height: '250px' }}
+                          style={{ width:'250px', height: '250px',cursor:'pointer'}}
                         />
-                      </Link>
+                     
 
                       <div className="tag new">
                         <span><FontAwesomeIcon icon={faPhone} /></span>
@@ -272,7 +277,7 @@ const ProductList = () => {
 
                       <div className='productName-star' >
                         <div className="hot-wid-rating"  >
-                          <h4><a href="/Product_detail">{product.profession}   </a><br /><br />
+                          <h4 style={{cursor:'pointer'}}><a onClick={() => handleProductClick(product._id)}>{product.profession}   </a><br /><br />
 
                             {[...Array(product.rating)].map((_, i) => (
                               <i key={i} className="fa fa-star"></i>

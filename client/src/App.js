@@ -11,15 +11,20 @@ import RegistrationForm from './Components/Register';
 import Post from './Components/Post';
 import Search from './Components/Search';
 
+import { createBrowserHistory } from 'history';
+import { Router } from 'react-router-dom';
+
 
 
 
 const App = () => {
+
+  const history = createBrowserHistory();
   return (
 
     <BrowserRouter>
       <main>    
-        <Routes>
+        <Routes  history={history}>
           <Route path="/" element={<ProductList/>} />
           <Route path={`/Product_detail`} element={<ProductDetail />}/>
           <Route path="/cart-page" element={<ShoppingCart/>}/>

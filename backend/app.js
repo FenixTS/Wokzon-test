@@ -30,7 +30,7 @@ connectDatabase();
 
 // Middleware
 app.use(express.json()); // Parse incoming JSON requests
-app.use(express.static('./'));  // image path declaration for image api
+app.use(express.static('./'));  // image path declaration for image api identification
 app.use(cors());
 
 // Global error handler middleware

@@ -5,6 +5,8 @@ import LogoArea from './LogoArea';
 import Footer from './Footer';
 import { baseUrl } from '../baseUrl';
 
+// functions
+
 const ProductDetail = () => {
   const location = useLocation();
   const id = location.state ? location.state.id : null;

@@ -12,6 +12,7 @@ const MyCart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [productData, setProductData] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState();
+  const [id, setId] = useState();
   // const [logout, setLogout] = useState(false);
   const userId = 1;
 // console.log(cartItems,'cartItems')
@@ -110,7 +111,11 @@ const MyCart = () => {
     // Implement the logic to remove the item from cartItems based on itemId
   };
 
-  
+  const handleProductClick = (id) => {
+    setId(id);
+    console.log(id, 'product list page ')
+    navigate((`/Product_detail`), { state: { id: id } });
+  };
     
         
 
@@ -192,7 +197,7 @@ const MyCart = () => {
   //     });
   // };
 
-  // Function to remove item from cart and database
+  // Function to remove item from cart and database-----
 
 
   // const updateQuantity = (id, newQuantity) => {
@@ -249,9 +254,12 @@ const MyCart = () => {
                   <tbody>
                   {productData.map((item, index) => (
                       <tr key={index}>
-                        <td className="cart-image" >
-                          <a href="#" className="entry-thumbnail">
-                            <img src={"http://localhost:8000/" +item.imagePath} alt=""style={{height:'200px', width: '200px'}} />
+                        <td className="cart-image">
+                          <a  className="entry-thumbnail">
+                            <img 
+                            onClick={() => handleProductClick(item._id)}
+                            src={"http://localhost:8000/" +item.imagePath}
+                             alt=""style={{height:'200px', width: '200px'}} />
                           </a>
                         </td>
                         <td className="cart-product-name-info">
