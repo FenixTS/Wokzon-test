@@ -19,7 +19,9 @@ dotenv.config({ path: path.join(__dirname, 'config', 'config.env') });
 //   next();
 // });
 
-// production script
+
+
+
 // app.use(express.static("./client/build"));
 // app.get("*",(req,res)=>{
 //   res.sendFile{path.resolve(__dirname,"client","build","index.html")};
@@ -137,6 +139,19 @@ app.use('/api/v1/', cartItem);
 
 // Start server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT} in ${process.env.NODE_ENV} mode`);
+// app.listen(PORT, () => {
+//   console.log(`Server listening on port ${PORT} in ${process.env.NODE_ENV} mode`);
+// });
+
+// production script
+
+app.use(express.static(path.resolve(__dirname, "./client/build")));
+
+// Serve the React app for any other requests
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
