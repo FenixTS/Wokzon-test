@@ -19,6 +19,20 @@ dotenv.config({ path: path.join(__dirname, 'config', 'config.env') });
 //   next();
 // });
 
+// production script
+app.use(express.static("./client/build"));
+app.get("*",(req,res)=>{
+  res.sendFile{path.resolve(__dirname,"client","build","index.html")};
+})
+app.listen(port, ()=> {
+  console.log(`Server is running on port ${port}`);
+});
+
+
+// app.listen(app.get("port"), function () {
+//   console.log("Node app is running at localhost:" + app.get("port"));
+// });
+
 // Import routes
 const productData = require('./routes/productDataRoutes');
 const user = require('./routes/userRoute');
