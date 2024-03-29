@@ -19,22 +19,6 @@ dotenv.config({ path: path.join(__dirname, 'config', 'config.env') });
 //   next();
 // });
 
-
-
-
-// app.use(express.static("./client/build"));
-// app.get("*",(req,res)=>{
-//   res.sendFile{path.resolve(__dirname,"client","build","index.html")};
-// })
-// app.listen(port, ()=> {
-//   console.log(`Server is running on port ${port}`);
-// });
-
-
-// app.listen(app.get("port"), function () {
-//   console.log("Node app is running at localhost:" + app.get("port"));
-// });
-
 // Import routes
 const productData = require('./routes/productDataRoutes');
 const user = require('./routes/userRoute');
@@ -46,7 +30,7 @@ connectDatabase();
 
 // Middleware
 app.use(express.json()); // Parse incoming JSON requests
-app.use(express.static('./'));  // image path declaration for image api identification
+app.use(express.static('./'));  // image path declaration for image api
 app.use(cors());
 
 // Global error handler middleware
@@ -137,21 +121,23 @@ app.use('/api/v1/', user);
 app.use('/api/v1/', cartItem);
 // app.use('/api/v1/', uploadImage);
 
+
+// // production script
+app.use(express.static("./client/build"));
+app.get("*",(req,res)=>{
+  res.sendFile(path.resolve(__dirname,"client","build","index.html"));
+})
+
+
 // Start server
 const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => {
-//   console.log(`Server listening on port ${PORT} in ${process.env.NODE_ENV} mode`);
-// });
-
-// production script
-
-app.use(express.static(path.resolve(__dirname, "./client/build")));
-
-// Serve the React app for any other requests
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT} in ${process.env.NODE_ENV} mode`);
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+
+
+
+
+
+
