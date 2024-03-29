@@ -124,12 +124,13 @@ app.use('/api/v1/', cartItem);
 
 // // production script
 
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.use(express.static("./client/build"));
 
 // Serve the React app for any other requests
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
+
 
 
 
