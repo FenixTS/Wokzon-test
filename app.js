@@ -5,7 +5,6 @@ const path = require('path');
 const connectDatabase = require('./config/connectDatabase');
 const mongoose = require('mongoose');
 const multer = require('multer');             
-
 const cors = require('cors');
 
 
@@ -113,26 +112,19 @@ app.post('/api/v1/upload', upload.single('image'), (req, res) => {
 });
 
 
-
-
 // Mount routes
 app.use('/api/v1/', productData);
 app.use('/api/v1/', user);
 app.use('/api/v1/', cartItem);
 // app.use('/api/v1/', uploadImage);
 
-
 // // production script
-
 app.use(express.static("./client/build"));
 
 // Serve the React app for any other requests
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
-
-
-
 
 // Start server
 const PORT = process.env.PORT || 3000;

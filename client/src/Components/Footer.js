@@ -47,7 +47,7 @@ const Footer = () => {
                         <i className="fa fa-location-arrow"></i>
                       </div>
                       <div className="wl_right">
-                        <a href="#"><span>Address :</span> 09 Ecommerceshop, Design Street, Victoria, Australia</a>
+                        <a href="#"><span>Address :</span> Aharathu vilai,<br></br>kanjikuzhi,kalkulam,<br></br>kanyakumari,<br></br>TamilNadu,629169</a>
                       </div>
                     </li>
                     <li>
@@ -55,7 +55,7 @@ const Footer = () => {
                         <i className="fa fa-envelope-o"></i>
                       </div>
                       <div className="wl_right">
-                        <a href="#"><span>E-mail :</span> Info@Ecommerceshop.com</a>
+                        <a href="#"><span>E-mail :</span> fenixt.s2000@gmail.com</a>
                       </div>
                     </li>
                     <li>
@@ -63,7 +63,7 @@ const Footer = () => {
                         <i className="fa fa-phone"></i>
                       </div>
                       <div className="wl_right">
-                        <a href="#"><span>phone :</span> +01 123 456 78</a>
+                        <a href="#"><span>Phone :</span>7305760579</a>
                       </div>
                     </li>
                   </ul>
@@ -130,7 +130,7 @@ const Footer = () => {
           <div className="row">
             <div className="col-md-6 col-sm-6 col-xs-12">
               <div className="footer_text">
-                <p>&copy;2015 <a href="index.html">E-Comshop</a>. All rights reserved</p>
+                <p> <a href="index.html">Wokzon</a>.com</p>
               </div>
             </div>
             <div className="col-md-6 col-sm-6 col-xs-12">
