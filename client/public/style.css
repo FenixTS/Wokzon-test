@@ -4764,4 +4764,32 @@ input[type="radio"], input[type="checkbox"] {
   color: #ffffff;
 }
 
+
+
+.tag.new {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 50%;
+}
+
+.tag.new:hover {
+  transform: scale(1.1); /* Increase size on hover */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Slight shadow on hover */
+ 
+}
+
+.contact{
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+
+ 
+}
+.contact:hover {
+  transform: scale(1.1); /* Increase size on hover */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
+}
+
+
 /* End Of Style */

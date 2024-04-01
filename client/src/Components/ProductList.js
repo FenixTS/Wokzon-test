@@ -24,20 +24,26 @@ import { baseUrl } from '../baseUrl';
 
 const ProductList = (props) => {
 
+
+
   const cityData = props.location?.state?.cityData || [];
-  
+
 
   const [productData, setProductData] = useState([]);
   const [bestWorker, setBestWorker] = useState([]);
- 
+
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredProductIds, setFilteredProductIds] = useState([]);
   const [id, setId] = useState();
+  const [whatsAppNumber, setWhatsAppNumber] = useState();
+  const [email, setEmail] = useState();
 
   const userId = 1;
 
-  console.log(cityData,'props')
+  const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsAppNumber}`;
+
+  // console.log(cityData, 'props')
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -59,8 +65,9 @@ const ProductList = (props) => {
   const navigate = useNavigate();
 
   const handleProductClick = (id) => {
+
     setId(id);
-    console.log(id, 'product list page ')
+
     navigate((`/Product_detail`), { state: { id: id } });
   };
 
@@ -204,14 +211,30 @@ const ProductList = (props) => {
     setSearchTerm(event.target.value);
 
   };
-  // // contact button onclick function---------
+  // phone call function ----
+  const handlePhoneClick = (id) => {
+    const PhoneId = productData.find(product => product._id === id);
+    const phoneNumber = PhoneId.phoneNumber
 
+    window.open(`tel:${phoneNumber}`, '_self');
+  };
 
-
+  // what's app function ---
+  const handleWhatsAppClick = (id) => {
+    const WhatsAppId = productData.find(product => product._id === id);
+    const WhatsAppNumber = WhatsAppId.whatsAppNumber
+    setWhatsAppNumber(WhatsAppNumber)
+  }
+  const handleEmailClick = (id) => {
+    const EmailId = productData.find(product => product._id === id);
+    const Email = EmailId.email
+    setEmail(Email)
+  }
+  
 
   return (
-   
-      <>
+
+    <>
       <Header isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
       <LogoArea searchTerm={searchTerm} onSearchInputChange={handleSearchInputChange} />
 
@@ -261,23 +284,24 @@ const ProductList = (props) => {
                   <div key={product.id} className="col-md-4 col-sm-4 col-xs-12 ">
                     <div className="product-single">
 
-                      
-                        <img
-                        
+
+                      <img
+
                         // src={baseUrl + `/upload/${product.imagePath}`} 
-                          src={"http://localhost:8000/" + product.imagePath} onClick={() => handleProductClick(product._id)}
-                          alt="#"
-                          style={{ width:'250px', height: '250px',cursor:'pointer'}}
-                        />
-                     
+                        src={"http://localhost:8000/" + product.imagePath} onClick={() => handleProductClick(product._id)}
+                        alt="#"
+                        style={{ width: '250px', height: '250px', cursor: 'pointer' }}
+                      />
+
 
                       <div className="tag new">
-                        <span><FontAwesomeIcon icon={faPhone} /></span>
+                        <span onClick={() => handlePhoneClick(product._id)}>
+                          <FontAwesomeIcon icon={faPhone} />
+                        </span>
                       </div>
-
                       <div className='productName-star' >
                         <div className="hot-wid-rating"  >
-                          <h4 style={{cursor:'pointer'}}><a onClick={() => handleProductClick(product._id)}>{product.profession}   </a><br /><br />
+                          <h4 style={{ cursor: 'pointer' }}><a onClick={() => handleProductClick(product._id)}>{product.profession}   </a><br /><br />
 
                             {[...Array(product.rating)].map((_, i) => (
                               <i key={i} className="fa fa-star"></i>
@@ -288,69 +312,86 @@ const ProductList = (props) => {
                           <ins>₹{product.salary}</ins>
                         </div>
                       </div>
-                      
 
-                         {/* <div className="col-md-12" style={{ bottom: '40px' }} >
+
+                      {/* <div className="col-md-12" style={{ bottom: '40px' }} >
                           <div className="add_cart-contact" style={{ marginLeft: '-20px', width: '250px', height: '35px', display: 'flex', justifyContent: 'center', }}> */}
 
 
-                            <PopupState variant="popover" popupId="demo-popup-popover">
-                              {(popupState) => (
-                                <div className="add_cart-contact" >
-                                  <Button
-                                    style={{ marginRight: '20px', height: '35px', fontSize: '10px' }}
-                                    color="primary" variant="contained" key={product.id}
-                                    onClick={() => handleCartClick(product._id)}
-                                    className="btn btn-primary">
-                                    Add to Wishlist
-                                  </Button>
-                                  <Button
-                                    style={{
-                                      height: "35px",
-                                      backgroundColor: "#00c853",
-                                      fontSize: "12px",
-                                    }}
-                                    variant="contained"
-                                    className="btn btn-primary"
-                                    // onClick={() => handleButtonClick(product.id)}
-                                    {...bindTrigger(popupState)}
-                                    
-                                  >
-                                    Contact
-                                  </Button>
-                                  <Popover
-                                    {...bindPopover(popupState)}
-                                    anchorOrigin={{
-                                      vertical: "bottom",
-                                      horizontal: "center",
-                                    }}
-                                    transformOrigin={{
-                                      vertical: "top",
-                                      horizontal: "center",
-                                    }}
-                                  >
-                                    <Typography sx={{ p: 2 }}>
+                      <PopupState variant="popover" popupId="demo-popup-popover">
+                        {(popupState) => (
+                          <div className="add_cart-contact" >
+                            <Button
+                              style={{ marginRight: '20px', height: '35px', fontSize: '10px' }}
+                              color="primary" variant="contained" key={product.id}
+                              onClick={() => handleCartClick(product._id)}
+                              className="btn btn-primary">
+                              Add to Wishlist
+                            </Button>
+                            <Button
+                              style={{
+                                height: "35px",
+                                backgroundColor: "#00c853",
+                                fontSize: "12px",
+                              }}
+                              variant="contained"
+                              className="btn btn-primary"
+                              // onClick={() => handleButtonClick(product.id)}
+                              {...bindTrigger(popupState)}
 
-                                      <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '35px', padding: '30px', fontSize: '13px' }}>
-                                        <div><FontAwesomeIcon icon={faUser} /> {product.firstName} {product.lastName}</div>
-                                        <div><FontAwesomeIcon icon={faPhone} style={{ color: "black" }} /> {product.phoneNumber}</div>
-                                        <div><FontAwesomeIcon icon={faWhatsapp} style={{ color: '#23f207', height: '15px' }} /> {product.whatsAppNumber}</div>
-                                        <div><FontAwesomeIcon icon={faEnvelope} style={{ color: "#1b1f17" }} /> {product.email}</div>
-                                        <div><FontAwesomeIcon icon={faLocationDot} style={{ color: "skyblue" }} /> {product.district},{product.state}</div>
-                                      </div>
-                                    </Typography>
-                                  </Popover>
+                            >
+                              Contact
+                            </Button>
+                            <Popover
+                              {...bindPopover(popupState)}
+                              anchorOrigin={{
+                                vertical: "bottom",
+                                horizontal: "center",
+                              }}
+                              transformOrigin={{
+                                vertical: "top",
+                                horizontal: "center",
+                              }}
+                            >
+                              <Typography sx={{ p: 2 }}>
+
+                                <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '35px', padding: '30px', fontSize: '13px' }}>
+                                  <div onClick={() => handleProductClick(product._id)} className='contact'><FontAwesomeIcon icon={faUser} /> {product.firstName} {product.lastName}</div>
+                                  <div
+                                    className='contact'
+                                    onClick={() => handlePhoneClick(product._id)}>
+                                    <FontAwesomeIcon icon={faPhone} style={{ color: "black" }} /> {product.phoneNumber}
+                                  </div>
+                                  <a
+                                    className='contact'
+                                    href={whatsappUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+
+                                    onClick={() => handleWhatsAppClick(product._id)}
+                                  >
+                                    <FontAwesomeIcon icon={faWhatsapp} style={{ color: '#23f207', height: '15px' }} /> {product.whatsAppNumber}
+                                  </a>
+                                  <div className='contact'  onClick={() => handleEmailClick(product._id)}>
+                                    <a href={`mailto:${email}`}>
+                                      <FontAwesomeIcon icon={faEnvelope} style={{ color: "#1b1f17" }} /> {product.email}
+                                    </a>
+                                  </div>
+                                  <div className='contact'><FontAwesomeIcon icon={faLocationDot} style={{ color: "skyblue" }} /> {product.district},{product.state}</div>
                                 </div>
-                              )}
-                            </PopupState>
-
-
+                              </Typography>
+                            </Popover>
                           </div>
-                        </div>
+                        )}
+                      </PopupState>
 
-                    
 
-                    // </div>
+                    </div>
+                  </div>
+
+
+
+                  // </div>
                   // </div>
                 ))}
               </div>
