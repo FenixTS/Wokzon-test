@@ -51,6 +51,7 @@ const Location = () => {
     return (
         <React.Fragment>
             <a
+            className='set-location'
                 variant="outlined"
                 color="neutral"
                 onClick={() => setOpen(true)}

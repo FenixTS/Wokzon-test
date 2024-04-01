@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Location from '../Components/Location';
 import { baseUrl } from '../baseUrl';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 
 const LogoArea = ({ onSearchInputChange, searchTerm }) => {
@@ -29,31 +30,40 @@ const LogoArea = ({ onSearchInputChange, searchTerm }) => {
   return (
 
     <div className="logo_area" >
-      
+
       <div className="container" style={{ marginTop: "-30px" }} >
         <div className="row">
-          <div className="col-sm-4 col-md-4 col-xs-12">
-            <div className="logo">
-              <a href="index.html">
-                <img src="images/logo.png" style={{ width: '250px', height: '60px', marginTop: '-10px' }} alt="" />
-              </a>
+          <div className="logo-search-wishlist">
+
+            <a href="index.html">
+              <img src="images/logo.png" style={{ width: '250px', height: '60px', marginTop: '-10px' }} alt="" />
+            </a>
+
+            <div className='location-input-button' >
+
+              <div className="location" >
+                <Location />
+              </div>
+              <div>
+                <input
+                  className="search-input"
+                  placeholder="Search here..."
+                  type="text"
+                  value={searchTerm}
+                  onChange={onSearchInputChange} />
+              </div>
+              <Link to="/" className="search-btn" >
+                <FontAwesomeIcon icon={faSearch} />
+              </Link>
             </div>
-          </div>
-          <div className="search-area" style={{ height: '45px', }}>
-            <ul className="categories-filter ">
-              <Location />
-            </ul>
-            <input
-              className="search-field"
-              placeholder="Search here..."
-              type="text"
-              value={searchTerm}
-              onChange={onSearchInputChange} />
-            <Link to="/" className="search-button" style={{}}></Link>
-          </div>
-          <div className="menu_right">
-            <Link to="/cart-page">Wishlist</Link>
-            <span>{cartItems}</span>
+
+
+            <Link to="/cart-page">
+              <div className='list-count'>
+                <div className="wishlist-btn">Wishlist </div>
+                <div className='wishlist-count'>{cartItems}</div>
+              </div>
+            </Link>
           </div>
         </div>
         <div>
