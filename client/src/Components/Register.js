@@ -47,36 +47,25 @@ function RegistrationForm() {
 
   return (
 
-    <div className="wish-area section-padding">
-      <div className="container" style={{ display: "flex", marginTop: '-60px', justifyContent: 'center' }}>
-        <div className="contact-mail" style={{ width: '27%', height: '', display: "flex", justifyContent: 'center', boxShadow: '5px 5px 5px 1px rgba(0, 0, 0, 0.1)' }}>
-          <div className="row">
-            <div className="col-md-6 col-sm-6 col-xs-12" >
-              <div className="mail-left" >
-                <div style={{ width: '250%',marginLeft:'-10px', backgroundColor: '' }}>
-                  <form onSubmit={handleSubmit}>
-                    <label>Name *</label>
-                    <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
-                    <label>Email *</label>
-                    <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <label>Password *</label>
-                    <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    {error && <div style={{ color: 'red' }}>{error}</div>}
-                    
-                    <div className="mail-btn">
-                      <button type="submit" className="btn btn-default" disabled={isLoading}>Register</button>
-                    </div>
-                  
-                  <div className="already-have-account">
-                    Already have an account? <Link to='/login'>Login</Link>
-                  </div>
-                  </form>
-                </div>
+    <div className='login-cointainer' >
+      <div className="mail-left" >
+        <form onSubmit={handleSubmit}>
+          <label>Name *</label>
+          <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
+          <label>Email *</label>
+          <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <label>Password *</label>
+          <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          {error && <div style={{ color: 'red' }}>{error}</div>}
 
-              </div>
-            </div>
+          <div className="mail-btn">
+            <button type="submit" className="btn btn-default" disabled={isLoading}>Register</button>
           </div>
-        </div>
+          <br />
+          <div className="already-have-account">
+            Already have an account? <Link to='/login'>Login</Link>
+          </div>
+        </form>
       </div>
     </div>
 
