@@ -39,6 +39,7 @@ function LoginForm() {
       if (user) {
         navigate('/'); // Redirect to product detail page on successful login
         localStorage.setItem('auth', true);
+        localStorage.setItem('user', user._id);
       } else {
         setError('Incorrect email or password. Please try again.');
       }

@@ -10,6 +10,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const LogoArea = ({ onSearchInputChange, searchTerm }) => {
   const [cartItems, setCartItems] = useState([]);
+  const userId = (localStorage.getItem('user'));
 
   fetch(baseUrl + '/cartItem')
     .then(response => {
@@ -19,7 +20,8 @@ const LogoArea = ({ onSearchInputChange, searchTerm }) => {
       return response.json(); // Parse response body as JSON
     })
     .then(data => {
-      const cartItemCount = data.length; // Calculate the length of the data array
+      const userCartItems = data.filter(item => item.userId === userId);
+      const cartItemCount = userCartItems.length; // Calculate the length of the data array
       setCartItems(cartItemCount); // Update cartItems state with the count
     })
     .catch(error => {

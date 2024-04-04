@@ -23,15 +23,9 @@ import { baseUrl } from '../baseUrl';
 
 
 const ProductList = (props) => {
-
-
-
   const cityData = props.location?.state?.cityData || [];
-
-
   const [productData, setProductData] = useState([]);
   const [bestWorker, setBestWorker] = useState([]);
-
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredProductIds, setFilteredProductIds] = useState([]);
@@ -39,7 +33,10 @@ const ProductList = (props) => {
   const [whatsAppNumber, setWhatsAppNumber] = useState();
   const [email, setEmail] = useState();
 
-  const userId = 1;
+
+  const userId = (localStorage.getItem('user'));
+  // const userId = "660e484e8e6f51592d65e90f"
+  // const userId = 1
 
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsAppNumber}`;
 
@@ -132,6 +129,7 @@ const ProductList = (props) => {
 
   const handleLogout = () => {
     localStorage.removeItem('auth');
+    localStorage.removeItem('user');
     window.location.reload();
   };
 
