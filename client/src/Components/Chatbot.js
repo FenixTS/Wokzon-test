@@ -35,11 +35,13 @@ function Chatbot() {
                 </div>
             </div>
             <div className="wish-area section-padding" style={{ marginTop: '-50px' }}>
-                <div className="Bot-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <iframe
-                        src='https://webchat.botframework.com/embed/FenixaI-bot?s=qQaX9kXsUQ4.lI2N3FzKdck39sz3Y7kr_RJMwOLj_gEigSCxGR1ejco'
-                        style={{ minWidth: '400px', width: '70%', minHeight: '400px' }}
-                    ></iframe>
+                <div className="container">
+                    <div className="Bot-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <iframe
+                            src='https://webchat.botframework.com/embed/FenixaI-bot?s=qQaX9kXsUQ4.lI2N3FzKdck39sz3Y7kr_RJMwOLj_gEigSCxGR1ejco'
+                            style={{ minWidth: '250px', width: '100%', minHeight: '400px' }}
+                        ></iframe>
+                    </div>
                 </div>
             </div>
 
