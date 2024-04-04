@@ -39,6 +39,30 @@ exports.getuser = (req, res, next) => {
         });
 };
 
+// get by id function 
+
+exports.getSingleUser = async (req, res, next) => {
+   
+    try{
+         // console.log(req.params.id, 'ID')
+    const UserData = await userModel.findById(req.params.id);
+
+    res.json(
+        
+        UserData
+    );
+
+    }
+    catch (error)
+    {
+        res.json({
+            success:false,
+            // message:error.message
+            message:'Unable to get UserData with that ID'
+        })
+    }
+};
+
 //post function for user
 
 

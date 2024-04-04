@@ -13,12 +13,8 @@ const MyCart = () => {
   const [productData, setProductData] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [id, setId] = useState();
-  // const [logout, setLogout] = useState(false);
   const userId = (localStorage.getItem('user'));
-  // const userId = localStorage.getItem('user').toString();
-  // const userId = "660e484e8e6f51592d65e90f"
-  // const userId = 1
-  // console.log(userId,'cartItems')
+
 
 
   // auth function

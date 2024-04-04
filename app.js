@@ -23,6 +23,7 @@ const productData = require('./routes/productDataRoutes');
 const user = require('./routes/userRoute');
 const cartItem = require('./routes/cartItemRoute');
 const productModel = require('./models/productDataModel');
+const userModel = require('./models/userModel');
 // const uploadImage = require('./roures/imageRoute');
 
 connectDatabase();
@@ -66,7 +67,7 @@ app.post('/api/v1/upload', upload.single('image'), (req, res) => {
     firstName,
     lastName,
     profession,
-    category,
+    category, 
     address,
     district,
     state,
@@ -78,7 +79,7 @@ app.post('/api/v1/upload', upload.single('image'), (req, res) => {
     description,
     createProfessionAccount} = req.body;
    
-    console.log(req.body,'req.body')
+    
   const imagePath = req.file.path;
  
 
@@ -109,6 +110,37 @@ app.post('/api/v1/upload', upload.single('image'), (req, res) => {
       res.status(500).send('Error saving data to database');
   });
 
+});
+// register page api function 
+
+
+app.post('/api/v1/Register-upload', upload.single('image'), (req, res) => {
+  const {
+    name,
+    phone,
+    email,
+    password
+  } = req.body;
+   
+  
+  const imagePath = req.file.path;
+  console.log(imagePath,'imagePath')
+  const formData = new userModel({
+    name,
+    phone,
+    email,
+    password,
+    imagePath // assuming imagePath is where you want to store the uploaded image
+  });
+
+  formData.save()
+    .then(() => {
+      res.status(200).send('Data saved successfully');
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).send('Error saving data to database');
+    });
 });
 
 

@@ -4924,6 +4924,10 @@ input[type="checkbox"] {
   top: 100px;
 }
 
+.Register-cointainer {
+  position: relative;
+  top: 40px;
+}
 .mail-left {
   display: flex;
   justify-content: center;
