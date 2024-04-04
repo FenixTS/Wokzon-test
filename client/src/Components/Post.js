@@ -51,8 +51,8 @@ function Post() {
         formDataToSend.append('lastName', formData.lastName);
         formDataToSend.append('profession', formData.profession);
         formDataToSend.append('category', formData.category);
-        formDataToSend.append('address', formData. address);
-        formDataToSend.append('district', formData. district);
+        formDataToSend.append('address', formData.address);
+        formDataToSend.append('district', formData.district);
         formDataToSend.append('state', formData.state);
         formDataToSend.append('postalCode', formData.postalCode);
         formDataToSend.append('email', formData.email);
@@ -61,7 +61,7 @@ function Post() {
         formDataToSend.append('salary', formData.salary);
         formDataToSend.append('description', formData.description);
         formDataToSend.append('image', formData.image);
-        formDataToSend.append(' createProfessionAccount', formData. createProfessionAccount);
+        formDataToSend.append(' createProfessionAccount', formData.createProfessionAccount);
 
         try {
             await axios.post(baseUrl + '/upload', formDataToSend, {
@@ -94,7 +94,7 @@ function Post() {
         }
     }, [navigate]);
 
-    
+
     return (
         <>
             <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
@@ -104,11 +104,19 @@ function Post() {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="bred-title">
-                                <h3>My Account</h3>
+                                <h3>post</h3>
                             </div>
                             <ol className="breadcrumb">
                                 <li>
-                                    <Link to='/'>Home</Link>
+                                    <a href="/">
+                                        <button
+                                            type="button"
+                                            className="btn btn-default add-cart"
+                                            style={{ display: 'flex', alignItems: 'center', height: '3.5vh' }}
+                                        >
+                                            Home
+                                        </button>
+                                    </a>
                                 </li>
                             </ol>
                         </div>
@@ -128,19 +136,19 @@ function Post() {
                                 <div className="name">
                                     <div className="col">
                                         <label htmlFor="firstName" className="form-label">First Name</label>
-                                        <input type="text" id="firstName" name="firstName" className="form-control" value={formData.firstName} onChange={handleChange}required />
+                                        <input type="text" id="firstName" name="firstName" className="form-control" value={formData.firstName} onChange={handleChange} required />
                                     </div>
                                     <div className="col">
                                         <label htmlFor="lastName" className="form-label">Last Name</label>
-                                        <input type="text" id="lastName" name="lastName" className="form-control" value={formData.lastName} onChange={handleChange}required />
+                                        <input type="text" id="lastName" name="lastName" className="form-control" value={formData.lastName} onChange={handleChange} required />
                                     </div>
                                 </div>
 
                                 <label htmlFor="profession" className="form-label">Profession Name</label>
-                                <input type="text" id="profession" name="profession" className="form-control mb-4" value={formData.profession} onChange={handleChange}required />
+                                <input type="text" id="profession" name="profession" className="form-control mb-4" value={formData.profession} onChange={handleChange} required />
 
                                 <label htmlFor="categories_dropdown" className="form-label">Select a category:</label>
-                                <select className="form-select" id="categories_dropdown" name="category" value={formData.category} onChange={handleChange}required>
+                                <select className="form-select" id="categories_dropdown" name="category" value={formData.category} onChange={handleChange} required>
                                     <option value="Automotive Professionals">Automotive Professionals</option>
                                     <option value="Civil & Construction Engineering">Civil & Construction Engineering</option>
                                     <option value="Consultants">Consultants</option>
@@ -157,47 +165,47 @@ function Post() {
                                 <br />
 
                                 <label htmlFor="address" className="form-label">Address</label>
-                                <input type="text" id="address" name="address" className="form-control mb-4" value={formData.address} onChange={handleChange}required placeholder='' />
+                                <input type="text" id="address" name="address" className="form-control mb-4" value={formData.address} onChange={handleChange} required placeholder='' />
 
                                 <div className="name">
                                     <div className="col">
                                         <label htmlFor="district" className="form-label">District</label>
-                                        <input type="text" id="district" name="district" className="form-control" value={formData.district} onChange={handleChange}required />
+                                        <input type="text" id="district" name="district" className="form-control" value={formData.district} onChange={handleChange} required />
                                     </div>
                                     <div className="col">
                                         <label htmlFor="state" className="form-label">State</label>
-                                        <input type="text" id="state" name="state" className="form-control" value={formData.state} onChange={handleChange}required />
+                                        <input type="text" id="state" name="state" className="form-control" value={formData.state} onChange={handleChange} required />
                                     </div>
                                 </div>
 
                                 <label htmlFor="postalCode" className="form-label">Postal Code</label>
-                                <input type="text" id="postalCode" name="postalCode" className="form-control" value={formData.postalCode} onChange={handleChange}required />
+                                <input type="text" id="postalCode" name="postalCode" className="form-control" value={formData.postalCode} onChange={handleChange} required />
 
                                 <label htmlFor="email" className="form-label">Email</label>
-                                <input type="email" id="email" name="email" className="form-control mb-4" value={formData.email} onChange={handleChange}required />
+                                <input type="email" id="email" name="email" className="form-control mb-4" value={formData.email} onChange={handleChange} required />
 
                                 <div className="name">
                                     <div className="col">
                                         <label htmlFor="phoneNumber" className="form-label">Phone number</label>
-                                        <input type="number" id="phoneNumber" name="phoneNumber" className="form-control" value={formData.phoneNumber} onChange={handleChange}required />
+                                        <input type="number" id="phoneNumber" name="phoneNumber" className="form-control" value={formData.phoneNumber} onChange={handleChange} required />
                                     </div>
                                     <div className="col">
                                         <label htmlFor="whatsAppNumber" className="form-label">WhatsApp number</label>
-                                        <input type="number" id="whatsAppNumber" name="whatsAppNumber" className="form-control" value={formData.whatsAppNumber} onChange={handleChange}required />
+                                        <input type="number" id="whatsAppNumber" name="whatsAppNumber" className="form-control" value={formData.whatsAppNumber} onChange={handleChange} required />
                                     </div>
                                 </div>
 
                                 <label htmlFor="salary" className="form-label">Salary</label>
-                                <input type="number" id="salary" name="salary" className="form-control mb-4" value={formData.salary} onChange={handleChange}required />
+                                <input type="number" id="salary" name="salary" className="form-control mb-4" value={formData.salary} onChange={handleChange} required />
 
                                 <label htmlFor="description" className="form-label">Description</label>
-                                <textarea id="description" name="description" className="form-control mb-4" rows="4" value={formData.description} onChange={handleChange}required></textarea>
+                                <textarea id="description" name="description" className="form-control mb-4" rows="4" value={formData.description} onChange={handleChange} required></textarea>
 
                                 <label htmlFor="image" className="form-label">Upload Image</label>
-                                <input type="file" id="image" name="image" className="form-control mb-4" onChange={handleFileChange}required />
+                                <input type="file" id="image" name="image" className="form-control mb-4" onChange={handleFileChange} required />
 
                                 <div className="form-check d-flex justify-content-center mb-4">
-                                    <input type="checkbox" id="createProfessionAccount" name="createProfessionAccount" className="form-check-input" checked={formData.createProfessionAccount} onChange={handleChange}required />
+                                    <input type="checkbox" id="createProfessionAccount" name="createProfessionAccount" className="form-check-input" checked={formData.createProfessionAccount} onChange={handleChange} required />
                                     <label htmlFor="createProfessionAccount" className="form-check-label">Create profession account?</label>
                                 </div>
 

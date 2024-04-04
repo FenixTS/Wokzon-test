@@ -216,7 +216,7 @@ const MyCart = () => {
               </div>
               <ol className="breadcrumb">
                 <li>
-                  <Link to='/'>
+                <a href="/">
                     <button
                       type="button"
                       className="btn btn-default add-cart"
@@ -224,7 +224,7 @@ const MyCart = () => {
                     >
                       Home
                     </button>
-                  </Link>
+                  </a>
                 </li>
               </ol>
             </div>
@@ -258,7 +258,7 @@ const MyCart = () => {
                           <a  className="entry-thumbnail">
                             <img 
                             onClick={() => handleProductClick(item._id)}
-                            src={"http://localhost:8000/" +item.imagePath}
+                            src={"https://wokzon.azurewebsites.net/" + item.imagePath}
                              alt=""style={{height:'200px', width: '200px'}} />
                           </a>
                         </td>
@@ -310,7 +310,9 @@ const MyCart = () => {
                     <tr>
                       <td colSpan="7">
                         <div className="shopping-cart-btn">
-                          <Link to='/'><button type="button" className="btn btn-default left-cart">Continue Shopping</button></Link>
+                        <a href="/">
+                          <button type="button" className="btn btn-default left-cart">Continue Shopping</button>
+                          </a>
                           <button
                             type="button"
                             className="btn btn-default right-cart right-margin"

@@ -2,8 +2,8 @@ import React from 'react';
 import LanguageDropdown from './LanguageDropdown';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAddressCard, faUser,faMoneyCheckDollar,faArrowRight, faArrowLeft} from '@fortawesome/free-solid-svg-icons';
-
+import { faAddressCard, faUser, faMoneyCheckDollar, faArrowRight, faArrowLeft, } from '@fortawesome/free-solid-svg-icons';
+import { faRocketchat } from '@fortawesome/free-brands-svg-icons';
 
 
 const Header = ({ isLoggedIn, onLogin, onLogout }) => {
@@ -41,7 +41,12 @@ const Header = ({ isLoggedIn, onLogin, onLogout }) => {
                 <ul>
                   <li>
                     <Link to='/my_account'>
-                      <FontAwesomeIcon icon={faUser} /> My Account    
+                      <FontAwesomeIcon icon={faUser} /> My Account
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/chatbot">
+                    <FontAwesomeIcon icon={faRocketchat} /> Chat Bot
                     </Link>
                   </li>
                   {/* <li>
@@ -54,11 +59,11 @@ const Header = ({ isLoggedIn, onLogin, onLogout }) => {
                       <FontAwesomeIcon icon={faAddressCard} /> Post
                     </Link>
                   </li>
-                  <li className="last-child">                  
+                  <li className="last-child">
                     {isLoggedIn ? (
-                      <a style={{ cursor: 'pointer' }} onClick={onLogout}> <img className="login" style={{ cursor: 'pointer' }}  onClick={onLogout} />  <FontAwesomeIcon icon={faArrowLeft} /> logout</a>
+                      <a style={{ cursor: 'pointer' }} onClick={onLogout}> <img className="login" style={{ cursor: 'pointer' }} onClick={onLogout} />  <FontAwesomeIcon icon={faArrowLeft} /> logout</a>
                     ) : (
-                      <a style={{ cursor: 'pointer' }} onClick={onLogin}> <img className="login" style={{ cursor: 'pointer' }}  onClick={onLogin} /> <FontAwesomeIcon icon={faArrowRight} /> login</a>
+                      <a style={{ cursor: 'pointer' }} onClick={onLogin}> <img className="login" style={{ cursor: 'pointer' }} onClick={onLogin} /> <FontAwesomeIcon icon={faArrowRight} /> login</a>
                     )}
                   </li>
                 </ul>

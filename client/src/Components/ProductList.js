@@ -288,7 +288,7 @@ const ProductList = (props) => {
                       <img
 
                         // src={baseUrl + `/upload/${product.imagePath}`} 
-                        src={"http://localhost:8000/" + product.imagePath} onClick={() => handleProductClick(product._id)}
+                        src={"https://wokzon.azurewebsites.net/" + product.imagePath} onClick={() => handleProductClick(product._id)}
                         alt="#"
                         style={{ width: '250px', height: '250px', cursor: 'pointer' }}
                       />
@@ -405,6 +405,3 @@ const ProductList = (props) => {
 };
 
 export default ProductList;
-
-
-

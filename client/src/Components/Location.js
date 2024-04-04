@@ -7,47 +7,45 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { baseUrl } from '../baseUrl';
 
 import { useNavigate } from 'react-router-dom';
+import { useCityData } from './CityDataContext';
+
 
 
 const Location = () => {
 
-    const navigate = useNavigate();
-    const [open, setOpen] = React.useState(false);
+   
+    const [open, setOpen] = useState(false);
     const [selectedCity, setSelectedCity] = useState("Location");
-    const [cityData, setCityData] = useState([]);
+    // redux used for CityData -------------
+    const { setProductData } = useCityData();
 
-    console.log(cityData,'cityData')
-
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(baseUrl + '/productData');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch data');
-                }
-                const data = await response.json();
-                // Filter data based on the 'district' property
-                const filteredData = data.filter(item => item.district === "kanyakumari");
-                // Extract '_id' property from filtered data
-                const filteredIds = filteredData.map(item => item._id);
-                setCityData(filteredIds);
-            } catch (error) {
-                console.error('Error fetching data:', error);
+    const handleCityClick = async (cityName) => {
+        try {
+            const response = await fetch(baseUrl + '/productData');
+            if (!response.ok) {
+                throw new Error('Failed to fetch data');
             }
-        };
+            const data = await response.json();
+            // Filter data based on the 'district' property
+            const districtNames = data.map(product => product.district);
+        
+            // Filter the district names to match cityName
+            const filteredDistrictNames = districtNames.filter(district => district.toLowerCase() === cityName.toLowerCase());
 
-        fetchData();
-    }, []);
+            
+            // Filter data based on the filtered district names
+            const filteredData = data.filter(product => filteredDistrictNames.includes(product.district));
+            
+            // Set filtered data to productData
+            console.log("City Name:", cityName);
+            setProductData(filteredData);
+            setSelectedCity(cityName);
+            setOpen(false);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
 
- 
-    
-  const handleCityClick = (cityName) => {
-    setSelectedCity(cityName);
-    setOpen(false);
-    const state = { cityData };
-    navigate('/', { state });
-  };
     return (
         <React.Fragment>
             <a

@@ -59,18 +59,18 @@ const MyAccount = () => {
                     <div class="row">
                         <div class="col-md-12">
                             <div class="bred-title">
-                                <h3>Post</h3>
+                                <h3>My account</h3>
                             </div>
                             <ol class="breadcrumb">
                                 <li>
-                                <Link to='/'> 
+                                <a href="/">
                                         <button
                                             type="button"
                                             className="btn btn-default add-cart"
                                             style={{ display: 'flex', alignItems: 'center', height: '3.5vh' }}>
                                             Home
                                         </button>
-                                    </Link>
+                                    </a>
                                 </li>
                                 
                             </ol>
