@@ -572,6 +572,7 @@ h6 {
     /* Make input full width */
     margin-right: 0;
     margin-bottom: 10px;
+    border-radius: 0;
   }
 }
 
@@ -598,6 +599,41 @@ h6 {
     margin-right: 0;
     margin-bottom: 10px;
   }
+}
+@media (max-width: 486px) {
+  .logo-search-wishlist {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .location-input-button {
+    margin-top: 20px;
+  }
+  .set-location{
+   
+   position:relative;
+   top: -5px;
+  }
+  .location {
+    height: 35px;
+    width: 50%;
+  }
+
+  .search-input {
+    height: 35px;
+    width: 100px;
+    /* Make input full width */
+    margin-right: 0;
+    margin-bottom: 10px;
+    
+  }
+  .search-btn{
+    height: 35px;
+  }
+  /* .wishlist-btn {
+    height: 5px;
+  } */
+ 
 }
 
 /* ============================= */

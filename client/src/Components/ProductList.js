@@ -18,13 +18,14 @@ import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import Contact from './Contact';
 import { baseUrl } from '../baseUrl';
+import { useCityData } from './CityDataContext';
 
 
 
 
 const ProductList = (props) => {
   const cityData = props.location?.state?.cityData || [];
-  const [productData, setProductData] = useState([]);
+  // const [productData, setProductData] = useState([]);
   const [bestWorker, setBestWorker] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [searchTerm, setSearchTerm] = useState('');
@@ -33,10 +34,10 @@ const ProductList = (props) => {
   const [whatsAppNumber, setWhatsAppNumber] = useState();
   const [email, setEmail] = useState();
 
-
+  const { setProductData } = useCityData();
+  const { productData } = useCityData();
   const userId = (localStorage.getItem('user'));
-  // const userId = "660e484e8e6f51592d65e90f"
-  // const userId = 1
+
 
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsAppNumber}`;
 
