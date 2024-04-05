@@ -3,7 +3,7 @@ import Header from './Header';
 import LogoArea from './LogoArea';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { baseUrl } from '../baseUrl';
+import { ImageBaseUrl, baseUrl } from '../baseUrl';
 import React, { useEffect, useState } from 'react';
 import {
   MDBCol,
@@ -103,7 +103,7 @@ const MyAccount = () => {
                     <MDBCard className="mb-4">
                       <MDBCardBody className="text-center">
                         <MDBCardImage
-                          src={"http://localhost:8000/" + userData.imagePath}
+                          src={ImageBaseUrl + userData.imagePath}
                           alt="avatar"
                           className="rounded-circle"
                           style={{ width: '40%',height:'',borderRadius:"10px", }}

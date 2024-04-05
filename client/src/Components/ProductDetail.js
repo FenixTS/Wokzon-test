@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Header from './Header';
 import LogoArea from './LogoArea';
 import Footer from './Footer';
-import { baseUrl } from '../baseUrl';
+import { ImageBaseUrl, baseUrl } from '../baseUrl';
 
 // functions
 
@@ -73,7 +73,7 @@ const ProductDetail = () => {
                         <input type="hidden" id="__VIEWxSTATE" />
                         <ul id="zoom1" className="">
                           <li>
-                            <img src={"https://wokzon.azurewebsites.net/" + product.imagePath} alt={product.profession} style={{ width: '400px', height: '400px' }} />
+                            <img src={ImageBaseUrl + product.imagePath} alt={product.profession} style={{ width: '400px', height: '400px' }} />
                           </li>
                         </ul>
                       </div>

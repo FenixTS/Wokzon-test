@@ -4,7 +4,7 @@ import Header from '../Components/Header';
 import LogoArea from '../Components/LogoArea';
 import Footer from './Footer';
 import { useNavigate } from 'react-router-dom';
-import { baseUrl } from '../baseUrl';
+import { ImageBaseUrl, baseUrl } from '../baseUrl';
 
 const MyCart = () => {
 
@@ -257,7 +257,7 @@ const MyCart = () => {
                           <a  className="entry-thumbnail">
                             <img 
                             onClick={() => handleProductClick(item._id)}
-                            src={"https://wokzon.azurewebsites.net/" + item.imagePath}
+                            src={ImageBaseUrl + item.imagePath}
                              alt=""style={{height:'200px', width: '200px'}} />
                           </a>
                         </td>

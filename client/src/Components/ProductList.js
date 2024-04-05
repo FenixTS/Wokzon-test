@@ -17,7 +17,7 @@ import { faPhone, faEnvelope, faLocationDot } from '@fortawesome/free-solid-svg-
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import Contact from './Contact';
-import { baseUrl } from '../baseUrl';
+import { ImageBaseUrl, baseUrl } from '../baseUrl';
 import { useCityData } from './CityDataContext';
 
 
@@ -69,6 +69,7 @@ const ProductList = (props) => {
     navigate((`/Product_detail`), { state: { id: id } });
   };
 
+// add to cart function ======================
 
   const handleCartClick = (product_Id) => {
 
@@ -287,7 +288,7 @@ const ProductList = (props) => {
                       <img
 
                         // src={baseUrl + `/upload/${product.imagePath}`} 
-                        src={"https://wokzon.azurewebsites.net/" + product.imagePath} onClick={() => handleProductClick(product._id)}
+                        src={ImageBaseUrl + product.imagePath} onClick={() => handleProductClick(product._id)}
                         alt="#"
                         style={{ width: '250px', height: '250px', cursor: 'pointer' }}
                       />

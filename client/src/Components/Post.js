@@ -46,6 +46,14 @@ function Post() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+     // File size validation
+     const maxFileSize = 2 * 1024 * 1024; // 2MB
+     const fileSize = formData.image.size;
+     if (fileSize > maxFileSize) {
+         alert('File size exceeds 2MB limit. Please choose a smaller file.');
+         return;
+     }
+
         const formDataToSend = new FormData();
         formDataToSend.append('firstName', formData.firstName);
         formDataToSend.append('lastName', formData.lastName);

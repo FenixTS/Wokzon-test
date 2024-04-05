@@ -23,8 +23,28 @@ function RegistrationForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    if (!name || !phone || !email || !password || !image) {
-      setError('Please fill in all the fields.');
+    if (!name) {
+      setError('Please enter your name.');
+      return;
+    }
+    if (!phone) {
+      setError('Please enter your Phone number.');
+      return;
+    }
+    if (!email) {
+      setError('Please enter your email.');
+      return;
+    }
+    if (!password) {
+      setError('Please enter your password.');
+      return;
+    }
+    if (!image) {
+      setError('Please uplode your profile image.');
+      return;
+    }
+    if (image.size > 2 * 1024 * 1024) { // 2MB limit
+      setError('File size exceeds 2MB limit.');
       return;
     }
     setIsLoading(true);
@@ -63,7 +83,7 @@ function RegistrationForm() {
           <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <label>Password *</label>
           <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          <label>Upload Profile Image</label>
+          <label>Upload Profile Image </label>
           <input type="file" name="image" onChange={handleFileChange} />
           {error && <div style={{ color: 'red' }}>{error}</div>}
           <div className="mail-btn">
