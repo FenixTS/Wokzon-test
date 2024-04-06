@@ -55,4 +55,5 @@ Once you've found a professional that matches your requirements, connect with th
 ### Payment:
 After the job is completed to your satisfaction, pay the working professional directly. Our platform facilitates direct payments between customers and workers, ensuring a seamless and transparent transaction process.
 
-Leave a Review: We value your feedback! After the transaction is complete, leave a review and rating for the professional. Your input helps other users make informed decisions and maintains the quality of our platform.
+### Leave a Review: 
+We value your feedback! After the transaction is complete, leave a review and rating for the professional. Your input helps other users make informed decisions and maintains the quality of our platform.
