@@ -1,11 +1,12 @@
 import React from 'react';
 import LanguageDropdown from './LanguageDropdown';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAddressCard, faUser, faMoneyCheckDollar, faArrowRight, faArrowLeft, } from '@fortawesome/free-solid-svg-icons';
+import { faRocketchat } from '@fortawesome/free-brands-svg-icons';
 
 
-
-
-const Header = ({isLoggedIn,onLogin,onLogout}) => {
+const Header = ({ isLoggedIn, onLogin, onLogout }) => {
   return (
     <header className="entire_header">
       <div className="header-area">
@@ -21,7 +22,7 @@ const Header = ({isLoggedIn,onLogin,onLogout}) => {
                       className="dropdown-toggle"
                       href="#"
                     >
-                      <span className="value"><LanguageDropdown /> </span>
+                      {/* <span className="value"><LanguageDropdown /> </span> */}
 
                     </a>
                     <ul className="dropdown-menu">
@@ -40,39 +41,30 @@ const Header = ({isLoggedIn,onLogin,onLogout}) => {
                 <ul>
                   <li>
                     <Link to='/my_account'>
-                      <img
-
-                        src="images/account.png"
-                        alt="#"
-                      />
-
-                      <span className="value">My Account </span>
-                      <i className="fa fa-angle-down"></i>
-                    </Link>
-
-                  </li>
-                  <li>
-                    <Link to='/wishlist'>
-                      <i className="fa fa-heart-o"></i> Wishlist
+                      <FontAwesomeIcon icon={faUser} /> My Account
                     </Link>
                   </li>
                   <li>
+                    <Link to="/chatbot">
+                    <FontAwesomeIcon icon={faRocketchat} /> Chat Bot
+                    </Link>
+                  </li>
+                  {/* <li>
                     <Link to="/checkout">
-                      <img src="images/check.png" alt="#" /> Checkout
+                    <FontAwesomeIcon icon={faMoneyCheckDollar} /> Checkout
+                    </Link>
+                  </li> */}
+                  <li>
+                    <Link to="/post">
+                      <FontAwesomeIcon icon={faAddressCard} /> Post
                     </Link>
                   </li>
                   <li className="last-child">
-                    {/* <Link to="/register" className="logg" > */}
-                      {/* <img className="login" src="images/log.png" alt="#" />Login */}
-
-                     
-                        {isLoggedIn ? (
-                         <a style={{cursor:'pointer'}} onClick={onLogout}> <img className="login" style={{cursor:'pointer'}}src="images/log.png" onClick={onLogout}/>logout</a>
-                        ) : (
-                         <a style={{cursor:'pointer'}} onClick={onLogin}> <img className="login" style={{cursor:'pointer'}} src="images/log.png" onClick={onLogin}/>login</a>
-                        )}
-                      
-                    {/* </Link> */}
+                    {isLoggedIn ? (
+                      <a style={{ cursor: 'pointer' }} onClick={onLogout}> <img className="login" style={{ cursor: 'pointer' }} onClick={onLogout} />  <FontAwesomeIcon icon={faArrowLeft} /> logout</a>
+                    ) : (
+                      <a style={{ cursor: 'pointer' }} onClick={onLogin}> <img className="login" style={{ cursor: 'pointer' }} onClick={onLogin} /> <FontAwesomeIcon icon={faArrowRight} /> login</a>
+                    )}
                   </li>
                 </ul>
               </div>

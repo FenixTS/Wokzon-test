@@ -1,21 +1,34 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { baseUrl } from '../baseUrl';
 
 function RegistrationForm() {
   const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [image, setImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setImage(selectedFile);
+    }
+  };
 
   const handleSubmit = async (e) => {
-    // for stop loading webpage while clicking register button write prevent default
     e.preventDefault();
     setError('');
     if (!name) {
       setError('Please enter your name.');
+      return;
+    }
+    if (!phone) {
+      setError('Please enter your Phone number.');
       return;
     }
     if (!email) {
@@ -26,57 +39,63 @@ function RegistrationForm() {
       setError('Please enter your password.');
       return;
     }
+    if (!image) {
+      setError('Please uplode your profile image.');
+      return;
+    }
+    if (image.size > 2 * 1024 * 1024) { // 2MB limit
+      setError('File size exceeds 2MB limit.');
+      return;
+    }
     setIsLoading(true);
+    const formDataToSend = new FormData();
+    formDataToSend.append('name', name);
+    formDataToSend.append('phone', phone);
+    formDataToSend.append('email', email);
+    formDataToSend.append('password', password);
+    formDataToSend.append('image', image);
+
     try {
-      // Make API request to register user
-      const response = await axios.post('http://localhost:3001/users', { name, email, password });
-      console.log('User registered successfully:', response.data);
-      // Reset form fields and loading state
-      setName('');
-      setEmail('');
-      setPassword('');
+      await axios.post(baseUrl + '/Register-upload', formDataToSend, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      // Show success message or redirect to success page
+     
       navigate('/login');
     } catch (error) {
-      console.error('Error registering user:', error);
-      setError('An error occurred while registering. Please try again later.');
+      console.error('Error submitting form:', error);
+      setError('Error submitting form. Please try again.');
     }
     setIsLoading(false);
   };
 
   return (
-
-    <div className="wish-area section-padding">
-      <div className="container" style={{ display: "flex", marginTop: '-60px', justifyContent: 'center' }}>
-        <div className="contact-mail" style={{ width: '27%', height: '', display: "flex", justifyContent: 'center', boxShadow: '5px 5px 5px 1px rgba(0, 0, 0, 0.1)' }}>
-          <div className="row">
-            <div className="col-md-6 col-sm-6 col-xs-12" >
-              <div className="mail-left" >
-                <div style={{ width: '250%', backgroundColor: '' }}>
-                  <form onSubmit={handleSubmit}>
-                    <label>Name *</label>
-                    <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
-                    <label>Email *</label>
-                    <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <label>Password *</label>
-                    <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    {error && <div style={{ color: 'red' }}>{error}</div>}
-                    <div className="mail-btn">
-                      <button type="submit" className="btn btn-default" disabled={isLoading}>Register</button>
-                    </div>
-                  </form>
-                  <div className="already-have-account">
-                    Already have an account? <Link to='/login'>Login</Link>
-                  </div>
-               
-                </div>
-
-              </div>
-            </div>
+    <div className='Register-cointainer'>
+      <div className="mail-left">
+        <form onSubmit={handleSubmit}>
+          <label>Name *</label>
+          <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
+          <label>Phone *</label>
+          <input type="number" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
+          <label>Email *</label>
+          <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <label>Password *</label>
+          <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <label>Upload Profile Image </label>
+          <input type="file" name="image" onChange={handleFileChange} />
+          {error && <div style={{ color: 'red' }}>{error}</div>}
+          <div className="mail-btn">
+            <button type="submit" className="btn btn-default" disabled={isLoading}>Register</button>
           </div>
-        </div>
+          <br />
+          <div className="already-have-account">
+            Already have an account? <Link to='/login'>Login</Link>
+          </div>
+        </form>
       </div>
     </div>
-
   );
 }
 

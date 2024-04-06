@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { baseUrl } from '../baseUrl';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -10,9 +11,9 @@ function LoginForm() {
   const navigate = useNavigate();
 
 
-  React.useEffect (()=>{
-    if(localStorage.getItem('auth')) navigate('/')
-    }, [])
+  React.useEffect(() => {
+    if (localStorage.getItem('auth')) navigate('/')
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,13 +24,22 @@ function LoginForm() {
     }
 
     try {
-      const response = await axios.get(`http://localhost:3001/users?email=${email}&password=${password}`);
-      
-      if (response.data.length > 0) {
-        navigate('/'); // Redirect to product detail page on successful 
-        localStorage.setItem('auth', true)
+      const response = await axios.get(baseUrl + '/user');
 
+      // Check if response data contains user array
+      if (!Array.isArray(response.data.user)) {
+        console.error('User data is not an array:', response.data.user);
+        setError('An error occurred while logging in. Please try again later.');
+        return;
+      }
 
+      // Check if the provided email and password match any user
+      const user = response.data.user.find((user) => user.email === email && user.password === password);
+
+      if (user) {
+        navigate('/'); // Redirect to product detail page on successful login
+        localStorage.setItem('auth', true);
+        localStorage.setItem('user', user._id);
       } else {
         setError('Incorrect email or password. Please try again.');
       }
@@ -39,30 +49,33 @@ function LoginForm() {
     }
   };
 
+
+
+
   return (
-    <div className="wish-area section-padding">
-      <div className="container" style={{ display: "flex", marginTop: '-60px', justifyContent: 'center' }}>
-        <div className="contact-mail" style={{ width: '280px', display: "flex", justifyContent: 'center', boxShadow: '5px 5px 5px 1px rgba(0, 0, 0, 0.1)' }}>
-          <div className="row">
-            <div className="col-md-6 col-sm-6 col-xs-12" >
-              <div className="mail-left" style={{ width: '280%', backgroundColor: '', display: 'flex', alignItems: 'center', justifyContent: 'center', }}>
-                <form onSubmit={handleSubmit}>
-                  <label>Email *</label>
-                  <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                  <label>Password *</label>
-                  <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                  {error && <div style={{ color: 'red' }}>{error}</div>}
-                  <div className="mail-btn">
-                    <button type="submit" className="btn btn-default">Login</button>
-                    <Link to="/forgot_psw">Forgot password?</Link>
-                  </div>
-                </form>
-              </div>
-            </div>
+
+
+
+    <div className='login-cointainer' >
+      <div className="mail-left" >
+        <form onSubmit={handleSubmit}>
+          <label>Email *</label>
+          <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <label>Password *</label>
+          <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          {error && <div style={{ color: 'red' }}>{error}</div>}
+
+          <div className="mail-btn">
+            <button type="submit" className="btn btn-default">Login</button>
           </div>
-        </div>
+          <br/>
+          <div className="already-have-account">
+            <Link to="/forgot_psw">Forgot password?</Link>
+          </div>
+        </form>
       </div>
     </div>
+               
   );
 }
 
