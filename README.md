@@ -40,8 +40,22 @@ Browse through the categories to find the right professional for your needs.
 Connect with the professional directly through our platform.
 Once the job is completed, make a secure payment using our payment system.
 Leave a review and rating for the professional to help others make informed decisions.
-## Contributing
-We welcome contributions from the community to improve WOKZON. If you have any suggestions, feature requests, or bug reports, please feel free to open an issue or submit a pull request.
+## Contributors
+
+- **Fenix T.S**
+  - Role: Team Leader and Front End Developer
+  - Skills: HTML, CSS, JavaScript, React.js, Tailwind CSS, Bootstrap
+
+- **Karniswaren**
+  - Role: Backend Developer
+  - Skills: Node.js, Express.js, MongoDB, Postman
+
+- **Jeeva**
+  - Role: Backend Developer
+  - Skills: Node.js, Express.js, MongoDB, Postman
+
+- **Madhumitha**
+  - Role: Azure Cloud Maintenance
 ## screenshort
 ![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/abfc2032-512a-446f-b1f1-d234e8f9262d)
 ![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/c31dec6e-7796-468f-90fc-a264f54d2278)
