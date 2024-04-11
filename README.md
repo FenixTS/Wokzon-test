@@ -32,14 +32,6 @@ We prioritize transparency, reliability, and efficiency in all aspects of our pl
 
 ## Join Us Today!
 Join us today and experience the convenience of secure transactions and transparent pricing on WOKZON! Where Work Meets Ease.
-## Getting Started
-### To get started with WOKZON, follow these steps:
-
-Sign up for an account on our website.
-Browse through the categories to find the right professional for your needs.
-Connect with the professional directly through our platform.
-Once the job is completed, make a secure payment using our payment system.
-Leave a review and rating for the professional to help others make informed decisions.
 ## Contributors
 
 - **Fenix T.S**
@@ -56,6 +48,15 @@ Leave a review and rating for the professional to help others make informed deci
 
 - **Madhumitha**
   - Role: Azure Cloud Maintenance
+## Getting Started
+### To get started with WOKZON, follow these steps:
+
+Sign up for an account on our website.
+Browse through the categories to find the right professional for your needs.
+Connect with the professional directly through our platform.
+Once the job is completed, make a secure payment using our payment system.
+Leave a review and rating for the professional to help others make informed decisions.
+
 ## screenshort
 ![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/abfc2032-512a-446f-b1f1-d234e8f9262d)
 ![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/c31dec6e-7796-468f-90fc-a264f54d2278)
@@ -89,5 +90,20 @@ After the job is completed to your satisfaction, pay the working professional di
 
 ## Leave a Review: 
 We value your feedback! After the transaction is complete, leave a review and rating for the professional. Your input helps other users make informed decisions and maintains the quality of our platform.
-
+## screenshort
+![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/abfc2032-512a-446f-b1f1-d234e8f9262d)
+![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/c31dec6e-7796-468f-90fc-a264f54d2278)
+![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/9ac1723d-90ef-4256-a559-f848d7aea21c)
+![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/11d6fe62-9df1-4801-9175-ef4400b67f9c)
+![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/c34393b7-0141-4d76-83d9-cc4912538f59)
+![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/36aea792-b843-425e-8384-d9b100f9c070)
+![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/0498f6d5-8a00-4585-a9fa-70dcb335f86e)
+![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/a93d20c0-ef72-4d09-add5-06eed3e7f571)
+![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/adab62b2-7458-4c89-97a5-83a31bdc0bb9)
+![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/976c11fd-0b3d-49a1-bd5e-9229ebdce4cd)
+![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/17e599bf-0900-44d5-9980-694894429418)
+![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/28d58365-63d1-4df4-a847-661088230584)
+![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/873949a7-9ce0-44ee-8441-45c590371f9b)
+![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/40b92cbb-1abd-4980-8947-23da8f4b948c)
+![image](https://github.com/FenixTS/Wokzon-test/assets/143189076/bfcea831-8039-40d8-88c1-718833e8b1d3)
 
