@@ -213,11 +213,11 @@ const MyCart = () => {
                 <table className="table table-bordered">
                   <thead>
                     <tr>
-                      <th className="cart-product item">Product</th>
-                      <th className="cart-product-name item">Product Name</th>
+                      <th className="cart-product item">profesional image</th>
+                      <th className="cart-product-name item">profession Detail</th>
                       {/* <th className="cart-qty item">Quantity</th> */}
                       <th className="cart-unit item">salary</th>
-                      <th className="cart-delivery item">Transport info</th>
+                      {/* <th className="cart-delivery item">Transport info</th> */}
                       {/* <th className="cart-sub-total last-item">Sub total</th> */}
                       <th className="cart-romove item">Remove</th>
                     </tr>
@@ -250,10 +250,11 @@ const MyCart = () => {
                         </td>
                       
                         <td className="cart-product-price"><div className="cc-pr">${item.salary}</div></td>
-                        <td className="cart-product-delivery"><div className="cc-pr">Free shipping</div></td>
+                        {/* <td className="cart-product-delivery"><div className="cc-pr">Free shipping</div></td> */}
                         {/* <td className="cart-product-sub-total"><div className="cc-pr">${item.productData.salary * item.productData.quantity}</div></td> */}
-                        <td className="remove-item"> 
+                        <td className="remove-item"  style={{display:"flex",alignItems:"center",justifyContent:"center"}}> 
                             <img
+                           
                               src="images/remove.png"
                               alt="Remove"
                               onClick={() => removeItemFromDatabase(item._id)}
