@@ -1,6 +1,5 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Location from '../Components/Location';
@@ -72,8 +71,6 @@ const LogoArea = ({ onSearchInputChange, searchTerm }) => {
         </div>
       </div>
     </div>
-    // </div>
-    // </div>
   );
 };
 

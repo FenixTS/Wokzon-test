@@ -8,7 +8,6 @@ import Header from '../Components/Header';
 import LogoArea from '../Components/LogoArea';
 import Footer from './Footer';
 import axios from 'axios';
-import FuzzySet from 'fuzzyset.js';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import Button from '@material-ui/core/Button';
 import Typography from "@mui/material/Typography";
@@ -16,7 +15,6 @@ import Popover from "@mui/material/Popover";
 import { faPhone, faEnvelope, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import Contact from './Contact';
 import { baseUrl } from '../baseUrl';
 
 
@@ -35,15 +33,6 @@ const Search = () => {
 
     console.log(productData, 'productData')
 
-    // useEffect(() => {
-    //     // Fetch data when the component mounts
-    //     fetch(baseUrl + '/productData')
-    //         .then(response => response.json())
-    //         .then(data => setProductData(data))
-    //         .catch(error => console.error('Error fetching data:', error));
-    // }, []); // Empty dependency array to ensure effect runs only once on mount
-
-
     useEffect(() => {
         // Fetch data when the component mounts
         fetch(baseUrl + '/bestWorker')
@@ -60,22 +49,6 @@ const Search = () => {
         navigate((`/Product_detail`), { state: { id: id } });
     };
 
-
-
-
-    // const handleCartClick = (product_Id) => {
-
-    //     // Find the product with the given ID
-    //     const productToAdd = productData.find(product => product._id === product_Id);
-    //     // If the product is found, add it to the cart
-
-    //     if (productToAdd) {
-    //         addToCart(product_Id); // Pass productId to addToCart function
-
-    //     } else {
-    //         console.error(`Product with ID ${product_Id} not found.`);
-    //     }
-    // };
 
     // Function to add item to cart
     const addToCart = (product_Id) => {
@@ -134,25 +107,7 @@ const Search = () => {
             try {
                 const response = await axios.get(baseUrl + '/productData');
                 const searchQuery = searchTerm.trim().toLowerCase().replace(/\s/g, '');
-                const productNames = response.data.map((product) => product.profession.toLowerCase());
-
-                // Create a fuzzy set with product names
-                // const fuzzySet = FuzzySet(productNames);
-                // const correctedSearchTerm = fuzzySet.get(searchQuery, null, 0.5); // Get the closest match
-
-                // if (correctedSearchTerm && correctedSearchTerm[0][0] > 0.5) {
-                //   setSearchTerm(correctedSearchTerm[0][1]); // Update searchTerm with the corrected term
-                // }
-                // let filteredResults = response.data;
-                // if (searchTerm.trim() !== '') {
-                //   filteredResults = response.data.filter(
-                //     (result) =>
-                //       result.profession
-                //         .toLowerCase()
-                //         .replace(/\s/g, '')
-                //         .includes(searchTerm.toLowerCase().replace(/\s/g, ''))
-                //   );
-                // }
+                const productNames = response.data.map((product) => product.profession.toLowerCase());             
                 const filteredResults = response.data.filter(
                     (result) =>
                         result.profession
@@ -202,12 +157,8 @@ const Search = () => {
         setSearchTerm(event.target.value);
 
     };
-    // // contact button onclick function
 
-
-
-
-    return (
+return (
         <>
             <Header isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
             <LogoArea searchTerm={searchTerm} onSearchInputChange={handleSearchInputChange} />
@@ -284,12 +235,6 @@ const Search = () => {
                                                     <ins>₹{product.salary}</ins>
                                                 </div>
                                             </div>
-
-
-                                            {/* <div className="col-md-12" style={{ bottom: '40px' }} >
-                          <div className="add_cart-contact" style={{ marginLeft: '-20px', width: '250px', height: '35px', display: 'flex', justifyContent: 'center', }}> */}
-
-
                                             <PopupState variant="popover" popupId="demo-popup-popover">
                                                 {(popupState) => (
                                                     <div className="add_cart-contact" >
@@ -339,15 +284,8 @@ const Search = () => {
                                                     </div>
                                                 )}
                                             </PopupState>
-
-
                                         </div>
                                     </div>
-
-
-
-                                    // </div>
-                                    // </div>
                                 ))}
                             </div>
                         </div>

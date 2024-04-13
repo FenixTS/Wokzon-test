@@ -28,7 +28,6 @@ const App = () => {
               <Route path="/" element={<ProductList />} />
               <Route path={`/Product_detail`} element={<ProductDetail />} />
               <Route path="/cart-page" element={<ShoppingCart />} />
-              {/* <Route path="/wishlist" element={<Wishlist/>}/> */}
               <Route path="/register" element={<RegistrationForm />} />
               <Route path="/chatbot" element={<Chatbot/>} />
               <Route path="/my_account" element={<MyAccount />} />
@@ -37,7 +36,6 @@ const App = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/post" element={<Post />} />
             </Routes>
-            {/* <Footer /> */}
           </main>
         </BrowserRouter>
       </CityDataProvider>

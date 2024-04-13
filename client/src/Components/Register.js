@@ -61,8 +61,6 @@ function RegistrationForm() {
           'Content-Type': 'multipart/form-data'
         }
       });
-      // Show success message or redirect to success page
-     
       navigate('/login');
     } catch (error) {
       console.error('Error submitting form:', error);

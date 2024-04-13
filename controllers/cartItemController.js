@@ -1,19 +1,3 @@
-// const cartItemModel = require("../models/cartItemsModel");
-
-
-// exports.getCartItem = (req, res, next) => {
-//     console.log(req.body,'DATA');
-
-//      cartItemModel.getCartItem()
-
-//     res.json(
-//         {
-//             success: true,
-//             message: "cartItem works!"
-//         }
-//     )
-// } this is the function concept /|\
-
 
 
 //get function --------------------------------

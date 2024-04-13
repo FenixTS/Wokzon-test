@@ -6,7 +6,6 @@ import LogoArea from './LogoArea';
 import Footer from './Footer';
 import axios from 'axios';
 import { baseUrl } from '../baseUrl';
-
 function Post() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [formData, setFormData] = useState({
@@ -26,17 +25,9 @@ function Post() {
         image: null,
         createProfessionAccount: false
     });
-
-
-
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-
-    // const handleFileChange = (e) => {
-    //     setFormData({ ...formData, image: e.target.files[0] });
-    // };----------
-
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
         if (selectedFile) {
@@ -131,7 +122,6 @@ function Post() {
                     </div>
                 </div>
             </div>
-
             <section style={{ paddingTop: '30px' }}>
                 <div className="container">
                     <div className="row">

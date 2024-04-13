@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import DialogContent from '@mui/joy/DialogContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { baseUrl } from '../baseUrl';
-
-import { useNavigate } from 'react-router-dom';
 import { useCityData } from './CityDataContext';
 
 
@@ -54,7 +52,7 @@ const Location = () => {
                 color="neutral"
                 onClick={() => setOpen(true)}
                 style={{ fontSize: "15px", height: '44px', width: '100%' ,cursor:'pointer'}}
-            // classNameName="dropdown-toggle"
+            
             >
                 <FontAwesomeIcon icon={faLocationDot} style={{ marginRight: '10px' }} />
                 {selectedCity}
@@ -64,7 +62,7 @@ const Location = () => {
             </a>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog style={{ width: '40%' }}>
-                    {/* <DialogTitle>Create new project</DialogTitle> */}
+                   
                     <DialogContent>
 
                         <h3> <u className="title">Select Your City</u></h3>

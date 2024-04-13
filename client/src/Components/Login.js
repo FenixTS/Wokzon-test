@@ -49,13 +49,7 @@ function LoginForm() {
     }
   };
 
-
-
-
   return (
-
-
-
     <div className='login-cointainer' >
       <div className="mail-left" >
         <form onSubmit={handleSubmit}>

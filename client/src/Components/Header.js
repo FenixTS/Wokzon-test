@@ -1,5 +1,4 @@
 import React from 'react';
-import LanguageDropdown from './LanguageDropdown';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAddressCard, faUser, faMoneyCheckDollar, faArrowRight, faArrowLeft, } from '@fortawesome/free-solid-svg-icons';
@@ -22,8 +21,6 @@ const Header = ({ isLoggedIn, onLogin, onLogout }) => {
                       className="dropdown-toggle"
                       href="#"
                     >
-                      {/* <span className="value"><LanguageDropdown /> </span> */}
-
                     </a>
                     <ul className="dropdown-menu">
                       <li>
@@ -49,11 +46,6 @@ const Header = ({ isLoggedIn, onLogin, onLogout }) => {
                     <FontAwesomeIcon icon={faRocketchat} /> Chat Bot
                     </Link>
                   </li>
-                  {/* <li>
-                    <Link to="/checkout">
-                    <FontAwesomeIcon icon={faMoneyCheckDollar} /> Checkout
-                    </Link>
-                  </li> */}
                   <li>
                     <Link to="/post">
                       <FontAwesomeIcon icon={faAddressCard} /> Post
@@ -72,9 +64,6 @@ const Header = ({ isLoggedIn, onLogin, onLogout }) => {
           </div>
         </div>
       </div>
-      {/* Header-area:END */}
-
-
     </header>
   );
 };

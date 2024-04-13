@@ -1,14 +1,11 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
-import CategoriesMenu from './CategoriesMenu';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Components/Header';
 import LogoArea from '../Components/LogoArea';
 import Footer from './Footer';
 import axios from 'axios';
-import FuzzySet from 'fuzzyset.js';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import Button from '@material-ui/core/Button';
 import Typography from "@mui/material/Typography";
@@ -16,7 +13,6 @@ import Popover from "@mui/material/Popover";
 import { faPhone, faEnvelope, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import Contact from './Contact';
 import { ImageBaseUrl, baseUrl } from '../baseUrl';
 import { useCityData } from './CityDataContext';
 
@@ -41,7 +37,7 @@ const ProductList = (props) => {
 
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsAppNumber}`;
 
-  // console.log(cityData, 'props')
+  
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -145,23 +141,7 @@ const ProductList = (props) => {
         const searchQuery = searchTerm.trim().toLowerCase().replace(/\s/g, '');
         const productNames = response.data.map((product) => product.profession.toLowerCase());
 
-        // Create a fuzzy set with product names
-        // const fuzzySet = FuzzySet(productNames);
-        // const correctedSearchTerm = fuzzySet.get(searchQuery, null, 0.5); // Get the closest match
-
-        // if (correctedSearchTerm && correctedSearchTerm[0][0] > 0.5) {
-        //   setSearchTerm(correctedSearchTerm[0][1]); // Update searchTerm with the corrected term
-        // }
-        // let filteredResults = response.data;
-        // if (searchTerm.trim() !== '') {
-        //   filteredResults = response.data.filter(
-        //     (result) =>
-        //       result.profession
-        //         .toLowerCase()
-        //         .replace(/\s/g, '')
-        //         .includes(searchTerm.toLowerCase().replace(/\s/g, ''))
-        //   );
-        // }
+        
         const filteredResults = response.data.filter(
           (result) =>
             result.profession
@@ -241,41 +221,6 @@ const ProductList = (props) => {
       <div className="product-list-area section-padding">
         <div className="container">
           <div className="row">
-            {/* Best Sellers Carousel */}
-            {/* <div className="col-md-3 col-sm-3 col-xs-12">
-              <CategoriesMenu />
-              <div className="best-sell">
-                <h3>Best Worker</h3>
-                <div id="plCarousel" className="carousel slide" data-ride="carousel">
-                  <div className="carousel-inner" role="listbox">
-                    {bestWorker.map((product, index) => (
-                      <div key={index} className={`item ${index === 0 ? 'active' : ''}`}>
-                        <div className="single-wid-product sel-pd">
-                          <a href="#"><img src={product.image} alt="" className="product-thumb" /></a>
-                          <h2><a href="single-product.html">{product.name}</a></h2>
-                          <div className="product-wid-rating">
-                            {[...Array(5)].map((_, i) => (
-                              <i key={i} className="fa fa-star"></i>
-                            ))}
-                          </div>
-                          <div className="product-wid-price">
-                            <ins>{product.price}</ins>
-
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <a className="left carousel-control" href="#plCarousel" role="button" data-slide="prev">
-                    <i className="fa fa-angle-left"></i>
-                  </a>
-                  <a className="right carousel-control" href="#plCarousel" role="button" data-slide="next">
-                    <i className="fa fa-angle-right"></i>
-                  </a>
-                </div>
-              </div>
-            </div> */}
-
             {/* Product Display */}
             <div className="col-md-9 col-sm-9 col-xs-12">
               <div className="row" >
@@ -283,17 +228,11 @@ const ProductList = (props) => {
                 {productData.map(product => (
                   <div key={product.id} className="col-md-4 col-sm-4 col-xs-12 ">
                     <div className="product-single">
-
-
-                      <img
-
-                        // src={baseUrl + `/upload/${product.imagePath}`} 
+                      <img 
                         src={ImageBaseUrl + product.imagePath} onClick={() => handleProductClick(product._id)}
                         alt="#"
                         style={{ width: '250px', height: '250px', cursor: 'pointer' }}
                       />
-
-
                       <div className="tag new">
                         <span onClick={() => handlePhoneClick(product._id)}>
                           <FontAwesomeIcon icon={faPhone} />
@@ -312,12 +251,6 @@ const ProductList = (props) => {
                           <ins>₹{product.salary}</ins>
                         </div>
                       </div>
-
-
-                      {/* <div className="col-md-12" style={{ bottom: '40px' }} >
-                          <div className="add_cart-contact" style={{ marginLeft: '-20px', width: '250px', height: '35px', display: 'flex', justifyContent: 'center', }}> */}
-
-
                       <PopupState variant="popover" popupId="demo-popup-popover">
                         {(popupState) => (
                           <div className="add_cart-contact" >
@@ -336,7 +269,7 @@ const ProductList = (props) => {
                               }}
                               variant="contained"
                               className="btn btn-primary"
-                              // onClick={() => handleButtonClick(product.id)}
+                              
                               {...bindTrigger(popupState)}
 
                             >
@@ -367,7 +300,6 @@ const ProductList = (props) => {
                                     href={whatsappUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-
                                     onClick={() => handleWhatsAppClick(product._id)}
                                   >
                                     <FontAwesomeIcon icon={faWhatsapp} style={{ color: '#23f207', height: '15px' }} /> {product.whatsAppNumber}
@@ -384,15 +316,8 @@ const ProductList = (props) => {
                           </div>
                         )}
                       </PopupState>
-
-
                     </div>
                   </div>
-
-
-
-                  // </div>
-                  // </div>
                 ))}
               </div>
             </div>

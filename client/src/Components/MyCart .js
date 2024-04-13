@@ -40,12 +40,6 @@ const MyCart = () => {
     window.location.reload();
   };
 
-  // React.useEffect(()=>{
-  //   if (!localStorage.getItem('auth')) navigate('/register')
-  // },[])
-
-  // const CartItemsId = cartItems.map(cartId => cartId.id );
-
   useEffect(() => {
     // Fetch user's cart items
     fetch(baseUrl + '/cartItem')
@@ -102,12 +96,8 @@ const MyCart = () => {
     return map;
   }, {});
 
- 
-
   const removeItemFromCart = (productId) => {
     const itemId = cartItemsMap[productId]._id;
-    // console.log(itemId,'temsMap')
-    // Implement the logic to remove the item from cartItems based on itemId
   };
 
   const handleProductClick = (id) => {
@@ -126,7 +116,6 @@ const MyCart = () => {
         if (!response.ok) {
           throw new Error('Failed to delete item from database');
         }
-        // If deletion is successful, reload the page
         window.location.reload();
       })
       .catch(error => {
@@ -161,7 +150,6 @@ const MyCart = () => {
             if (!response.ok) {
               throw new Error('Failed to delete item from database');
             }
-            // If deletion is successful, reload the page
             window.location.reload();
           })
           .catch(error => {
@@ -214,11 +202,8 @@ const MyCart = () => {
                   <thead>
                     <tr>
                       <th className="cart-product item">profesional image</th>
-                      <th className="cart-product-name item">profession Detail</th>
-                      {/* <th className="cart-qty item">Quantity</th> */}
+                      <th className="cart-product-name item">profession Detail</th>    
                       <th className="cart-unit item">salary</th>
-                      {/* <th className="cart-delivery item">Transport info</th> */}
-                      {/* <th className="cart-sub-total last-item">Sub total</th> */}
                       <th className="cart-romove item">Remove</th>
                     </tr>
                   </thead>
@@ -249,12 +234,9 @@ const MyCart = () => {
                           </div>
                         </td>
                       
-                        <td className="cart-product-price"><div className="cc-pr">${item.salary}</div></td>
-                        {/* <td className="cart-product-delivery"><div className="cc-pr">Free shipping</div></td> */}
-                        {/* <td className="cart-product-sub-total"><div className="cc-pr">${item.productData.salary * item.productData.quantity}</div></td> */}
+                        <td className="cart-product-price"><div className="cc-pr">${item.salary}</div></td>                   
                         <td className="remove-item"  style={{display:"flex",alignItems:"center",justifyContent:"center"}}> 
                             <img
-                           
                               src="images/remove.png"
                               alt="Remove"
                               onClick={() => removeItemFromDatabase(item._id)}
@@ -276,7 +258,6 @@ const MyCart = () => {
                             onClick={() => cartItems.forEach(item => removeAllItemFromDatabase(item._id))}>
                             Clear All wishlist
                           </button>
-                          {/* <button type="button" className="btn btn-default right-cart">Update shopping cart</button> */}
                         </div>
                       </td>
                     </tr>

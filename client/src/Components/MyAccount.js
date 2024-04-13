@@ -1,7 +1,6 @@
 
 import Header from './Header';
 import LogoArea from './LogoArea';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { ImageBaseUrl, baseUrl } from '../baseUrl';
 import React, { useEffect, useState } from 'react';
@@ -13,14 +12,6 @@ import {
   MDBCardText,
   MDBCardBody,
   MDBCardImage,
-  MDBBtn,
-  MDBBreadcrumb,
-  MDBBreadcrumbItem,
-  MDBProgress,
-  MDBProgressBar,
-  MDBIcon,
-  MDBListGroup,
-  MDBListGroupItem
 } from 'mdb-react-ui-kit';
 import Footer from './Footer';
 
@@ -85,7 +76,6 @@ const MyAccount = () => {
                     </button>
                   </a>
                 </li>
-
               </ol>
             </div>
           </div>
@@ -111,11 +101,6 @@ const MyAccount = () => {
                         />
                         <br/> <br/>
                         <p className="text-muted mb-1">{userData.name}</p>
-                        {/* <p className="text-muted mb-4">Bay Area, San Francisco, CA</p> */}
-                        {/* <div className="d-flex justify-content-center mb-2"> */}
-                          {/* <MDBBtn>Follow</MDBBtn> */}
-                          {/* <MDBBtn outline className="ms-1">Message</MDBBtn> */}
-                        {/* </div> */}
                         <br/> <br/> 
                       </MDBCardBody>
                     </MDBCard>
@@ -150,14 +135,6 @@ const MyAccount = () => {
                           </MDBCol>
                         </MDBRow>
                         <hr />
-                        {/* <MDBRow>
-                          <MDBCol sm="3">
-                            <MDBCardText>Address</MDBCardText>
-                          </MDBCol>
-                          <MDBCol sm="9">
-                            <MDBCardText className="text-muted">Bay Area, San Francisco, CA</MDBCardText>
-                          </MDBCol>
-                        </MDBRow> */}
                       </MDBCardBody>
                     </MDBCard>
                   </MDBCol>
@@ -167,7 +144,6 @@ const MyAccount = () => {
           ) : (
             <div>No user data available</div>
           )}
-
         </div>
       </div>
       <Footer />
