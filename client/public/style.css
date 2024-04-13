@@ -1191,9 +1191,7 @@ form {
     cursor: pointer;
       
   }
-/* ============================================
-login page
-===============================================*/
+/* login page*/
 
 
 .login-cointainer {
@@ -1286,5 +1284,23 @@ login page
   margin-top: 33px;
   margin-bottom: 18px;
 }
+
+@media only screen and (max-width: 767px) {
+  .container {
+    width:320px;
+  }
+  .user-menu {
+    display: none;
+  }
+  .header-right ul li {
+    padding: 0;
+  }
+  .header-right ul li a {
+    font-size: 11px;
+    padding-right: 14px;
+    border-right: 0 solid #ffffff;
+  }
+  }
+  
 
 /* End Of Style */
