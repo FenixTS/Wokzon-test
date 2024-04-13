@@ -64,7 +64,7 @@ function LoginForm() {
           </div>
           <br/>
           <div className="already-have-account">
-            <Link to="/forgot_psw">Forgot password?</Link>
+            <Link to="">Forgot password?</Link>
           </div>
         </form>
       </div>
