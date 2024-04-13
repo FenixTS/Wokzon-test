@@ -64,9 +64,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      {/* FOOTER-WIDGET-AREA:END */}
-
-      
+      {/* FOOTER-WIDGET-AREA:END */}   
     </footer>
   );
 };

@@ -248,22 +248,7 @@ const MyCart = () => {
                             </div>
                           </div>
                         </td>
-                        {/* <td className="cart-product-quantity">
-                          <div className="quant-input">
-                            <input
-                              type="number"
-                              size="4"
-                              className="input-text qty text"
-                              title="Qty"
-                              value={item.quantity}
-                              onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
-                              name="quantity[113]"
-                              max="119"
-                              min="0"
-                              step="1"
-                            />
-                          </div>
-                        </td> */}
+                      
                         <td className="cart-product-price"><div className="cc-pr">${item.salary}</div></td>
                         <td className="cart-product-delivery"><div className="cc-pr">Free shipping</div></td>
                         {/* <td className="cart-product-sub-total"><div className="cc-pr">${item.productData.salary * item.productData.quantity}</div></td> */}
