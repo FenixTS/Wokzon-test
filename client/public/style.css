@@ -1341,4 +1341,13 @@ form {
 
 }
 
+.name{
+  display: flex; 
+  justify-content: space-between;
+  gap: 30px;
+}
+.col{
+	width: 100%;
+ }
+
 /* End Of Style */
