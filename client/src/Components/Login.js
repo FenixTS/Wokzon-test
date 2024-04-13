@@ -63,9 +63,7 @@ function LoginForm() {
             <button type="submit" className="btn btn-default">Login</button>
           </div>
           <br/>
-          <div className="already-have-account">
-            <Link to="">Forgot password?</Link>
-          </div>
+          
         </form>
       </div>
     </div>
