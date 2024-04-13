@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Header from '../Components/Header';
-import LogoArea from '../Components/LogoArea';
+import Header from './Header';
+import LogoArea from './LogoArea';
 import Footer from './Footer';
 import { useNavigate } from 'react-router-dom';
 import { ImageBaseUrl, baseUrl } from '../baseUrl';
