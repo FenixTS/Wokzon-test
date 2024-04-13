@@ -173,35 +173,7 @@ const MyCart = () => {
       });
   };
   
-  // const updateQuantityInDatabase = (id, newQuantity) => {
-  //   fetch(baseUrl + `/cartItem/${id}`, {
-  //     method: 'PUT',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({ quantity: newQuantity }),
-  //   })
-  //     .then(response => {
-  //       if (!response.ok) {
-  //         throw new Error('Failed to update quantity in database');
-  //       }
-  //       // If update is successful, update cartItems state
-  //       const updatedCartItems = cartItems.map(item =>
-  //         item.id === id ? { ...item, quantity: newQuantity } : item
-  //       );
-  //       setCartItems(updatedCartItems);
-  //     })
-  //     .catch(error => {
-  //       console.error('Error updating quantity in database:', error);
-  //     });
-  // };
-
-  // Function to remove item from cart and database-----
-
-
-  // const updateQuantity = (id, newQuantity) => {
-  //   updateQuantityInDatabase(id, newQuantity);
-  // };
+  
   return (
     <>
       <Header isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
@@ -310,7 +282,7 @@ const MyCart = () => {
                       <td colSpan="7">
                         <div className="shopping-cart-btn">
                         <a href="/">
-                          <button type="button" className="btn btn-default left-cart">Continue Shopping</button>
+                          <button type="button" className="btn btn-default left-cart">Go to home</button>
                           </a>
                           <button
                             type="button"

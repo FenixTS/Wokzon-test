@@ -3,16 +3,13 @@ import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 import ProductList from './Components/ProductList';
 import ProductDetail from './Components/ProductDetail';
 import ShoppingCart from './Components/MyCart ';
-import Checkout from './Components/Checkout';
 import MyAccount from './Components/MyAccount';
 import ChangePassword from './Components/ChangePassword';
 import Login from './Components/Login';
 import RegistrationForm from './Components/Register';
 import Post from './Components/Post';
 import Search from './Components/Search';
-
 import { createBrowserHistory } from 'history';
-import { Router } from 'react-router-dom';
 import { CityDataProvider } from './Components/CityDataContext';
 import Chatbot from './Components/Chatbot';
 
