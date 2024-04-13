@@ -45,12 +45,12 @@ const Search = () => {
     const handleProductClick = (id) => {
         setId(id);
         console.log(id, 'product list page ')
-        navigate((`/Product_detail`), { state: { id: id } });
+        navigate((`/Profession_detail`), { state: { id: id } });
     };
 
 
     // Function to add item to cart
-    const addToCart = (product_Id) => {
+    const addToWishlist = (product_Id) => {
         const cartItem = {
             // id: Math.random().toString(36).substr(2, 9), // Generate a random ID
             userId: userId,
@@ -68,7 +68,7 @@ const Search = () => {
         })
             .then(response => {
                 if (response.ok) {
-                    navigate((`/cart-page`))
+                    navigate((`/wishlist`))
                     console.log('Product successfully added to cart');
                     // Optionally, update the UI or perform any additional actions after successful addition
                 } else {
@@ -208,7 +208,7 @@ return (
                                     <div key={index} className="col-md-4 col-sm-4 col-xs-12 ">
                                         <div className="product-single">
 
-                                            <Link to={{ pathname: `/Product_detail`, state: { id: product.id } }} >
+                                            <Link to={{ pathname: `/Profession_detail`, state: { id: product.id } }} >
                                                 <img
                                                     src={product.image}
                                                     onClick={() => handleProductClick(product.id)}
@@ -223,7 +223,7 @@ return (
 
                                             <div className='productName-star' >
                                                 <div className="hot-wid-rating"  >
-                                                    <h4><a href="/Product_detail">{product.productData.profession}   </a><br /><br />
+                                                    <h4><a href="/Profession_detail">{product.productData.profession}   </a><br /><br />
 
                                                         {[...Array(product.rating)].map((_, i) => (
                                                             <i key={i} className="fa fa-star"></i>

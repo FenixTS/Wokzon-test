@@ -21,15 +21,12 @@ import { useCityData } from './CityDataContext';
 
 const ProductList = (props) => {
   const cityData = props.location?.state?.cityData || [];
-  // const [productData, setProductData] = useState([]);
-  const [bestWorker, setBestWorker] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState();
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredProductIds, setFilteredProductIds] = useState([]);
   const [id, setId] = useState();
   const [whatsAppNumber, setWhatsAppNumber] = useState();
   const [email, setEmail] = useState();
-
   const { setProductData } = useCityData();
   const { productData } = useCityData();
   const userId = (localStorage.getItem('user'));
@@ -48,21 +45,14 @@ const ProductList = (props) => {
   }, []); // Empty dependency array to ensure effect runs only once on mount
 
 
-  useEffect(() => {
-    // Fetch data when the component mounts
-    fetch(baseUrl + '/bestWorker')
-      .then(response => response.json())
-      .then(data => setBestWorker(data))
-      .catch(error => console.error('Error fetching data:', error));
-  }, []); // Empty dependency array to ensure effect runs only once on mount
-
+ 
   const navigate = useNavigate();
 
   const handleProductClick = (id) => {
 
     setId(id);
 
-    navigate((`/Product_detail`), { state: { id: id } });
+    navigate((`/Profession_detail`), { state: { id: id } });
   };
 
 // add to cart function ======================
@@ -74,7 +64,7 @@ const ProductList = (props) => {
     // If the product is found, add it to the cart
 
     if (productToAdd) {
-      addToCart(product_Id); // Pass productId to addToCart function
+      addToWishlist(product_Id); // Pass productId to addToWishlist function
 
     } else {
       console.error(`Product with ID ${product_Id} not found.`);
@@ -82,7 +72,7 @@ const ProductList = (props) => {
   };
 
   // Function to add item to cart
-  const addToCart = (product_Id) => {
+  const addToWishlist = (product_Id) => {
     const cartItem = {
       // id: Math.random().toString(36).substr(2, 9), // Generate a random ID
       userId: userId,
@@ -100,7 +90,7 @@ const ProductList = (props) => {
     })
       .then(response => {
         if (response.ok) {
-          navigate((`/cart-page`))
+          navigate((`/wishlist`))
           console.log('Product successfully added to cart');
           // Optionally, update the UI or perform any additional actions after successful addition
         } else {

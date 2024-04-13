@@ -59,7 +59,7 @@ const LogoArea = ({ onSearchInputChange, searchTerm }) => {
             </div>
 
 
-            <Link to="/cart-page">
+            <Link to="/wishlist">
               <div className='list-count'>
                 <div className="wishlist-btn">Wishlist </div>
                 <div className='wishlist-count'>{cartItems}</div>

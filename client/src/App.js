@@ -25,8 +25,8 @@ const App = () => {
           <main>
             <Routes history={history}>
               <Route path="/" element={<ProductList />} />
-              <Route path={`/Product_detail`} element={<ProductDetail />} />
-              <Route path="/cart-page" element={<ShoppingCart />} />
+              <Route path={`/Profession_detail`} element={<ProductDetail />} />
+              <Route path="/wishlist" element={<ShoppingCart />} />
               <Route path="/register" element={<RegistrationForm />} />
               <Route path="/chatbot" element={<Chatbot/>} />
               <Route path="/my_account" element={<MyAccount />} />

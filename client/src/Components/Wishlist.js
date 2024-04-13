@@ -103,7 +103,7 @@ const MyCart = () => {
   const handleProductClick = (id) => {
     setId(id);
     console.log(id, 'product list page ')
-    navigate((`/Product_detail`), { state: { id: id } });
+    navigate((`/Profession_detail`), { state: { id: id } });
   };
     
         
