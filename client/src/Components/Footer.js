@@ -9,7 +9,7 @@ const Footer = () => {
             <div className="row">
               <div className="col-sm-4 col-xs-12">
                 <div className="widget_logo">
-                  <a href="index.html">   <img src="images/footer_logo.png" style={{ width: '250px', height: '60px', marginTop: '-10px' }} alt="" /></a>
+                  <a >   <img src="images/footer_logo.png" style={{ width: '250px', height: '60px', marginTop: '-10px' }} alt="" /></a>
                   <ul>
                     <li>
                       <div className="wl_left">
