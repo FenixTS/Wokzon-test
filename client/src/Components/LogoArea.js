@@ -36,7 +36,7 @@ const LogoArea = ({ onSearchInputChange, searchTerm }) => {
         <div className="row">
           <div className="logo-search-wishlist">
 
-            <a href="index.html">
+            <a>
               <img src="images/logo.png" style={{ width: '250px', height: '60px', marginTop: '-10px' }} alt="" />
             </a>
 

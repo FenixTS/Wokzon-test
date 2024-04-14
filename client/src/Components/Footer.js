@@ -3,7 +3,6 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer className="entire_footer">
-      {/* FOOTER-WIDGET-AREA */}
       <div className="footer-widget">
         <div className="ovelay">
           <div className="container">
@@ -61,8 +60,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
-      {/* FOOTER-WIDGET-AREA:END */}   
+      </div>   
     </footer>
   );
 };

@@ -7,7 +7,6 @@ import MyAccount from './Components/MyAccount';
 import Login from './Components/Login';
 import RegistrationForm from './Components/Register';
 import Post from './Components/Post';
-import Search from './Components/Search';
 import { createBrowserHistory } from 'history';
 import { CityDataProvider } from './Components/CityDataContext';
 import Chatbot from './Components/Chatbot';
@@ -30,7 +29,6 @@ const App = () => {
               <Route path="/register" element={<RegistrationForm />} />
               <Route path="/chatbot" element={<Chatbot/>} />
               <Route path="/my_account" element={<MyAccount />} />
-              <Route path="/search" element={<Search />} />
               <Route path="/login" element={<Login />} />
               <Route path="/post" element={<Post />} />
             </Routes>

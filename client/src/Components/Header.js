@@ -28,7 +28,6 @@ const Header = ({ isLoggedIn, onLogin, onLogout }) => {
                       </li>
                     </ul>
                   </li>
-
                   <li>Welcome to WOKZON</li>
                 </ul>
               </div>
